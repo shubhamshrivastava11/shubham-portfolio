@@ -93,6 +93,7 @@ const projects = [
     tags: ['AI Design', 'Affiliate Commerce', 'React', '0-to-1', 'PropTech'],
     headerBg: 'linear-gradient(135deg,#fff7ed,#fed7aa)',
     accent: '#ea580c',
+    url: 'https://www.heyfurnish.com',
   },
   {
     slug: null, index: '07', tag: 'AI · Productivity',
@@ -349,6 +350,13 @@ export default function App() {
                         style={{ marginLeft: 'auto', background: C.ink, color: C.white, fontSize: '0.8125rem', fontWeight: 500, padding: '7px 18px', borderRadius: '980px' }}>
                         Case study <ArrowRight size={12}/>
                       </Link>
+                    )}
+                    {p.url && (
+                      <a href={p.url} target="_blank" rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 transition-opacity hover:opacity-80"
+                        style={{ marginLeft: p.slug ? '8px' : 'auto', background: C.ink, color: C.white, fontSize: '0.8125rem', fontWeight: 500, padding: '7px 18px', borderRadius: '980px' }}>
+                        Live site <ArrowRight size={12}/>
+                      </a>
                     )}
                   </div>
                 </div>

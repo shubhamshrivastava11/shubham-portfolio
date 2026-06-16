@@ -70,6 +70,18 @@ const projects = [
     headerBg: 'linear-gradient(135deg,#fce7f3,#fbcfe8)',
     accent: '#db2777',
   },
+  {
+    slug: null, index: '05', tag: 'AI · Productivity',
+    title: 'AI Job Co-pilot',
+    company: 'Side Project', period: '2025',
+    heroValue: '80%+', heroLabel: 'application time saved',
+    hook: '0-to-1 AI tool built and shipped in one evening — automated the entire job application workflow.',
+    summary: 'Automated ATS keyword gap analysis, resume bullet tailoring, and cover letter generation using LLMs. Dogfooded on real applications to Merative, Headspace, and Intuit — reduced per-application time by 80%+.',
+    metrics: [{ value: '80%+', label: 'Time saved per app' }, { value: '1 eve', label: 'Built & deployed' }, { value: '3', label: 'Real apps tested' }],
+    tags: ['LLMs', 'Python', 'NLP', 'ATS Optimization', 'GenAI'],
+    headerBg: 'linear-gradient(135deg,#fdf4ff,#ede9fe)',
+    accent: '#9333ea',
+  },
 ];
 
 /* ── Experience & education ── */
@@ -257,18 +269,6 @@ export default function App() {
           ))}
         </motion.div>
 
-        {/* Company ticker */}
-        <div style={{ borderTop: '1px solid rgba(0,0,0,0.07)', borderBottom: '1px solid rgba(0,0,0,0.07)', background: C.snow, overflow: 'hidden' }}>
-          <div className="ticker-track" style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
-            {[...['Johnson & Johnson','Deloitte Consulting','Bank of China','Digital iTechnology','Openlogix · K2 Partnering','Worldsoft Technologies'],
-               ...['Johnson & Johnson','Deloitte Consulting','Bank of China','Digital iTechnology','Openlogix · K2 Partnering','Worldsoft Technologies'],
-            ].map((co, i) => (
-              <span key={i} style={{ flexShrink: 0, padding: '12px 40px', fontSize: '0.6875rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 500, color: C.lgray, display: 'inline-flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontSize: '0.4rem', color: 'rgba(0,0,0,0.15)' }}>◆</span>{co}
-              </span>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ── WORK ── */}
@@ -319,11 +319,13 @@ export default function App() {
                   {/* Tags + CTA */}
                   <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px' }}>
                     {p.tags.map(t => <span key={t} className="pill-tag">{t}</span>)}
-                    <Link to={`/case/${p.slug}`}
-                      className="inline-flex items-center gap-1 transition-opacity hover:opacity-80"
-                      style={{ marginLeft: 'auto', background: C.ink, color: C.white, fontSize: '0.8125rem', fontWeight: 500, padding: '7px 18px', borderRadius: '980px' }}>
-                      Case study <ArrowRight size={12}/>
-                    </Link>
+                    {p.slug && (
+                      <Link to={`/case/${p.slug}`}
+                        className="inline-flex items-center gap-1 transition-opacity hover:opacity-80"
+                        style={{ marginLeft: 'auto', background: C.ink, color: C.white, fontSize: '0.8125rem', fontWeight: 500, padding: '7px 18px', borderRadius: '980px' }}>
+                        Case study <ArrowRight size={12}/>
+                      </Link>
+                    )}
                   </div>
                 </div>
               </motion.article>

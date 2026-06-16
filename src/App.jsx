@@ -10,15 +10,23 @@ const LinkedIn = () => (
 
 /* ── Colour tokens ── */
 const C = {
-  white:  '#ffffff',
-  snow:   '#f5f5f7',
-  ink:    '#1d1d1f',
-  gray:   '#6e6e73',
-  lgray:  '#86868b',
-  border: 'rgba(0,0,0,0.08)',
-  violet: '#7C3AED',
-  gold:   '#C9974A',
+  bg:      '#09090b',
+  surface: 'rgba(255,255,255,0.03)',
+  s2:      'rgba(255,255,255,0.05)',
+  border:  'rgba(255,255,255,0.08)',
+  bHover:  'rgba(255,255,255,0.15)',
+  text:    '#fafafa',
+  muted:   '#a1a1aa',
+  subtle:  '#71717a',
+  purple:  '#a855f7',
+  indigo:  '#6366f1',
+  gold:    '#f59e0b',
+  green:   '#22c55e',
+  violet:  '#8b5cf6',
 };
+
+const GRAD = 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)';
+const G = { background: GRAD, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' };
 
 /* ── Project data ── */
 const projects = [
@@ -26,13 +34,10 @@ const projects = [
     slug: 'jj-ai-invoice', index: '01', tag: 'MedTech · Enterprise AI',
     title: 'AI Invoice Pipeline & Cloud Migration',
     company: 'Johnson & Johnson', period: 'Oct 2025 – Present',
-    heroValue: '$2.4M', heroLabel: 'in annual savings',
+    heroValue: '$2.4M', heroLabel: 'annual savings',
     hook: 'Turned a fragile SAP legacy system into a $2.4M-saving AI platform — in under a year.',
-    summary: 'Led the full SAP → AWS cloud-native migration across 5 global regions and shipped an NLP/RAG invoice extraction pipeline with LLM hallucination guardrails and PII controls.',
     metrics: [{ value: '$2.4M', label: 'Annual savings' }, { value: '38%', label: 'Faster cycle time' }, { value: '400+', label: 'Analyst hrs freed/mo' }],
     tags: ['LLM', 'RAG', 'AWS', 'Microservices', 'PII Compliance'],
-    headerBg: 'linear-gradient(135deg,#f3e8ff,#ede9fe)',
-    accent: '#7C3AED',
   },
   {
     slug: 'deloitte-compliance', index: '02', tag: 'GovTech · Compliance SaaS',
@@ -40,11 +45,8 @@ const projects = [
     company: 'Deloitte Consulting', period: 'May – Oct 2025',
     heroValue: '50+', heroLabel: 'critical defects blocked',
     hook: 'Caught 50+ critical defects before launch. Cut bug fix time by 60%. Without adding a single headcount.',
-    summary: 'Owned the compliance platform for 15+ state agencies. Designed the UAT lifecycle from scratch and applied AI-assisted clustering to eliminate 34% of sprint waste.',
     metrics: [{ value: '41%', label: 'Data accuracy lift' }, { value: '50+', label: 'Defects pre-launch' }, { value: '1.6d', label: 'MTTR (was 4 days)' }],
     tags: ['UAT', 'Agile', 'AI Clustering', 'Multi-agency'],
-    headerBg: 'linear-gradient(135deg,#dcfce7,#bbf7d0)',
-    accent: '#16a34a',
   },
   {
     slug: 'cygnus-aml', index: '03', tag: 'FinTech · Regulatory Reporting',
@@ -52,11 +54,8 @@ const projects = [
     company: 'Cygnus Compliance / Bank of China', period: 'Jan – Mar 2025',
     heroValue: '$50M+', heroLabel: 'transaction volume at launch',
     hook: 'Zero to compliance-ready MVP in 8 weeks. $50M+ in transaction volume on day one.',
-    summary: 'Led end-to-end discovery and delivery of a B2B regulatory reporting engine for ISO 20022 and PCI-DSS. Three rounds of usability testing drove accuracy from 85% to 97%.',
     metrics: [{ value: '$50M+', label: 'Volume at launch' }, { value: '97%', label: 'Submission accuracy' }, { value: '60%', label: 'Fewer escalations' }],
     tags: ['ISO 20022', 'PCI-DSS', 'AML/KYC', 'Python ML'],
-    headerBg: 'linear-gradient(135deg,#dbeafe,#bfdbfe)',
-    accent: '#2563eb',
   },
   {
     slug: 'digital-i-mobile', index: '04', tag: 'D2C · Consumer Mobile',
@@ -64,23 +63,17 @@ const projects = [
     company: 'Digital iTechnology', period: 'Mar – Dec 2024',
     heroValue: '75K', heroLabel: 'installs from zero',
     hook: 'Took an app from zero to 75K installs while lifting retention 15 points in under a year.',
-    summary: 'Owned the full product lifecycle. Ran 5 A/B tests to fix a broken onboarding funnel and built a behavioral cohort framework that identified and targeted high-churn user segments.',
     metrics: [{ value: '75K', label: 'App installs' }, { value: '33%', label: 'Onboarding lift' }, { value: '61%', label: 'Retention (↑ from 46%)' }],
     tags: ['A/B Testing', 'Cohort Analysis', 'GTM', 'Retention'],
-    headerBg: 'linear-gradient(135deg,#fce7f3,#fbcfe8)',
-    accent: '#db2777',
   },
   {
     slug: null, index: '05', tag: 'AI · Productivity',
     title: 'Locus',
     company: 'Side Project · AI PM Bootcamp', period: '2026',
-    heroValue: '0 bytes', heroLabel: 'stored — session-only AI',
+    heroValue: '0 bytes', heroLabel: 'stored — session-only',
     hook: 'Privacy-first document intelligence for professionals who can\'t upload client data to ChatGPT.',
-    summary: 'Building for CPAs, auditors, and consultants. Documents live in RAM only and are destroyed on session end — zero cloud exposure. Cross-document analysis via Claude + ChromaDB with a patent-pending zero-storage architecture.',
     metrics: [{ value: '0 bytes', label: 'Data stored' }, { value: '$16/mo', label: 'Target price' }, { value: '87%', label: 'Gross margin' }],
     tags: ['Claude API', 'FastAPI', 'Python', 'LangChain', 'Privacy'],
-    headerBg: 'linear-gradient(135deg,#ecfdf5,#d1fae5)',
-    accent: '#059669',
   },
   {
     slug: null, index: '06', tag: 'AI · Home & Lifestyle',
@@ -88,11 +81,8 @@ const projects = [
     company: 'Founder · DwellIQ', period: '2025 – Present',
     heroValue: '90s', heroLabel: 'quiz to full design package',
     hook: 'AI interior design platform generating 3 complete room packages with 3D walkthroughs and cross-room budget optimization.',
-    summary: 'Patent-pending allocation engine coordinates furniture (38%), lighting (18%), décor (24%), and storage (20%) budgets across entire homes simultaneously. Users get Budget, Balanced, and Premium packages with curated shopping lists from IKEA, West Elm, and Wayfair.',
     metrics: [{ value: '90s', label: 'To first design' }, { value: '$1.2K', label: 'Avg savings vs. designer' }, { value: '35+', label: 'Curated products' }],
     tags: ['AI Design', 'Affiliate Commerce', 'React', '0-to-1', 'PropTech'],
-    headerBg: 'linear-gradient(135deg,#fff7ed,#fed7aa)',
-    accent: '#ea580c',
     url: 'https://www.heyfurnish.com',
   },
   {
@@ -101,11 +91,8 @@ const projects = [
     company: 'Side Project', period: '2025',
     heroValue: '80%+', heroLabel: 'application time saved',
     hook: '0-to-1 AI tool built and shipped in one evening — automated the entire job application workflow.',
-    summary: 'Automated ATS keyword gap analysis, resume bullet tailoring, and cover letter generation using LLMs. Dogfooded on real applications to Merative, Headspace, and Intuit — reduced per-application time by 80%+.',
     metrics: [{ value: '80%+', label: 'Time saved per app' }, { value: '1 eve', label: 'Built & deployed' }, { value: '3', label: 'Real apps tested' }],
     tags: ['LLMs', 'Python', 'NLP', 'ATS Optimization', 'GenAI'],
-    headerBg: 'linear-gradient(135deg,#fdf4ff,#ede9fe)',
-    accent: '#9333ea',
   },
 ];
 
@@ -174,17 +161,17 @@ const certs = ['Certified Scrum Product Owner (CSPO)', 'Certified Scrum Master (
 
 /* ── Animation helper ── */
 const up = (delay = 0) => ({
-  initial: { opacity: 0, y: 28 },
+  initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-40px' },
-  transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] },
+  viewport: { once: true, margin: '-32px' },
+  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
 });
 
 /* ── Section header ── */
-const SectionHeader = ({ label, title }) => (
-  <div style={{ marginBottom: '56px' }}>
-    <p style={{ fontSize: '0.75rem', fontWeight: 600, color: C.violet, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '10px' }}>{label}</p>
-    <h2 style={{ fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 700, color: C.ink, letterSpacing: '-0.022em', lineHeight: 1.1 }}>{title}</h2>
+const SH = ({ eyebrow, title }) => (
+  <div style={{ marginBottom: '44px' }}>
+    <p style={{ fontSize: '0.6875rem', fontWeight: 600, color: C.purple, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '10px' }}>{eyebrow}</p>
+    <h2 style={{ fontSize: 'clamp(1.875rem,4vw,2.75rem)', fontWeight: 800, color: C.text, letterSpacing: '-0.028em', lineHeight: 1.08 }}>{title}</h2>
   </div>
 );
 
@@ -192,95 +179,89 @@ const SectionHeader = ({ label, title }) => (
 
 export default function App() {
   return (
-    <div style={{ background: C.white, color: C.ink }}>
+    <div style={{ background: C.bg, color: C.text }}>
 
       {/* ── NAV ── */}
       <header className="nav-blur" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50 }}>
-        <div style={{ maxWidth: '980px', margin: '0 auto', padding: '0 24px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ fontSize: '1.0625rem', fontWeight: 600, color: C.ink, letterSpacing: '-0.01em' }}>
-            Shubham<span style={{ color: C.violet }}>.</span>
+        <div style={{ maxWidth: '1040px', margin: '0 auto', padding: '0 28px', height: '52px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <span style={{ fontSize: '1.0625rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
+            Shubham<span style={{ ...G, fontWeight: 800 }}>.</span>
           </span>
-          <nav className="hidden md:flex items-center gap-7">
+          <nav className="hidden md:flex items-center gap-8">
             {[['Work', '#work'], ['Experience', '#experience'], ['Skills', '#skills']].map(([l, h]) => (
-              <a key={l} href={h} className="nav-link" style={{ fontSize: '0.875rem' }}>{l}</a>
+              <a key={l} href={h} className="nav-link" style={{ fontSize: '0.875rem', fontWeight: 500 }}>{l}</a>
             ))}
           </nav>
           <a href="mailto:shrivastavashubham213@gmail.com"
-            className="transition-opacity hover:opacity-85"
-            style={{ fontSize: '0.875rem', fontWeight: 500, color: C.white, background: C.violet, padding: '7px 18px', borderRadius: '980px', boxShadow: '0 2px 10px rgba(124,58,237,0.28)' }}>
+            style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff', background: GRAD, padding: '8px 20px', borderRadius: '980px', boxShadow: '0 4px 20px rgba(139,92,246,0.35)', textDecoration: 'none' }}>
             Hire Me
           </a>
         </div>
       </header>
 
       {/* ── HERO ── */}
-      <section style={{ background: C.white }}>
-        <div style={{ maxWidth: '720px', margin: '0 auto', padding: '108px 24px 0', textAlign: 'center' }}>
+      <section style={{ background: C.bg, paddingTop: '0' }}>
+        <div style={{ maxWidth: '760px', margin: '0 auto', padding: '108px 28px 0', textAlign: 'center' }}>
 
           {/* Available badge */}
-          <motion.div {...up(0)} className="inline-flex items-center gap-2 mb-10"
-            style={{ background: C.snow, border: '1px solid rgba(0,0,0,0.08)', borderRadius: '980px', padding: '6px 16px' }}>
+          <motion.div {...up(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '24px', background: 'rgba(168,85,247,0.08)', border: '1px solid rgba(168,85,247,0.22)', borderRadius: '980px', padding: '6px 16px' }}>
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full ping-slow" style={{ background: '#34c759', opacity: 0.6 }}/>
-              <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: '#34c759' }}/>
+              <span className="absolute inline-flex h-full w-full rounded-full ping-slow" style={{ background: C.green, opacity: 0.6 }}/>
+              <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: C.green }}/>
             </span>
-            <span style={{ fontSize: '0.6875rem', color: C.gray, letterSpacing: '0.07em', fontWeight: 500, textTransform: 'uppercase' }}>
+            <span style={{ fontSize: '0.6875rem', color: C.muted, letterSpacing: '0.08em', fontWeight: 500, textTransform: 'uppercase' }}>
               Open to Senior PM · Staff PM roles
             </span>
           </motion.div>
 
           {/* Name */}
-          <motion.h1 {...up(0.03)} style={{ fontSize: 'clamp(3.5rem,9vw,6.5rem)', fontWeight: 700, lineHeight: 1.02, letterSpacing: '-0.03em', color: C.ink, marginBottom: '16px' }}>
+          <motion.h1 {...up(0.04)} style={{ fontSize: 'clamp(2.75rem,8vw,5rem)', fontWeight: 800, lineHeight: 1.04, letterSpacing: '-0.032em', color: C.text, marginBottom: '8px' }}>
             Shubham Shrivastava
           </motion.h1>
 
-          {/* Title */}
-          <motion.p {...up(0.06)} style={{ fontSize: 'clamp(1.35rem,2.8vw,2rem)', fontWeight: 400, color: C.gray, letterSpacing: '-0.01em', marginBottom: '22px' }}>
-            AI & Data Product Manager
+          {/* Title with gradient */}
+          <motion.p {...up(0.07)} style={{ fontSize: 'clamp(1.125rem,2.5vw,1.5rem)', fontWeight: 600, letterSpacing: '-0.015em', marginBottom: '18px' }}>
+            <span style={G}>AI & Data</span>
+            <span style={{ color: C.muted }}> · Product Manager</span>
           </motion.p>
 
           {/* Bio */}
-          <motion.p {...up(0.09)} style={{ fontSize: '1.125rem', color: C.gray, maxWidth: '480px', margin: '0 auto 40px', lineHeight: 1.75 }}>
+          <motion.p {...up(0.1)} style={{ fontSize: '1rem', color: C.muted, maxWidth: '420px', margin: '0 auto 28px', lineHeight: 1.65 }}>
             6+ years building AI products at J&J, Deloitte, and Bank of China.
             I turn high-stakes ambiguity into products that ship and scale.
           </motion.p>
 
           {/* CTAs */}
-          <motion.div {...up(0.11)} className="flex flex-wrap items-center justify-center gap-3 mb-5">
+          <motion.div {...up(0.12)} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '20px' }}>
             <a href="#work"
-              className="inline-flex items-center gap-2 transition-opacity hover:opacity-85"
-              style={{ background: C.violet, color: C.white, padding: '13px 30px', borderRadius: '980px', fontSize: '1.0625rem', fontWeight: 500, letterSpacing: '-0.01em', boxShadow: '0 4px 18px rgba(124,58,237,0.3)' }}>
-              See My Work <ArrowRight size={16}/>
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '11px 24px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, letterSpacing: '-0.01em', boxShadow: '0 4px 20px rgba(139,92,246,0.32)', textDecoration: 'none' }}>
+              See My Work <ArrowRight size={15}/>
             </a>
             <a href="/resume.pdf" target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-2 transition-opacity hover:opacity-75"
-              style={{ background: C.white, color: C.ink, border: '1px solid rgba(0,0,0,0.12)', padding: '13px 30px', borderRadius: '980px', fontSize: '1.0625rem', fontWeight: 500 }}>
-              <Download size={16}/> Resume
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: '1px solid rgba(255,255,255,0.1)', padding: '11px 24px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none' }}>
+              <Download size={15}/> Resume
             </a>
             <a href="https://linkedin.com/in/shubhamshrivastava11/" target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-2 transition-opacity hover:opacity-75"
-              style={{ background: C.white, color: C.gray, border: '1px solid rgba(0,0,0,0.12)', padding: '13px 22px', borderRadius: '980px', fontSize: '1.0625rem' }}>
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: '1px solid rgba(255,255,255,0.1)', padding: '11px 18px', borderRadius: '980px', textDecoration: 'none' }}>
               <LinkedIn/>
             </a>
           </motion.div>
 
           {/* Location */}
-          <motion.p {...up(0.12)} className="flex items-center justify-center gap-1.5 mb-14"
-            style={{ fontSize: '0.875rem', color: C.lgray }}>
-            <MapPin size={12} style={{ color: C.violet }}/> Jersey City, NJ · Open to relocation · Remote-first OK
+          <motion.p {...up(0.13)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontSize: '0.8125rem', color: C.subtle, marginBottom: '44px' }}>
+            <MapPin size={12} style={{ color: C.purple }}/> Jersey City, NJ · Open to relocation · Remote-first OK
           </motion.p>
 
           {/* Profile photo */}
-          <motion.div {...up(0.14)} style={{ display: 'inline-block' }}>
-            <div style={{ width: '260px', height: '310px', borderRadius: '32px', overflow: 'hidden', boxShadow: '0 48px 96px rgba(0,0,0,0.14), 0 12px 32px rgba(0,0,0,0.08)', margin: '0 auto' }}>
+          <motion.div {...up(0.15)} style={{ display: 'inline-block' }}>
+            <div style={{ width: '240px', height: '286px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 0 0 1px rgba(255,255,255,0.08), 0 32px 80px rgba(0,0,0,0.6)', margin: '0 auto' }}>
               <img src="/profile.png" alt="Shubham Shrivastava" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}/>
             </div>
           </motion.div>
         </div>
 
         {/* Stats row */}
-        <motion.div {...up(0.16)}
-          style={{ maxWidth: '720px', margin: '0 auto', padding: '48px 24px 72px', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 'clamp(32px,7vw,96px)', borderTop: '1px solid rgba(0,0,0,0.07)', marginTop: '56px' }}>
+        <motion.div {...up(0.18)} style={{ maxWidth: '680px', margin: '40px auto 0', padding: '36px 28px 64px', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 'clamp(24px,6vw,64px)', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           {[
             { value: '$2.4M', label: 'Annual savings' },
             { value: '75K',   label: 'App installs' },
@@ -288,77 +269,71 @@ export default function App() {
             { value: '6+',    label: 'Years experience' },
           ].map((s, i) => (
             <div key={i} style={{ textAlign: 'center' }}>
-              <p style={{ fontSize: 'clamp(2.2rem,5vw,3.2rem)', fontWeight: 700, color: C.ink, letterSpacing: '-0.03em', lineHeight: 1 }}>{s.value}</p>
-              <p style={{ fontSize: '0.9375rem', color: C.gray, marginTop: '8px' }}>{s.label}</p>
+              <p style={{ fontSize: 'clamp(1.75rem,4vw,2.5rem)', fontWeight: 800, letterSpacing: '-0.032em', lineHeight: 1, ...G }}>{s.value}</p>
+              <p style={{ fontSize: '0.8125rem', color: C.subtle, marginTop: '6px' }}>{s.label}</p>
             </div>
           ))}
         </motion.div>
-
       </section>
 
       {/* ── WORK ── */}
-      <section id="work" style={{ background: C.snow, padding: '100px 0' }}>
-        <div style={{ maxWidth: '860px', margin: '0 auto', padding: '0 24px' }}>
+      <section id="work" style={{ background: C.bg, padding: '88px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 28px' }}>
           <motion.div {...up(0)}>
-            <SectionHeader label="Selected Work" title="Products I've built"/>
+            <SH eyebrow="Selected Work" title="Products I've built"/>
           </motion.div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {projects.map((p, i) => (
-              <motion.article key={i} {...up(i * 0.07)}
-                style={{ background: C.white, borderRadius: '22px', overflow: 'hidden', boxShadow: '0 2px 24px rgba(0,0,0,0.07)', transition: 'box-shadow 0.22s ease, transform 0.22s ease' }}
-                whileHover={{ y: -3, boxShadow: '0 20px 56px rgba(0,0,0,0.12)' }}>
+              <motion.article key={i} {...up(i * 0.05)} className="glass-card" style={{ padding: '24px 28px' }}>
 
-                {/* Pastel header with hero metric */}
-                <div style={{ background: p.headerBg, padding: '36px 40px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                  <div>
-                    <span style={{ fontSize: '0.6875rem', fontWeight: 600, color: p.accent, textTransform: 'uppercase', letterSpacing: '0.08em', background: `${p.accent}18`, padding: '3px 10px', borderRadius: '980px', display: 'inline-block', marginBottom: '8px' }}>
-                      {p.tag}
-                    </span>
-                    <p style={{ fontSize: '0.8125rem', color: C.lgray }}>{p.index} of {projects.length}</p>
+                {/* Top row */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '0.6875rem', color: C.subtle, fontVariantNumeric: 'tabular-nums', letterSpacing: '0.04em' }}>{p.index}</span>
+                    <span style={{ width: '1px', height: '10px', background: 'rgba(255,255,255,0.12)' }}/>
+                    <span className="pill-tag" style={{ fontSize: '0.6875rem', padding: '2px 10px' }}>{p.tag}</span>
                   </div>
                   <div style={{ textAlign: 'right' }}>
-                    <p style={{ fontSize: 'clamp(2.5rem,5.5vw,3.8rem)', fontWeight: 800, color: C.ink, letterSpacing: '-0.035em', lineHeight: 1 }}>{p.heroValue}</p>
-                    <p style={{ fontSize: '0.8125rem', color: C.gray, marginTop: '2px' }}>{p.heroLabel}</p>
+                    <p style={{ fontSize: 'clamp(1.25rem,3vw,1.75rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1, ...G }}>{p.heroValue}</p>
+                    <p style={{ fontSize: '0.625rem', color: C.subtle, marginTop: '3px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{p.heroLabel}</p>
                   </div>
                 </div>
 
-                {/* Content */}
-                <div style={{ padding: '32px 40px 36px' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: C.ink, letterSpacing: '-0.015em', marginBottom: '4px' }}>{p.title}</h3>
-                  <p style={{ fontSize: '0.8125rem', color: C.gray, marginBottom: '16px' }}>{p.company} · {p.period}</p>
+                {/* Title */}
+                <h3 style={{ fontSize: 'clamp(1rem,2.2vw,1.25rem)', fontWeight: 700, color: C.text, letterSpacing: '-0.018em', lineHeight: 1.25, marginBottom: '3px' }}>{p.title}</h3>
+                <p style={{ fontSize: '0.75rem', color: C.subtle, marginBottom: '12px' }}>{p.company} · {p.period}</p>
 
-                  <p style={{ fontSize: '0.9375rem', color: p.accent, fontStyle: 'italic', fontWeight: 500, marginBottom: '12px' }}>{p.hook}</p>
-                  <p style={{ fontSize: '0.9375rem', color: C.gray, lineHeight: 1.7, marginBottom: '24px' }}>{p.summary}</p>
+                {/* Hook */}
+                <p style={{ fontSize: '0.875rem', color: C.muted, lineHeight: 1.65, marginBottom: '18px' }}>{p.hook}</p>
 
-                  {/* Metrics */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '28px', paddingTop: '18px', borderTop: '1px solid rgba(0,0,0,0.07)', marginBottom: '20px' }}>
-                    {p.metrics.map((m, j) => (
-                      <div key={j}>
-                        <span style={{ fontSize: '1.375rem', fontWeight: 700, color: C.ink, letterSpacing: '-0.02em' }}>{m.value}</span>
-                        <span style={{ fontSize: '0.8125rem', color: C.gray, marginLeft: '6px' }}>{m.label}</span>
-                      </div>
-                    ))}
-                  </div>
+                {/* Metrics */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginBottom: '16px' }}>
+                  {p.metrics.map((m, j) => (
+                    <div key={j}>
+                      <p style={{ fontSize: '1.0625rem', fontWeight: 700, color: C.text, letterSpacing: '-0.02em', lineHeight: 1 }}>{m.value}</p>
+                      <p style={{ fontSize: '0.625rem', color: C.subtle, marginTop: '3px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{m.label}</p>
+                    </div>
+                  ))}
+                </div>
 
-                  {/* Tags + CTA */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px' }}>
-                    {p.tags.map(t => <span key={t} className="pill-tag">{t}</span>)}
-                    {p.slug && (
-                      <Link to={`/case/${p.slug}`}
-                        className="inline-flex items-center gap-1 transition-opacity hover:opacity-80"
-                        style={{ marginLeft: 'auto', background: C.ink, color: C.white, fontSize: '0.8125rem', fontWeight: 500, padding: '7px 18px', borderRadius: '980px' }}>
-                        Case study <ArrowRight size={12}/>
-                      </Link>
-                    )}
-                    {p.url && (
-                      <a href={p.url} target="_blank" rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 transition-opacity hover:opacity-80"
-                        style={{ marginLeft: p.slug ? '8px' : 'auto', background: C.ink, color: C.white, fontSize: '0.8125rem', fontWeight: 500, padding: '7px 18px', borderRadius: '980px' }}>
-                        Live site <ArrowRight size={12}/>
-                      </a>
-                    )}
-                  </div>
+                <div className="divider" style={{ marginBottom: '14px' }}/>
+
+                {/* Tags + CTA */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px' }}>
+                  {p.tags.slice(0, 4).map(t => <span key={t} className="pill-tag">{t}</span>)}
+                  {p.slug && (
+                    <Link to={`/case/${p.slug}`}
+                      style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: '6px', background: GRAD, color: '#fff', fontSize: '0.8125rem', fontWeight: 600, padding: '8px 20px', borderRadius: '980px', textDecoration: 'none', boxShadow: '0 4px 16px rgba(139,92,246,0.25)' }}>
+                      Case study <ArrowRight size={12}/>
+                    </Link>
+                  )}
+                  {p.url && (
+                    <a href={p.url} target="_blank" rel="noopener noreferrer"
+                      style={{ marginLeft: p.slug ? '0' : 'auto', display: 'inline-flex', alignItems: 'center', gap: '6px', background: GRAD, color: '#fff', fontSize: '0.8125rem', fontWeight: 600, padding: '8px 20px', borderRadius: '980px', textDecoration: 'none', boxShadow: '0 4px 16px rgba(139,92,246,0.25)' }}>
+                      Live site <ArrowRight size={12}/>
+                    </a>
+                  )}
                 </div>
               </motion.article>
             ))}
@@ -367,38 +342,38 @@ export default function App() {
       </section>
 
       {/* ── EXPERIENCE ── */}
-      <section id="experience" style={{ background: C.white, padding: '100px 0' }}>
-        <div style={{ maxWidth: '860px', margin: '0 auto', padding: '0 24px' }}>
+      <section id="experience" style={{ background: C.bg, padding: '88px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 28px' }}>
           <motion.div {...up(0)}>
-            <SectionHeader label="Experience & Education" title="Career timeline"/>
+            <SH eyebrow="Experience & Education" title="Career timeline"/>
           </motion.div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {timeline.map((item, i) => {
               const isWork = item.type === 'work';
-              const accent = isWork ? C.violet : C.gold;
+              const accent = isWork ? C.purple : C.gold;
               return (
-                <motion.div key={i} {...up(i * 0.045)}
-                  style={{ background: C.snow, borderRadius: '18px', padding: '24px 28px', borderLeft: `3px solid ${accent}`, transition: 'box-shadow 0.2s ease' }}
-                  whileHover={{ boxShadow: '0 8px 36px rgba(0,0,0,0.09)' }}>
+                <motion.div key={i} {...up(i * 0.04)}
+                  style={{ background: C.surface, border: `1px solid ${C.border}`, borderLeft: `2px solid ${accent}`, borderRadius: '14px', padding: '18px 22px', transition: 'border-color 0.2s, box-shadow 0.2s' }}
+                  whileHover={{ borderColor: C.bHover, boxShadow: '0 6px 32px rgba(0,0,0,0.28)' }}>
 
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span style={{ fontSize: '0.6875rem', fontWeight: 600, color: accent, textTransform: 'uppercase', letterSpacing: '0.08em', background: `${accent}12`, padding: '2px 10px', borderRadius: '980px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                      {isWork ? <Briefcase size={9}/> : <GraduationCap size={9}/>} {isWork ? 'Work' : 'Education'}
+                  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+                    <span style={{ fontSize: '0.625rem', fontWeight: 600, color: accent, textTransform: 'uppercase', letterSpacing: '0.08em', background: `${accent}12`, padding: '2px 8px', borderRadius: '980px', display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+                      {isWork ? <Briefcase size={8}/> : <GraduationCap size={8}/>} {isWork ? 'Work' : 'Education'}
                     </span>
-                    <span style={{ fontSize: '0.75rem', color: C.lgray }}>{item.period}</span>
-                    <span style={{ fontSize: '0.75rem', color: C.lgray }}>· {item.domain}</span>
+                    <span style={{ fontSize: '0.6875rem', color: C.subtle }}>{item.period}</span>
+                    <span style={{ fontSize: '0.6875rem', color: C.subtle }}>· {item.domain}</span>
                   </div>
 
-                  <h3 style={{ fontSize: '1.0625rem', fontWeight: 600, color: C.ink, letterSpacing: '-0.01em', marginBottom: '2px' }}>{item.role}</h3>
-                  <p style={{ fontSize: '0.875rem', color: accent, fontWeight: 500, marginBottom: item.bullets.length > 0 ? '16px' : 0 }}>
+                  <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, color: C.text, letterSpacing: '-0.01em', marginBottom: '2px' }}>{item.role}</h3>
+                  <p style={{ fontSize: '0.8125rem', color: accent, fontWeight: 500, marginBottom: item.bullets.length > 0 ? '12px' : 0 }}>
                     {item.org} · {item.location}
                   </p>
 
                   {item.bullets.length > 0 && (
-                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingTop: '16px', borderTop: '1px solid rgba(0,0,0,0.07)', marginBottom: item.keyResult ? '16px' : 0 }}>
+                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '6px', paddingTop: '12px', borderTop: '1px solid rgba(255,255,255,0.07)', marginBottom: item.keyResult ? '12px' : 0 }}>
                       {item.bullets.map((b, j) => (
-                        <li key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', fontSize: '0.9375rem', color: C.gray, lineHeight: 1.65 }}>
+                        <li key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.8125rem', color: C.muted, lineHeight: 1.6 }}>
                           <span style={{ color: accent, fontWeight: 700, flexShrink: 0, marginTop: '1px' }}>→</span>
                           <span>{b}</span>
                         </li>
@@ -407,10 +382,10 @@ export default function App() {
                   )}
 
                   {item.keyResult && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '14px', borderTop: '1px dashed rgba(0,0,0,0.08)' }}>
-                      <span style={{ fontSize: '0.6875rem', color: C.lgray, textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 500 }}>Key Result</span>
-                      <span style={{ fontSize: '1.5rem', fontWeight: 700, color: accent, letterSpacing: '-0.02em', lineHeight: 1 }}>{item.keyResult.value}</span>
-                      <span style={{ fontSize: '0.875rem', color: C.gray }}>{item.keyResult.label}</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingTop: '10px', borderTop: '1px dashed rgba(255,255,255,0.07)' }}>
+                      <span style={{ fontSize: '0.625rem', color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 500 }}>Key Result</span>
+                      <span style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.022em', lineHeight: 1, ...G }}>{item.keyResult.value}</span>
+                      <span style={{ fontSize: '0.8125rem', color: C.muted }}>{item.keyResult.label}</span>
                     </div>
                   )}
                 </motion.div>
@@ -421,32 +396,30 @@ export default function App() {
       </section>
 
       {/* ── SKILLS ── */}
-      <section id="skills" style={{ background: C.snow, padding: '100px 0' }}>
-        <div style={{ maxWidth: '860px', margin: '0 auto', padding: '0 24px' }}>
+      <section id="skills" style={{ background: C.bg, padding: '88px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 28px' }}>
           <motion.div {...up(0)}>
-            <SectionHeader label="Skills & Tools" title="What I work with"/>
+            <SH eyebrow="Skills & Tools" title="What I work with"/>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
+          <div className="grid md:grid-cols-2 gap-3 mb-3">
             {skills.map((g, i) => (
-              <motion.div key={i} {...up(i * 0.06)}
-                style={{ background: C.white, borderRadius: '18px', padding: '24px 28px', boxShadow: '0 2px 16px rgba(0,0,0,0.06)' }}>
-                <p style={{ fontSize: '0.75rem', fontWeight: 600, color: C.violet, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '16px' }}>{g.group}</p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              <motion.div key={i} {...up(i * 0.06)} className="glass-card" style={{ padding: '20px 24px' }}>
+                <p style={{ fontSize: '0.625rem', fontWeight: 700, color: C.purple, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px' }}>{g.group}</p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
                   {g.items.map(item => <span key={item} className="pill-tag">{item}</span>)}
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <motion.div {...up(0.2)}
-            style={{ background: C.white, borderRadius: '18px', padding: '24px 28px', boxShadow: '0 2px 16px rgba(0,0,0,0.06)' }}>
-            <p style={{ fontSize: '0.75rem', fontWeight: 600, color: C.gold, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Award size={12}/> Certifications
+          <motion.div {...up(0.22)} className="glass-card" style={{ padding: '20px 24px' }}>
+            <p style={{ fontSize: '0.625rem', fontWeight: 700, color: C.gold, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <Award size={10}/> Certifications
             </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
               {certs.map(c => (
-                <span key={c} style={{ fontSize: '0.8125rem', color: C.gray, padding: '5px 14px', borderRadius: '980px', background: 'rgba(201,151,74,0.07)', border: '1px solid rgba(201,151,74,0.18)' }}>{c}</span>
+                <span key={c} style={{ fontSize: '0.8125rem', color: C.muted, padding: '4px 12px', borderRadius: '980px', background: 'rgba(245,158,11,0.07)', border: '1px solid rgba(245,158,11,0.18)' }}>{c}</span>
               ))}
             </div>
           </motion.div>
@@ -454,24 +427,22 @@ export default function App() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: C.white, padding: '120px 24px', textAlign: 'center' }}>
+      <section style={{ background: C.bg, padding: '100px 28px', textAlign: 'center', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <motion.div {...up(0)} style={{ maxWidth: '520px', margin: '0 auto' }}>
-          <p style={{ fontSize: '0.75rem', fontWeight: 600, color: C.lgray, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '16px' }}>Let's talk</p>
-          <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 700, color: C.ink, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: '16px' }}>
-            Looking for a PM<br/>who <span style={{ color: C.violet }}>delivers</span>?
+          <p style={{ fontSize: '0.625rem', fontWeight: 600, color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '14px' }}>Let's talk</p>
+          <h2 style={{ fontSize: 'clamp(2rem,5vw,3.25rem)', fontWeight: 800, letterSpacing: '-0.028em', lineHeight: 1.1, marginBottom: '14px' }}>
+            Looking for a PM<br/>who <span style={G}>delivers</span>?
           </h2>
-          <p style={{ fontSize: '1.0625rem', color: C.gray, lineHeight: 1.7, marginBottom: '40px' }}>
+          <p style={{ fontSize: '1rem', color: C.muted, lineHeight: 1.65, marginBottom: '32px' }}>
             Open to Senior PM and Staff PM roles in AI, FinTech, or Enterprise SaaS.<br/>Let's see if there's a fit.
           </p>
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
             <a href="mailto:shrivastavashubham213@gmail.com"
-              className="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
-              style={{ background: C.ink, color: C.white, padding: '14px 32px', borderRadius: '980px', fontSize: '1rem', fontWeight: 500 }}>
-              <Mail size={15}/> shrivastavashubham213@gmail.com
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '12px 26px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, boxShadow: '0 4px 20px rgba(139,92,246,0.32)', textDecoration: 'none' }}>
+              <Mail size={14}/> shrivastavashubham213@gmail.com
             </a>
             <a href="https://linkedin.com/in/shubhamshrivastava11/" target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-2 transition-opacity hover:opacity-70"
-              style={{ background: 'transparent', color: C.ink, border: '1px solid rgba(0,0,0,0.12)', padding: '14px 32px', borderRadius: '980px', fontSize: '1rem', fontWeight: 500 }}>
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: '1px solid rgba(255,255,255,0.1)', padding: '12px 24px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none' }}>
               <LinkedIn/> LinkedIn
             </a>
           </div>
@@ -479,12 +450,12 @@ export default function App() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ background: C.ink, padding: '36px 24px' }}>
-        <div style={{ maxWidth: '860px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
-          <span style={{ fontSize: '1.0625rem', fontWeight: 600, color: C.white, letterSpacing: '-0.01em' }}>
-            Shubham<span style={{ color: C.violet }}>.</span>
+      <footer style={{ background: 'rgba(255,255,255,0.02)', borderTop: '1px solid rgba(255,255,255,0.07)', padding: '32px 28px' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+          <span style={{ fontSize: '1.0625rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
+            Shubham<span style={G}>.</span>
           </span>
-          <p style={{ fontSize: '0.6875rem', color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+          <p style={{ fontSize: '0.6875rem', color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
             AI & Data Product Manager · Jersey City, NJ · © {new Date().getFullYear()}
           </p>
         </div>

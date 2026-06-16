@@ -33,10 +33,11 @@ const projects = [
   {
     slug: null, index: '01', tag: 'AI · Home & Lifestyle',
     title: 'HeyFurnish',
-    company: 'Founder & Product Lead · HeyFurnish', period: '2025 – Present',
+    company: 'Founder & Product Lead', period: '2025 – Present',
     heroValue: '90s', heroLabel: 'quiz to full design package',
-    hook: 'End-to-end AI interior design platform — live on web, mobile app in beta with AR/VR room visualization. Generates 3 tiered design packages (Budget · Balanced · Premium) with cross-room budget optimization and curated product discovery.',
-    metrics: [{ value: '90s', label: 'To first design' }, { value: '$1.2K', label: 'Savings vs. designer' }, { value: '35+', label: 'Curated products' }, { value: 'AR/VR', label: 'Mobile beta' }],
+    hook: 'Most people furnish rooms in isolation — overblowing one area while neglecting the rest. I designed and shipped HeyFurnish to solve this: an AI platform that simultaneously optimizes budget across furniture, lighting, décor, and storage, generating three tiered packages in 90 seconds. Web product is live; mobile app is in beta, integrating AR/VR for real-scale room visualization before launch.',
+    scope: 'Sole founder — full-stack product ownership from 0 to live: strategy, AI architecture, affiliate partnerships, and mobile roadmap.',
+    metrics: [{ value: '90s', label: 'To first design' }, { value: '$1.2K', label: 'Savings vs. designer' }, { value: 'AR/VR', label: 'Mobile beta' }],
     tags: ['AI Design', 'React Native', 'AR/VR', 'Affiliate Commerce', '0-to-1'],
     url: 'https://www.heyfurnish.com',
     featured: true,
@@ -47,17 +48,19 @@ const projects = [
     title: 'AI Invoice Pipeline & Cloud Migration',
     company: 'Johnson & Johnson', period: 'Oct 2025 – Present',
     heroValue: '$2.4M', heroLabel: 'annual savings',
-    hook: 'Turned a fragile SAP legacy system into a $2.4M-saving AI platform — in under a year.',
-    metrics: [{ value: '$2.4M', label: 'Annual savings' }, { value: '38%', label: 'Faster cycle time' }, { value: '400+', label: 'Analyst hrs freed/mo' }],
+    hook: "J&J's invoice processing ran on a decade-old SAP system — siloed across 5 global regions, manual at scale, and carrying compounding compliance risk. I led the end-to-end migration to AWS and shipped an NLP/RAG extraction pipeline with LLM hallucination guardrails and PII controls, replacing manual review for a significant share of invoice volume.",
+    scope: '5 global regions · Engineering, Finance, Legal & Compliance · regulated MedTech context.',
+    metrics: [{ value: '$2.4M', label: 'Annual savings' }, { value: '400+', label: 'Analyst hrs freed/mo' }, { value: '40%', label: 'Fewer compliance errors' }],
     tags: ['LLM', 'RAG', 'AWS', 'Microservices', 'PII Compliance'],
   },
   {
     slug: 'deloitte-compliance', index: '03', tag: 'GovTech · Compliance SaaS',
     title: 'State Education Compliance Platform',
     company: 'Deloitte Consulting', period: 'May – Oct 2025',
-    heroValue: '50+', heroLabel: 'critical defects blocked',
-    hook: 'Caught 50+ critical defects before launch. Cut bug fix time by 60%. Without adding a single headcount.',
-    metrics: [{ value: '41%', label: 'Data accuracy lift' }, { value: '50+', label: 'Defects pre-launch' }, { value: '1.6d', label: 'MTTR (was 4 days)' }],
+    heroValue: '50+', heroLabel: 'defects caught pre-launch',
+    hook: 'The platform had no formal UAT process — defects surfaced late, sprint planning was chaotic, and engineering triage averaged 4 days per issue. I designed the UAT lifecycle across 6 modules from scratch, applied AI text clustering to 1,200+ backlog items to eliminate low-signal work, and rebuilt the QA-to-engineering handoff without adding headcount.',
+    scope: '15+ state education agencies · 6 product modules · QA, Engineering, and State Compliance Officers.',
+    metrics: [{ value: '50+', label: 'Defects caught pre-launch' }, { value: '1.6d', label: 'MTTR (was 4 days)' }, { value: '34%', label: 'Sprint waste eliminated' }],
     tags: ['UAT', 'Agile', 'AI Clustering', 'Multi-agency'],
   },
   {
@@ -65,7 +68,8 @@ const projects = [
     title: 'AML & ISO 20022 Compliance Engine',
     company: 'Cygnus Compliance / Bank of China', period: 'Jan – Mar 2025',
     heroValue: '$50M+', heroLabel: 'transaction volume at launch',
-    hook: 'Zero to compliance-ready MVP in 8 weeks. $50M+ in transaction volume on day one.',
+    hook: 'With no existing product and a hard regulatory deadline, I led zero-to-launch delivery of a B2B AML and ISO 20022 compliance engine for Bank of China. I ran discovery and three usability testing rounds with 20+ compliance officers, turning their feedback into a prioritized roadmap that lifted submission accuracy from 85% to 97% — eight weeks from kickoff to production.',
+    scope: '0→1 in 8 weeks · PCI-DSS + AML/KYC · 20+ compliance officer stakeholders.',
     metrics: [{ value: '$50M+', label: 'Volume at launch' }, { value: '97%', label: 'Submission accuracy' }, { value: '60%', label: 'Fewer escalations' }],
     tags: ['ISO 20022', 'PCI-DSS', 'AML/KYC', 'Python ML'],
   },
@@ -74,26 +78,29 @@ const projects = [
     title: 'Mobile App — 0 to 75K Users',
     company: 'Digital iTechnology', period: 'Mar – Dec 2024',
     heroValue: '75K', heroLabel: 'installs from zero',
-    hook: 'Took an app from zero to 75K installs while lifting retention 15 points in under a year.',
-    metrics: [{ value: '75K', label: 'App installs' }, { value: '33%', label: 'Onboarding lift' }, { value: '61%', label: 'Retention (↑ from 46%)' }],
+    hook: 'The app launched with minimal traction — a broken onboarding funnel was killing conversions before users experienced core value. I ran 5 sequential A/B tests to fix the funnel, built a behavioral cohort framework to identify and re-engage high-churn segments, and executed a GTM plan that hit 40% DAU/MAU within the first quarter post-launch.',
+    scope: 'Full product lifecycle ownership — roadmap, experimentation, analytics, and GTM · D2C consumer mobile.',
+    metrics: [{ value: '75K', label: 'Installs from zero' }, { value: '61%', label: 'Retention (↑ from 46%)' }, { value: '33%', label: 'Onboarding lift' }],
     tags: ['A/B Testing', 'Cohort Analysis', 'GTM', 'Retention'],
   },
   {
     slug: null, index: '06', tag: 'AI · Productivity',
     title: 'Locus',
-    company: 'Side Project · AI PM Bootcamp', period: '2026',
+    company: 'Founder · AI PM Bootcamp', period: '2026',
     heroValue: '0 bytes', heroLabel: 'stored — session-only',
-    hook: 'Privacy-first document intelligence for professionals who can\'t upload client data to ChatGPT.',
-    metrics: [{ value: '0 bytes', label: 'Data stored' }, { value: '$16/mo', label: 'Target price' }, { value: '87%', label: 'Gross margin' }],
+    hook: "CPAs, auditors, and consultants need AI to work with sensitive documents — but can't risk uploading client data to cloud tools. Locus solves this with session-only document intelligence: documents live in RAM only and are destroyed at session end. Validated the core insight through 10+ VoC interviews; building toward MVP with a zero-storage RAG pipeline targeting 87% gross margin.",
+    scope: 'Solo founder · AI PM Bootcamp Cohort 9 · VoC interviews complete · MVP in active development.',
+    metrics: [{ value: '0 bytes', label: 'Data stored' }, { value: '4M+', label: 'Addressable professionals' }, { value: '87%', label: 'Gross margin target' }],
     tags: ['Claude API', 'FastAPI', 'Python', 'LangChain', 'Privacy'],
   },
   {
     slug: null, index: '07', tag: 'AI · Productivity',
     title: 'AI Job Co-pilot',
     company: 'Side Project', period: '2025',
-    heroValue: '80%+', heroLabel: 'application time saved',
-    hook: '0-to-1 AI tool built and shipped in one evening — automated the entire job application workflow.',
-    metrics: [{ value: '80%+', label: 'Time saved per app' }, { value: '1 eve', label: 'Built & deployed' }, { value: '3', label: 'Real apps tested' }],
+    heroValue: '80%+', heroLabel: 'time saved per application',
+    hook: 'Tailoring a job application well takes 45–90 minutes of high-effort, repetitive work that degrades across multiple applications. I built an AI tool in one evening that automates the full workflow — ATS keyword gap analysis, resume bullet tailoring, and contextual cover letter generation — then dogfooded it on real applications to Merative, Headspace, and Intuit.',
+    scope: 'Solo build · shipped and validated on real applications in one evening.',
+    metrics: [{ value: '80%+', label: 'Time saved per app' }, { value: '3', label: 'Tasks automated' }, { value: '1 eve', label: 'Built & deployed' }],
     tags: ['LLMs', 'Python', 'NLP', 'ATS Optimization', 'GenAI'],
   },
 ];
@@ -236,9 +243,8 @@ export default function App() {
           </motion.p>
 
           {/* Bio */}
-          <motion.p {...up(0.1)} style={{ fontSize: '1rem', color: C.muted, maxWidth: '420px', margin: '0 auto 28px', lineHeight: 1.65 }}>
-            6+ years building AI products at J&J, Deloitte, and Bank of China.
-            I turn high-stakes ambiguity into products that ship and scale.
+          <motion.p {...up(0.1)} style={{ fontSize: '1rem', color: C.muted, maxWidth: '480px', margin: '0 auto 28px', lineHeight: 1.65 }}>
+            I build AI-native products across regulated enterprise systems and consumer markets — from $2.4M savings pipelines at J&J to founding HeyFurnish from zero. I lead with discovery, move fast with data, and own outcomes end-to-end.
           </motion.p>
 
           {/* CTAs */}
@@ -294,8 +300,24 @@ export default function App() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '10px' }}>
-            {projects.map((p, i) => {
-              const isLastOdd = !p.featured && i === projects.length - 1 && projects.length % 2 !== 0;
+            {[
+              { _groupLabel: '0→1 · Founder' },
+              ...projects.slice(0, 1),
+              { _groupLabel: 'Enterprise AI & Compliance Platforms' },
+              ...projects.slice(1, 4),
+              { _groupLabel: 'Consumer Growth · Side Projects & Experiments' },
+              ...projects.slice(4),
+            ].map((item, i) => {
+              if (item._groupLabel) {
+                return (
+                  <div key={`g-${i}`} style={{ gridColumn: '1 / -1', display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 0 4px' }}>
+                    <span style={{ fontSize: '0.625rem', fontWeight: 700, color: C.purple, textTransform: 'uppercase', letterSpacing: '0.12em', whiteSpace: 'nowrap' }}>{item._groupLabel}</span>
+                    <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.07)' }}/>
+                  </div>
+                );
+              }
+              const p = item;
+              const isLastOdd = !p.featured && p === projects[projects.length - 1] && projects.slice(4).length % 2 !== 0;
               const spanFull = p.featured || isLastOdd;
               return (
                 <motion.article key={i} {...up(i * 0.04)} className="glass-card"
@@ -327,7 +349,12 @@ export default function App() {
                   <p style={{ fontSize: '0.6875rem', color: C.subtle, marginBottom: '10px' }}>{p.company} · {p.period}</p>
 
                   {/* Hook */}
-                  <p style={{ fontSize: p.featured ? '0.875rem' : '0.8125rem', color: C.muted, lineHeight: 1.6, marginBottom: '14px', flex: 1 }}>{p.hook}</p>
+                  <p style={{ fontSize: p.featured ? '0.875rem' : '0.8125rem', color: C.muted, lineHeight: 1.6, marginBottom: p.scope ? '10px' : '14px', flex: 1 }}>{p.hook}</p>
+
+                  {/* Scope line */}
+                  {p.scope && (
+                    <p style={{ fontSize: '0.6875rem', color: C.subtle, lineHeight: 1.5, marginBottom: '14px', paddingLeft: '10px', borderLeft: '2px solid rgba(168,85,247,0.3)', fontStyle: 'italic' }}>{p.scope}</p>
+                  )}
 
                   {/* Metrics row */}
                   <div style={{ display: 'flex', gap: p.featured ? '24px' : '16px', marginBottom: '14px', flexWrap: 'wrap' }}>

@@ -80,10 +80,12 @@ const projects = [
     title: 'HeyFurnish',
     company: 'Founder · DwellIQ', period: '2025 – Present',
     heroValue: '90s', heroLabel: 'quiz to full design package',
-    hook: 'AI interior design platform generating 3 complete room packages with 3D walkthroughs and cross-room budget optimization.',
-    metrics: [{ value: '90s', label: 'To first design' }, { value: '$1.2K', label: 'Avg savings vs. designer' }, { value: '35+', label: 'Curated products' }],
-    tags: ['AI Design', 'Affiliate Commerce', 'React', '0-to-1', 'PropTech'],
+    hook: 'Built and launched a full AI interior design platform — website live, mobile app in beta. Generates 3 complete room packages with 3D walkthroughs and patent-pending cross-room budget optimization.',
+    metrics: [{ value: '90s', label: 'To first design' }, { value: '$1.2K', label: 'Avg savings vs. designer' }, { value: '35+', label: 'Curated products' }, { value: 'Beta', label: 'Mobile app' }],
+    tags: ['AI Design', 'React Native', 'Affiliate Commerce', '0-to-1', 'PropTech'],
     url: 'https://www.heyfurnish.com',
+    featured: true,
+    badges: [{ label: '● Website Live', color: '#22c55e' }, { label: '◉ Mobile Beta', color: '#a855f7' }],
   },
   {
     slug: null, index: '07', tag: 'AI · Productivity',
@@ -285,36 +287,45 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '10px' }}>
             {projects.map((p, i) => {
-              const isLastOdd = i === projects.length - 1 && projects.length % 2 !== 0;
+              const isLastOdd = !p.featured && i === projects.length - 1 && projects.length % 2 !== 0;
+              const spanFull = p.featured || isLastOdd;
               return (
                 <motion.article key={i} {...up(i * 0.04)} className="glass-card"
-                  style={{ padding: '20px 22px', display: 'flex', flexDirection: 'column', gridColumn: isLastOdd ? 'span 2 / span 2' : undefined }}>
+                  style={{
+                    padding: p.featured ? '24px 28px' : '20px 22px',
+                    display: 'flex', flexDirection: 'column',
+                    gridColumn: spanFull ? 'span 2 / span 2' : undefined,
+                    ...(p.featured ? { border: '1px solid rgba(168,85,247,0.28)', boxShadow: '0 0 32px rgba(168,85,247,0.07)' } : {}),
+                  }}>
 
-                  {/* Top: index/tag + metric */}
+                  {/* Top: index/tag + badges + metric */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '7px', flexWrap: 'wrap' }}>
                       <span style={{ fontSize: '0.625rem', color: C.subtle, fontVariantNumeric: 'tabular-nums' }}>{p.index}</span>
                       <span style={{ width: '1px', height: '9px', background: 'rgba(255,255,255,0.12)' }}/>
                       <span className="pill-tag" style={{ fontSize: '0.625rem', padding: '2px 8px' }}>{p.tag}</span>
+                      {p.badges && p.badges.map(b => (
+                        <span key={b.label} style={{ fontSize: '0.625rem', fontWeight: 600, color: b.color, background: `${b.color}14`, border: `1px solid ${b.color}30`, padding: '2px 8px', borderRadius: '980px' }}>{b.label}</span>
+                      ))}
                     </div>
-                    <div style={{ textAlign: 'right' }}>
-                      <p style={{ fontSize: '1.375rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1, ...G }}>{p.heroValue}</p>
+                    <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: '12px' }}>
+                      <p style={{ fontSize: p.featured ? '1.625rem' : '1.375rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1, ...G }}>{p.heroValue}</p>
                       <p style={{ fontSize: '0.5625rem', color: C.subtle, marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{p.heroLabel}</p>
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 style={{ fontSize: '1rem', fontWeight: 700, color: C.text, letterSpacing: '-0.015em', lineHeight: 1.3, marginBottom: '2px' }}>{p.title}</h3>
+                  <h3 style={{ fontSize: p.featured ? '1.125rem' : '1rem', fontWeight: 700, color: C.text, letterSpacing: '-0.015em', lineHeight: 1.3, marginBottom: '2px' }}>{p.title}</h3>
                   <p style={{ fontSize: '0.6875rem', color: C.subtle, marginBottom: '10px' }}>{p.company} · {p.period}</p>
 
                   {/* Hook */}
-                  <p style={{ fontSize: '0.8125rem', color: C.muted, lineHeight: 1.6, marginBottom: '14px', flex: 1 }}>{p.hook}</p>
+                  <p style={{ fontSize: p.featured ? '0.875rem' : '0.8125rem', color: C.muted, lineHeight: 1.6, marginBottom: '14px', flex: 1 }}>{p.hook}</p>
 
                   {/* Metrics row */}
-                  <div style={{ display: 'flex', gap: '16px', marginBottom: '14px' }}>
+                  <div style={{ display: 'flex', gap: p.featured ? '24px' : '16px', marginBottom: '14px', flexWrap: 'wrap' }}>
                     {p.metrics.map((m, j) => (
                       <div key={j}>
-                        <p style={{ fontSize: '0.9375rem', fontWeight: 700, color: C.text, letterSpacing: '-0.018em', lineHeight: 1 }}>{m.value}</p>
+                        <p style={{ fontSize: p.featured ? '1.0625rem' : '0.9375rem', fontWeight: 700, color: C.text, letterSpacing: '-0.018em', lineHeight: 1 }}>{m.value}</p>
                         <p style={{ fontSize: '0.5625rem', color: C.subtle, marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{m.label}</p>
                       </div>
                     ))}
@@ -324,7 +335,7 @@ export default function App() {
 
                   {/* Tags + CTA */}
                   <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px' }}>
-                    {p.tags.slice(0, 3).map(t => <span key={t} className="pill-tag" style={{ fontSize: '0.625rem', padding: '2px 8px' }}>{t}</span>)}
+                    {p.tags.slice(0, p.featured ? 5 : 3).map(t => <span key={t} className="pill-tag" style={{ fontSize: '0.625rem', padding: '2px 8px' }}>{t}</span>)}
                     {p.slug && (
                       <Link to={`/case/${p.slug}`}
                         style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none' }}>
@@ -333,7 +344,7 @@ export default function App() {
                     )}
                     {p.url && (
                       <a href={p.url} target="_blank" rel="noopener noreferrer"
-                        style={{ marginLeft: p.slug ? '0' : 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none' }}>
+                        style={{ marginLeft: p.slug ? '0' : 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none', boxShadow: p.featured ? '0 4px 16px rgba(139,92,246,0.3)' : 'none' }}>
                         Live site <ArrowRight size={11}/>
                       </a>
                     )}

@@ -169,9 +169,9 @@ const up = (delay = 0) => ({
 
 /* ── Section header ── */
 const SH = ({ eyebrow, title }) => (
-  <div style={{ marginBottom: '44px' }}>
-    <p style={{ fontSize: '0.6875rem', fontWeight: 600, color: C.purple, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '10px' }}>{eyebrow}</p>
-    <h2 style={{ fontSize: 'clamp(1.875rem,4vw,2.75rem)', fontWeight: 800, color: C.text, letterSpacing: '-0.028em', lineHeight: 1.08 }}>{title}</h2>
+  <div style={{ marginBottom: '32px' }}>
+    <p style={{ fontSize: '0.625rem', fontWeight: 600, color: C.purple, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '8px' }}>{eyebrow}</p>
+    <h2 style={{ fontSize: 'clamp(1.5rem,3.5vw,2.25rem)', fontWeight: 800, color: C.text, letterSpacing: '-0.025em', lineHeight: 1.1 }}>{title}</h2>
   </div>
 );
 
@@ -201,7 +201,7 @@ export default function App() {
 
       {/* ── HERO ── */}
       <section style={{ background: C.bg, paddingTop: '0' }}>
-        <div style={{ maxWidth: '760px', margin: '0 auto', padding: '108px 28px 0', textAlign: 'center' }}>
+        <div style={{ maxWidth: '680px', margin: '0 auto', padding: '92px 24px 0', textAlign: 'center' }}>
 
           {/* Available badge */}
           <motion.div {...up(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '24px', background: 'rgba(168,85,247,0.08)', border: '1px solid rgba(168,85,247,0.22)', borderRadius: '980px', padding: '6px 16px' }}>
@@ -277,72 +277,76 @@ export default function App() {
       </section>
 
       {/* ── WORK ── */}
-      <section id="work" style={{ background: C.bg, padding: '88px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 28px' }}>
+      <section id="work" style={{ background: C.bg, padding: '64px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: '1040px', margin: '0 auto', padding: '0 24px' }}>
           <motion.div {...up(0)}>
             <SH eyebrow="Selected Work" title="Products I've built"/>
           </motion.div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {projects.map((p, i) => (
-              <motion.article key={i} {...up(i * 0.05)} className="glass-card" style={{ padding: '24px 28px' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '10px' }}>
+            {projects.map((p, i) => {
+              const isLastOdd = i === projects.length - 1 && projects.length % 2 !== 0;
+              return (
+                <motion.article key={i} {...up(i * 0.04)} className="glass-card"
+                  style={{ padding: '20px 22px', display: 'flex', flexDirection: 'column', gridColumn: isLastOdd ? 'span 2 / span 2' : undefined }}>
 
-                {/* Top row */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ fontSize: '0.6875rem', color: C.subtle, fontVariantNumeric: 'tabular-nums', letterSpacing: '0.04em' }}>{p.index}</span>
-                    <span style={{ width: '1px', height: '10px', background: 'rgba(255,255,255,0.12)' }}/>
-                    <span className="pill-tag" style={{ fontSize: '0.6875rem', padding: '2px 10px' }}>{p.tag}</span>
-                  </div>
-                  <div style={{ textAlign: 'right' }}>
-                    <p style={{ fontSize: 'clamp(1.25rem,3vw,1.75rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1, ...G }}>{p.heroValue}</p>
-                    <p style={{ fontSize: '0.625rem', color: C.subtle, marginTop: '3px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{p.heroLabel}</p>
-                  </div>
-                </div>
-
-                {/* Title */}
-                <h3 style={{ fontSize: 'clamp(1rem,2.2vw,1.25rem)', fontWeight: 700, color: C.text, letterSpacing: '-0.018em', lineHeight: 1.25, marginBottom: '3px' }}>{p.title}</h3>
-                <p style={{ fontSize: '0.75rem', color: C.subtle, marginBottom: '12px' }}>{p.company} · {p.period}</p>
-
-                {/* Hook */}
-                <p style={{ fontSize: '0.875rem', color: C.muted, lineHeight: 1.65, marginBottom: '18px' }}>{p.hook}</p>
-
-                {/* Metrics */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginBottom: '16px' }}>
-                  {p.metrics.map((m, j) => (
-                    <div key={j}>
-                      <p style={{ fontSize: '1.0625rem', fontWeight: 700, color: C.text, letterSpacing: '-0.02em', lineHeight: 1 }}>{m.value}</p>
-                      <p style={{ fontSize: '0.625rem', color: C.subtle, marginTop: '3px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{m.label}</p>
+                  {/* Top: index/tag + metric */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+                      <span style={{ fontSize: '0.625rem', color: C.subtle, fontVariantNumeric: 'tabular-nums' }}>{p.index}</span>
+                      <span style={{ width: '1px', height: '9px', background: 'rgba(255,255,255,0.12)' }}/>
+                      <span className="pill-tag" style={{ fontSize: '0.625rem', padding: '2px 8px' }}>{p.tag}</span>
                     </div>
-                  ))}
-                </div>
+                    <div style={{ textAlign: 'right' }}>
+                      <p style={{ fontSize: '1.375rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1, ...G }}>{p.heroValue}</p>
+                      <p style={{ fontSize: '0.5625rem', color: C.subtle, marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{p.heroLabel}</p>
+                    </div>
+                  </div>
 
-                <div className="divider" style={{ marginBottom: '14px' }}/>
+                  {/* Title */}
+                  <h3 style={{ fontSize: '1rem', fontWeight: 700, color: C.text, letterSpacing: '-0.015em', lineHeight: 1.3, marginBottom: '2px' }}>{p.title}</h3>
+                  <p style={{ fontSize: '0.6875rem', color: C.subtle, marginBottom: '10px' }}>{p.company} · {p.period}</p>
 
-                {/* Tags + CTA */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px' }}>
-                  {p.tags.slice(0, 4).map(t => <span key={t} className="pill-tag">{t}</span>)}
-                  {p.slug && (
-                    <Link to={`/case/${p.slug}`}
-                      style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: '6px', background: GRAD, color: '#fff', fontSize: '0.8125rem', fontWeight: 600, padding: '8px 20px', borderRadius: '980px', textDecoration: 'none', boxShadow: '0 4px 16px rgba(139,92,246,0.25)' }}>
-                      Case study <ArrowRight size={12}/>
-                    </Link>
-                  )}
-                  {p.url && (
-                    <a href={p.url} target="_blank" rel="noopener noreferrer"
-                      style={{ marginLeft: p.slug ? '0' : 'auto', display: 'inline-flex', alignItems: 'center', gap: '6px', background: GRAD, color: '#fff', fontSize: '0.8125rem', fontWeight: 600, padding: '8px 20px', borderRadius: '980px', textDecoration: 'none', boxShadow: '0 4px 16px rgba(139,92,246,0.25)' }}>
-                      Live site <ArrowRight size={12}/>
-                    </a>
-                  )}
-                </div>
-              </motion.article>
-            ))}
+                  {/* Hook */}
+                  <p style={{ fontSize: '0.8125rem', color: C.muted, lineHeight: 1.6, marginBottom: '14px', flex: 1 }}>{p.hook}</p>
+
+                  {/* Metrics row */}
+                  <div style={{ display: 'flex', gap: '16px', marginBottom: '14px' }}>
+                    {p.metrics.map((m, j) => (
+                      <div key={j}>
+                        <p style={{ fontSize: '0.9375rem', fontWeight: 700, color: C.text, letterSpacing: '-0.018em', lineHeight: 1 }}>{m.value}</p>
+                        <p style={{ fontSize: '0.5625rem', color: C.subtle, marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{m.label}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="divider" style={{ marginBottom: '12px' }}/>
+
+                  {/* Tags + CTA */}
+                  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px' }}>
+                    {p.tags.slice(0, 3).map(t => <span key={t} className="pill-tag" style={{ fontSize: '0.625rem', padding: '2px 8px' }}>{t}</span>)}
+                    {p.slug && (
+                      <Link to={`/case/${p.slug}`}
+                        style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none' }}>
+                        Case study <ArrowRight size={11}/>
+                      </Link>
+                    )}
+                    {p.url && (
+                      <a href={p.url} target="_blank" rel="noopener noreferrer"
+                        style={{ marginLeft: p.slug ? '0' : 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none' }}>
+                        Live site <ArrowRight size={11}/>
+                      </a>
+                    )}
+                  </div>
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ── EXPERIENCE ── */}
-      <section id="experience" style={{ background: C.bg, padding: '88px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <section id="experience" style={{ background: C.bg, padding: '64px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 28px' }}>
           <motion.div {...up(0)}>
             <SH eyebrow="Experience & Education" title="Career timeline"/>
@@ -396,7 +400,7 @@ export default function App() {
       </section>
 
       {/* ── SKILLS ── */}
-      <section id="skills" style={{ background: C.bg, padding: '88px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <section id="skills" style={{ background: C.bg, padding: '64px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 28px' }}>
           <motion.div {...up(0)}>
             <SH eyebrow="Skills & Tools" title="What I work with"/>
@@ -427,7 +431,7 @@ export default function App() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: C.bg, padding: '100px 28px', textAlign: 'center', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <section style={{ background: C.bg, padding: '72px 24px', textAlign: 'center', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <motion.div {...up(0)} style={{ maxWidth: '520px', margin: '0 auto' }}>
           <p style={{ fontSize: '0.625rem', fontWeight: 600, color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '14px' }}>Let's talk</p>
           <h2 style={{ fontSize: 'clamp(2rem,5vw,3.25rem)', fontWeight: 800, letterSpacing: '-0.028em', lineHeight: 1.1, marginBottom: '14px' }}>

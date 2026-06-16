@@ -78,14 +78,14 @@ const projects = [
   {
     slug: null, index: '06', tag: 'AI · Home & Lifestyle',
     title: 'HeyFurnish',
-    company: 'Founder · DwellIQ', period: '2025 – Present',
+    company: 'Founder & Product Lead · HeyFurnish', period: '2025 – Present',
     heroValue: '90s', heroLabel: 'quiz to full design package',
-    hook: 'Built and launched a full AI interior design platform — website live, mobile app in beta. Generates 3 complete room packages with 3D walkthroughs and patent-pending cross-room budget optimization.',
-    metrics: [{ value: '90s', label: 'To first design' }, { value: '$1.2K', label: 'Avg savings vs. designer' }, { value: '35+', label: 'Curated products' }, { value: 'Beta', label: 'Mobile app' }],
-    tags: ['AI Design', 'React Native', 'Affiliate Commerce', '0-to-1', 'PropTech'],
+    hook: 'End-to-end AI interior design platform — live on web, mobile app in beta with AR/VR room visualization. Generates 3 tiered design packages (Budget · Balanced · Premium) with cross-room budget optimization and curated product discovery.',
+    metrics: [{ value: '90s', label: 'To first design' }, { value: '$1.2K', label: 'Savings vs. designer' }, { value: '35+', label: 'Curated products' }, { value: 'AR/VR', label: 'Mobile beta' }],
+    tags: ['AI Design', 'React Native', 'AR/VR', 'Affiliate Commerce', '0-to-1'],
     url: 'https://www.heyfurnish.com',
     featured: true,
-    badges: [{ label: '● Website Live', color: '#22c55e' }, { label: '◉ Mobile Beta', color: '#a855f7' }],
+    badges: [{ label: '● Website Live', color: '#22c55e' }, { label: '◉ Mobile Beta · AR/VR', color: '#a855f7' }],
   },
   {
     slug: null, index: '07', tag: 'AI · Productivity',
@@ -100,6 +100,14 @@ const projects = [
 
 /* ── Experience & education ── */
 const timeline = [
+  { type: 'work', period: '2025 – Present', role: 'Founder & Product Lead',
+    org: 'HeyFurnish', location: 'Remote', domain: 'AI · Home & Lifestyle',
+    keyResult: { value: 'Live + Beta', label: 'Web launched · Mobile in AR/VR beta' },
+    bullets: [
+      'Built and shipped a full-stack AI interior design platform from zero — patent-pending cross-room budget allocation engine coordinates furniture, lighting, décor, and storage across entire homes simultaneously',
+      'Currently testing AR/VR capabilities on the HeyFurnish mobile application for immersive, real-scale room visualization before final beta release',
+      'Architected affiliate-first monetization model (free tier + Pro $19/mo + Studio $49/mo); integrated 35+ curated products across IKEA, West Elm, Wayfair, and boutique vendors',
+    ]},
   { type: 'work', period: 'Oct 2025 – Present', role: 'Product Manager II, Enterprise AI & Platform',
     org: 'Johnson & Johnson', location: 'Jersey City, NJ', domain: 'MedTech · Enterprise AI',
     keyResult: { value: '$2.4M', label: 'Annual savings delivered' },

@@ -329,111 +329,127 @@ export default function App() {
       </header>
 
       {/* ── HERO ── */}
-      <section style={{ background: C.bg, paddingTop: '0' }}>
-        <div style={{ maxWidth: '680px', margin: '0 auto', padding: '92px 24px 0', textAlign: 'center' }}>
+      <section style={{ background: C.bg }}>
+        <div style={{ maxWidth: '1040px', margin: '0 auto', padding: '88px 28px 0' }}>
 
-          {/* Status badge */}
-          <motion.div {...up(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '24px', background: 'rgba(192,132,252,0.08)', border: '1px solid rgba(192,132,252,0.22)', borderRadius: '980px', padding: '6px 16px' }}>
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full ping-slow" style={{ background: C.green, opacity: 0.6 }}/>
-              <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: C.green }}/>
-            </span>
-            <span style={{ fontSize: '0.6875rem', color: C.muted, letterSpacing: '0.08em', fontWeight: 500, textTransform: 'uppercase' }}>
-              Open to Senior PM · Staff PM · NYC metro or Remote
-            </span>
-          </motion.div>
+          {/* Two-column layout: text left, photo right */}
+          {/* flex-col-reverse on mobile puts photo on top */}
+          <div className="flex flex-col-reverse gap-10 md:flex-row md:items-center md:gap-16">
 
-          {/* Name */}
-          <motion.h1 {...up(0.04)} style={{ fontSize: 'clamp(2.75rem,8vw,5rem)', fontWeight: 800, lineHeight: 1.04, letterSpacing: '-0.032em', color: C.text, marginBottom: '8px' }}>
-            Shubham Shrivastava
-          </motion.h1>
+            {/* ── LEFT: all text content ── */}
+            <div className="flex-1">
 
-          {/* Title */}
-          <motion.p {...up(0.07)} style={{ fontSize: 'clamp(1.125rem,2.5vw,1.5rem)', fontWeight: 600, letterSpacing: '-0.015em', marginBottom: '18px' }}>
-            <span style={G}>AI Product Leader</span>
-            <span style={{ color: C.muted }}> · Enterprise & Consumer</span>
-          </motion.p>
-
-          {/* Rotating achievement ticker */}
-          <motion.div {...up(0.09)} style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px', height: '38px', alignItems: 'center' }}>
-            <AnimatePresence mode="wait">
-              <motion.div key={achIdx}
-                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.25 }}
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(52,211,153,0.08)', border: '1px solid rgba(52,211,153,0.2)', borderRadius: '980px', padding: '6px 14px' }}>
-                <span style={{ fontSize: '1rem', fontWeight: 800, ...GE }}>{ach.value}</span>
-                <span style={{ fontSize: '0.75rem', color: C.muted }}>{ach.label}</span>
-                <span style={{ width: '1px', height: '10px', background: C.border }}/>
-                <span style={{ fontSize: '0.6875rem', color: C.subtle }}>{ach.context}</span>
+              {/* Status badge */}
+              <motion.div {...up(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '22px', background: 'rgba(192,132,252,0.08)', border: '1px solid rgba(192,132,252,0.22)', borderRadius: '980px', padding: '6px 14px' }}>
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full ping-slow" style={{ background: C.green, opacity: 0.6 }}/>
+                  <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: C.green }}/>
+                </span>
+                <span style={{ fontSize: '0.6875rem', color: C.muted, letterSpacing: '0.08em', fontWeight: 500, textTransform: 'uppercase' }}>
+                  Open to Senior PM · Staff PM · NYC or Remote
+                </span>
               </motion.div>
-            </AnimatePresence>
-          </motion.div>
 
-          {/* Bio */}
-          <motion.p {...up(0.1)} style={{ fontSize: '1rem', color: C.muted, maxWidth: '500px', margin: '0 auto 16px', lineHeight: 1.7 }}>
-            I ship AI-native products in regulated domains — and build 0→1 bets that find product-market fit. From $2.4M savings pipelines at J&J to founding HeyFurnish from scratch, I lead with discovery, move fast with data, and own outcomes end-to-end.
-          </motion.p>
+              {/* Name */}
+              <motion.h1 {...up(0.04)} style={{ fontSize: 'clamp(2.25rem,5vw,3.75rem)', fontWeight: 800, lineHeight: 1.06, letterSpacing: '-0.032em', color: C.text, marginBottom: '10px' }}>
+                Shubham<br/>Shrivastava
+              </motion.h1>
 
-          {/* Where I'm best leveraged */}
-          <motion.div {...up(0.115)} style={{ marginBottom: '28px' }}>
-            <p style={{ fontSize: '0.6875rem', color: C.subtle, fontWeight: 600, marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Where I'm best leveraged</p>
-            <p style={{ fontSize: '0.875rem', color: C.muted }}>
-              <span style={{ color: C.blue }}>FinTech · MedTech · GovTech</span>
-              <span style={{ color: C.subtle }}> AI platforms &nbsp;·&nbsp; </span>
-              <span style={{ color: C.purple }}>0→1 consumer products</span>
-              <span style={{ color: C.subtle }}> &nbsp;·&nbsp; </span>
-              <span style={{ color: C.emerald }}>Regulated enterprise systems</span>
-            </p>
-          </motion.div>
+              {/* Title */}
+              <motion.p {...up(0.07)} style={{ fontSize: 'clamp(1rem,2vw,1.25rem)', fontWeight: 600, letterSpacing: '-0.01em', marginBottom: '16px' }}>
+                <span style={G}>AI Product Leader</span>
+                <span style={{ color: C.subtle }}> · Enterprise & Consumer</span>
+              </motion.p>
 
-          {/* CTAs */}
-          <motion.div {...up(0.12)} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '20px' }}>
-            <a href="#work"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '11px 24px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, letterSpacing: '-0.01em', boxShadow: '0 4px 20px rgba(192,132,252,0.32)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(192,132,252,0.5)'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(192,132,252,0.32)'; }}>
-              See My Work <ArrowRight size={15}/>
-            </a>
-            <a href="/resume.pdf" target="_blank" rel="noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: `1px solid ${C.border}`, padding: '11px 24px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s, transform 0.15s' }}
-              {...hoverGhost}>
-              <Download size={15}/> Resume
-            </a>
-            <a href="https://linkedin.com/in/shubhamshrivastava11/" target="_blank" rel="noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: `1px solid ${C.border}`, padding: '11px 18px', borderRadius: '980px', textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s' }}
-              onMouseEnter={e => { e.currentTarget.style.color = C.blue; e.currentTarget.style.borderColor = 'rgba(192,132,252,0.4)'; }}
-              onMouseLeave={e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; }}>
-              <LinkedIn/>
-            </a>
-          </motion.div>
+              {/* Rotating achievement ticker */}
+              <motion.div {...up(0.09)} style={{ marginBottom: '20px', height: '36px', display: 'flex', alignItems: 'center' }}>
+                <AnimatePresence mode="wait">
+                  <motion.div key={achIdx}
+                    initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25 }}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(52,211,153,0.08)', border: '1px solid rgba(52,211,153,0.2)', borderRadius: '980px', padding: '5px 12px' }}>
+                    <span style={{ fontSize: '0.9375rem', fontWeight: 800, ...GE }}>{ach.value}</span>
+                    <span style={{ fontSize: '0.75rem', color: C.muted }}>{ach.label}</span>
+                    <span style={{ width: '1px', height: '10px', background: C.border }}/>
+                    <span style={{ fontSize: '0.6875rem', color: C.subtle }}>{ach.context}</span>
+                  </motion.div>
+                </AnimatePresence>
+              </motion.div>
 
-          {/* Location */}
-          <motion.p {...up(0.13)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontSize: '0.8125rem', color: C.subtle, marginBottom: '44px' }}>
-            <MapPin size={12} style={{ color: C.blue }}/> Jersey City, NJ · Open to relocation · Remote-first OK
-          </motion.p>
+              {/* Bio */}
+              <motion.p {...up(0.1)} style={{ fontSize: '0.9375rem', color: C.muted, maxWidth: '480px', marginBottom: '18px', lineHeight: 1.75 }}>
+                I ship AI-native products in regulated domains — and build 0→1 bets that find product-market fit. From $2.4M savings pipelines at J&J to founding HeyFurnish from scratch, I lead with discovery, move fast with data, and own outcomes end-to-end.
+              </motion.p>
 
-          {/* Profile photo */}
-          <motion.div {...up(0.15)} style={{ display: 'inline-block' }}>
-            <div style={{ width: '240px', height: '286px', borderRadius: '24px', overflow: 'hidden', boxShadow: `0 0 0 1px ${C.border}, 0 32px 80px rgba(0,0,0,0.6)`, margin: '0 auto' }}>
-              <img src="/profile.png" alt="Shubham Shrivastava" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}/>
+              {/* Where I'm best leveraged */}
+              <motion.div {...up(0.115)} style={{ marginBottom: '28px', paddingLeft: '12px', borderLeft: `2px solid rgba(192,132,252,0.3)` }}>
+                <p style={{ fontSize: '0.625rem', color: C.subtle, fontWeight: 600, marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Where I'm best leveraged</p>
+                <p style={{ fontSize: '0.8125rem', color: C.muted, lineHeight: 1.6 }}>
+                  <span style={{ color: C.blue }}>FinTech · MedTech · GovTech</span>
+                  <span style={{ color: C.subtle }}> &nbsp;·&nbsp; </span>
+                  <span style={{ color: C.purple }}>0→1 consumer products</span>
+                  <span style={{ color: C.subtle }}> &nbsp;·&nbsp; </span>
+                  <span style={{ color: C.emerald }}>Regulated enterprise systems</span>
+                </p>
+              </motion.div>
+
+              {/* CTAs */}
+              <motion.div {...up(0.12)} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
+                <a href="#work"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '10px 22px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, boxShadow: '0 4px 20px rgba(192,132,252,0.32)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(192,132,252,0.5)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(192,132,252,0.32)'; }}>
+                  See My Work <ArrowRight size={15}/>
+                </a>
+                <a href="/resume.pdf" target="_blank" rel="noreferrer"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: `1px solid ${C.border}`, padding: '10px 22px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s, transform 0.15s' }}
+                  {...hoverGhost}>
+                  <Download size={15}/> Resume
+                </a>
+                <a href="https://linkedin.com/in/shubhamshrivastava11/" target="_blank" rel="noreferrer"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: `1px solid ${C.border}`, padding: '10px 16px', borderRadius: '980px', textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s' }}
+                  onMouseEnter={e => { e.currentTarget.style.color = C.purple; e.currentTarget.style.borderColor = 'rgba(192,132,252,0.4)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; }}>
+                  <LinkedIn/>
+                </a>
+              </motion.div>
+
+              {/* Location */}
+              <motion.p {...up(0.13)} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8125rem', color: C.subtle }}>
+                <MapPin size={12} style={{ color: C.purple }}/> Jersey City, NJ · Open to relocation · Remote-first OK
+              </motion.p>
             </div>
+
+            {/* ── RIGHT: profile photo ── */}
+            <motion.div {...up(0.05)} className="flex justify-center md:justify-end flex-shrink-0">
+              <div style={{ position: 'relative' }}>
+                {/* Glow behind photo */}
+                <div style={{ position: 'absolute', inset: '-20px', background: 'radial-gradient(ellipse at center, rgba(192,132,252,0.15) 0%, transparent 70%)', borderRadius: '50%', zIndex: 0 }}/>
+                <div style={{ position: 'relative', zIndex: 1, width: '260px', height: '320px', borderRadius: '28px', overflow: 'hidden', boxShadow: `0 0 0 1px rgba(192,132,252,0.2), 0 24px 64px rgba(0,0,0,0.7)` }}>
+                  <img src="/profile.png" alt="Shubham Shrivastava" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}/>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>{/* end two-col */}
+
+          {/* Stats strip — full width below both columns */}
+          <motion.div {...up(0.2)} style={{ margin: '52px 0 0', padding: '28px 0 52px', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px', borderTop: `1px solid ${C.border}` }}>
+            {[
+              { value: '$2.4M', label: 'Annual savings', sub: 'J&J AI pipeline' },
+              { value: '75K',   label: 'App installs',   sub: 'from zero in 9 mo' },
+              { value: '97%',   label: 'Accuracy',       sub: 'AML compliance' },
+              { value: '6+',    label: 'Years',          sub: 'PM experience' },
+            ].map((s, i) => (
+              <div key={i}>
+                <p style={{ fontSize: 'clamp(1.75rem,3.5vw,2.5rem)', fontWeight: 800, letterSpacing: '-0.035em', lineHeight: 1, ...GE }}>{s.value}</p>
+                <p style={{ fontSize: '0.8125rem', color: C.muted, fontWeight: 500, marginTop: '4px' }}>{s.label}</p>
+                <p style={{ fontSize: '0.6875rem', color: C.subtle, marginTop: '2px' }}>{s.sub}</p>
+              </div>
+            ))}
           </motion.div>
+
         </div>
-
-        {/* Stats strip */}
-        <motion.div {...up(0.18)} style={{ maxWidth: '680px', margin: '40px auto 0', padding: '28px 28px 64px', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 'clamp(20px,5vw,52px)', borderTop: `1px solid ${C.border}` }}>
-          {[
-            { value: '$2.4M', label: 'Annual savings (J&J)' },
-            { value: '75K',   label: 'App installs' },
-            { value: '97%',   label: 'Compliance accuracy' },
-            { value: '6+',    label: 'Yrs experience' },
-          ].map((s, i) => (
-            <div key={i} style={{ textAlign: 'center' }}>
-              <p style={{ fontSize: 'clamp(1.625rem,3.5vw,2.25rem)', fontWeight: 800, letterSpacing: '-0.032em', lineHeight: 1, ...GE }}>{s.value}</p>
-              <p style={{ fontSize: '0.75rem', color: C.subtle, marginTop: '5px' }}>{s.label}</p>
-            </div>
-          ))}
-        </motion.div>
       </section>
 
       {/* ── WORK ── */}

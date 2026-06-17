@@ -4,16 +4,16 @@ import { ArrowLeft, ChevronRight } from 'lucide-react';
 import { caseStudies } from '../data/caseStudies';
 
 const C = {
-  bg:     '#09090b',
+  bg:     '#000000',
   surface:'rgba(255,255,255,0.03)',
   border: 'rgba(255,255,255,0.08)',
-  text:   '#fafafa',
-  muted:  '#a1a1aa',
-  subtle: '#71717a',
-  purple: '#a855f7',
+  text:   '#FFFFFF',
+  muted:  '#E4E4E7',
+  subtle: '#A1A1AA',
+  purple: '#C084FC',
 };
 
-const GRAD = 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)';
+const GRAD = 'linear-gradient(135deg, #C084FC 0%, #818CF8 100%)';
 const G = { background: GRAD, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' };
 
 const up = (delay = 0) => ({

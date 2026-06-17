@@ -281,10 +281,6 @@ const up = (delay = 0) => ({
 });
 
 /* ── Hover helpers (inline event handlers) ── */
-const hoverLift = {
-  onMouseEnter: e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(192,132,252,0.45)'; },
-  onMouseLeave: e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; },
-};
 const hoverGhost = {
   onMouseEnter: e => { e.currentTarget.style.color = C.text; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'; e.currentTarget.style.transform = 'translateY(-1px)'; },
   onMouseLeave: e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; e.currentTarget.style.transform = ''; },
@@ -407,11 +403,12 @@ export default function App() {
                   onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(192,132,252,0.32)'; }}>
                   See My Work <ArrowRight size={15}/>
                 </a>
-                <a href="/resume.pdf" target="_blank" rel="noreferrer"
+                {/* Resume button — uncomment when /public/resume.pdf is added */}
+                {/* <a href="/resume.pdf" target="_blank" rel="noreferrer"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: `1px solid ${C.border}`, padding: '10px 22px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s, transform 0.15s' }}
                   {...hoverGhost}>
                   <Download size={15}/> Resume
-                </a>
+                </a> */}
                 <a href="https://linkedin.com/in/shubhamshrivastava11/" target="_blank" rel="noreferrer"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: `1px solid ${C.border}`, padding: '10px 16px', borderRadius: '980px', textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s' }}
                   onMouseEnter={e => { e.currentTarget.style.color = C.purple; e.currentTarget.style.borderColor = 'rgba(192,132,252,0.4)'; }}

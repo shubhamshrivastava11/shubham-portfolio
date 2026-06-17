@@ -9,19 +9,24 @@
   html { scroll-behavior: smooth; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
-    background: #09090b;
-    color: #fafafa;
+    background: #000000;
+    color: #ffffff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
     line-height: 1.65;
   }
-  ::selection { background: rgba(168,85,247,0.28); }
+  ::selection { background: rgba(192,132,252,0.3); }
+}
+
+/* Scroll offset for fixed nav (52px nav + 12px breathing room) */
+#work, #experience, #skills {
+  scroll-margin-top: 64px;
 }
 
 /* Nav */
 .nav-blur {
-  background: rgba(9,9,11,0.75);
+  background: rgba(0,0,0,0.8);
   backdrop-filter: saturate(180%) blur(24px);
   -webkit-backdrop-filter: saturate(180%) blur(24px);
   border-bottom: 1px solid rgba(255,255,255,0.07);
@@ -32,9 +37,9 @@
   transition: color 0.15s ease;
   text-decoration: none;
 }
-.nav-link:hover { color: #fafafa; }
+.nav-link:hover { color: #ffffff; }
 
-/* Pill tag — dark */
+/* Pill tag */
 .pill-tag {
   background: rgba(255,255,255,0.06);
   color: #a1a1aa;
@@ -47,14 +52,14 @@
   white-space: nowrap;
 }
 .pill-tag:hover {
-  color: #fafafa;
+  color: #ffffff;
   background: rgba(255,255,255,0.1);
   border-color: rgba(255,255,255,0.18);
 }
 
 /* Gradient text utility */
 .grad-text {
-  background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+  background: linear-gradient(135deg, #C084FC 0%, #818CF8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -69,7 +74,7 @@
 }
 .glass-card:hover {
   border-color: rgba(255,255,255,0.14);
-  box-shadow: 0 0 48px rgba(168,85,247,0.09), 0 16px 48px rgba(0,0,0,0.4);
+  box-shadow: 0 0 48px rgba(192,132,252,0.08), 0 16px 48px rgba(0,0,0,0.5);
   transform: translateY(-2px);
 }
 

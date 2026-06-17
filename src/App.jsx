@@ -11,25 +11,25 @@ const LinkedIn = () => (
 
 /* ── Color tokens ── */
 const C = {
-  bg:      '#0B1220',
-  surface: '#1A2540',
-  s2:      'rgba(26,37,64,0.8)',
-  border:  'rgba(148,163,184,0.1)',
-  bHover:  'rgba(148,163,184,0.22)',
-  text:    '#F1F5F9',
-  muted:   '#94A3B8',
-  subtle:  '#64748B',
-  blue:    '#3B82F6',
+  bg:      '#000000',
+  surface: '#111111',
+  s2:      'rgba(17,17,17,0.9)',
+  border:  'rgba(255,255,255,0.09)',
+  bHover:  'rgba(255,255,255,0.2)',
+  text:    '#FFFFFF',
+  muted:   '#E4E4E7',
+  subtle:  '#A1A1AA',
+  blue:    '#818CF8',
   indigo:  '#6366F1',
-  emerald: '#10B981',
-  gold:    '#F59E0B',
-  purple:  '#8B5CF6',
-  green:   '#22C55E',
+  emerald: '#34D399',
+  gold:    '#FCD34D',
+  purple:  '#C084FC',
+  green:   '#4ADE80',
 };
 
-const GRAD = 'linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)';
+const GRAD = 'linear-gradient(135deg, #C084FC 0%, #818CF8 100%)';
 const G = { background: GRAD, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' };
-const GE = { background: 'linear-gradient(135deg, #10B981 0%, #3B82F6 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' };
+const GE = { background: 'linear-gradient(135deg, #34D399 0%, #818CF8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' };
 
 /* ── Rotating hero achievements ── */
 const ACHIEVEMENTS = [
@@ -57,7 +57,7 @@ const projects = [
     tags: ['AI Design', 'React Native', 'AR/VR', 'Affiliate Commerce', '0-to-1'],
     url: 'https://www.heyfurnish.com',
     featured: true,
-    badges: [{ label: '● Website Live', color: '#10B981' }, { label: '◉ Mobile Beta · AR/VR', color: '#8B5CF6' }],
+    badges: [{ label: '● Website Live', color: '#34D399' }, { label: '◉ Mobile Beta · AR/VR', color: '#C084FC' }],
     filters: ['0→1', 'AI-heavy', 'Consumer'],
   },
   {
@@ -276,7 +276,7 @@ const up = (delay = 0) => ({
 
 /* ── Hover helpers (inline event handlers) ── */
 const hoverLift = {
-  onMouseEnter: e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(59,130,246,0.45)'; },
+  onMouseEnter: e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(192,132,252,0.45)'; },
   onMouseLeave: e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; },
 };
 const hoverGhost = {
@@ -320,9 +320,9 @@ export default function App() {
             ))}
           </nav>
           <a href="mailto:shrivastavashubham213@gmail.com"
-            style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff', background: GRAD, padding: '8px 20px', borderRadius: '980px', boxShadow: '0 4px 20px rgba(59,130,246,0.35)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 24px rgba(59,130,246,0.55)'; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(59,130,246,0.35)'; }}>
+            style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff', background: GRAD, padding: '8px 20px', borderRadius: '980px', boxShadow: '0 4px 20px rgba(192,132,252,0.35)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 24px rgba(192,132,252,0.55)'; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(192,132,252,0.35)'; }}>
             Hire Me
           </a>
         </div>
@@ -333,7 +333,7 @@ export default function App() {
         <div style={{ maxWidth: '680px', margin: '0 auto', padding: '92px 24px 0', textAlign: 'center' }}>
 
           {/* Status badge */}
-          <motion.div {...up(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '24px', background: 'rgba(59,130,246,0.08)', border: '1px solid rgba(59,130,246,0.22)', borderRadius: '980px', padding: '6px 16px' }}>
+          <motion.div {...up(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '24px', background: 'rgba(192,132,252,0.08)', border: '1px solid rgba(192,132,252,0.22)', borderRadius: '980px', padding: '6px 16px' }}>
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full ping-slow" style={{ background: C.green, opacity: 0.6 }}/>
               <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: C.green }}/>
@@ -360,7 +360,7 @@ export default function App() {
               <motion.div key={achIdx}
                 initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.25 }}
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.2)', borderRadius: '980px', padding: '6px 14px' }}>
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(52,211,153,0.08)', border: '1px solid rgba(52,211,153,0.2)', borderRadius: '980px', padding: '6px 14px' }}>
                 <span style={{ fontSize: '1rem', fontWeight: 800, ...GE }}>{ach.value}</span>
                 <span style={{ fontSize: '0.75rem', color: C.muted }}>{ach.label}</span>
                 <span style={{ width: '1px', height: '10px', background: C.border }}/>
@@ -389,9 +389,9 @@ export default function App() {
           {/* CTAs */}
           <motion.div {...up(0.12)} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '20px' }}>
             <a href="#work"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '11px 24px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, letterSpacing: '-0.01em', boxShadow: '0 4px 20px rgba(59,130,246,0.32)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(59,130,246,0.5)'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(59,130,246,0.32)'; }}>
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '11px 24px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, letterSpacing: '-0.01em', boxShadow: '0 4px 20px rgba(192,132,252,0.32)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(192,132,252,0.5)'; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(192,132,252,0.32)'; }}>
               See My Work <ArrowRight size={15}/>
             </a>
             <a href="/resume.pdf" target="_blank" rel="noreferrer"
@@ -401,7 +401,7 @@ export default function App() {
             </a>
             <a href="https://linkedin.com/in/shubhamshrivastava11/" target="_blank" rel="noreferrer"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: `1px solid ${C.border}`, padding: '11px 18px', borderRadius: '980px', textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s' }}
-              onMouseEnter={e => { e.currentTarget.style.color = C.blue; e.currentTarget.style.borderColor = 'rgba(59,130,246,0.4)'; }}
+              onMouseEnter={e => { e.currentTarget.style.color = C.blue; e.currentTarget.style.borderColor = 'rgba(192,132,252,0.4)'; }}
               onMouseLeave={e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; }}>
               <LinkedIn/>
             </a>
@@ -505,7 +505,7 @@ export default function App() {
                           display: 'flex', flexDirection: 'column',
                           gridColumn: spanFull ? 'span 2 / span 2' : undefined,
                           transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
-                          ...(p.featured ? { border: `1px solid rgba(59,130,246,0.28)`, boxShadow: '0 0 32px rgba(59,130,246,0.07)' } : {}),
+                          ...(p.featured ? { border: `1px solid rgba(192,132,252,0.28)`, boxShadow: '0 0 32px rgba(192,132,252,0.07)' } : {}),
                         }}
                         whileHover={{ y: -3, transition: { duration: 0.18 } }}>
 
@@ -534,12 +534,12 @@ export default function App() {
 
                         {/* Scope line */}
                         {p.scope && (
-                          <p style={{ fontSize: '0.6875rem', color: C.subtle, lineHeight: 1.5, marginBottom: p.aiNote ? '6px' : '14px', paddingLeft: '10px', borderLeft: `2px solid rgba(59,130,246,0.25)`, fontStyle: 'italic' }}>{p.scope}</p>
+                          <p style={{ fontSize: '0.6875rem', color: C.subtle, lineHeight: 1.5, marginBottom: p.aiNote ? '6px' : '14px', paddingLeft: '10px', borderLeft: `2px solid rgba(192,132,252,0.25)`, fontStyle: 'italic' }}>{p.scope}</p>
                         )}
 
                         {/* AI note */}
                         {p.aiNote && (
-                          <p style={{ fontSize: '0.6875rem', color: '#60A5FA', lineHeight: 1.5, marginBottom: '14px', paddingLeft: '10px', borderLeft: `2px solid rgba(59,130,246,0.45)` }}>⚡ {p.aiNote}</p>
+                          <p style={{ fontSize: '0.6875rem', color: '#34D399', lineHeight: 1.5, marginBottom: '14px', paddingLeft: '10px', borderLeft: `2px solid rgba(192,132,252,0.45)` }}>⚡ {p.aiNote}</p>
                         )}
 
                         {/* Metrics */}
@@ -560,16 +560,16 @@ export default function App() {
                           {p.slug && (
                             <Link to={`/case/${p.slug}`}
                               style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
-                              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(59,130,246,0.45)'; }}
+                              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(192,132,252,0.45)'; }}
                               onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}>
                               Case study <ArrowRight size={11}/>
                             </Link>
                           )}
                           {p.url && (
                             <a href={p.url} target="_blank" rel="noopener noreferrer"
-                              style={{ marginLeft: p.slug ? '0' : 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none', boxShadow: p.featured ? '0 4px 16px rgba(59,130,246,0.3)' : 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
-                              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(59,130,246,0.5)'; }}
-                              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = p.featured ? '0 4px 16px rgba(59,130,246,0.3)' : 'none'; }}>
+                              style={{ marginLeft: p.slug ? '0' : 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none', boxShadow: p.featured ? '0 4px 16px rgba(192,132,252,0.3)' : 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+                              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(192,132,252,0.5)'; }}
+                              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = p.featured ? '0 4px 16px rgba(192,132,252,0.3)' : 'none'; }}>
                               Live site <ArrowRight size={11}/>
                             </a>
                           )}
@@ -646,13 +646,13 @@ export default function App() {
           </motion.div>
 
           {/* Core strengths */}
-          <motion.div {...up(0.04)} style={{ background: 'rgba(59,130,246,0.06)', border: '1px solid rgba(59,130,246,0.18)', borderRadius: '14px', padding: '18px 24px', marginBottom: '16px' }}>
+          <motion.div {...up(0.04)} style={{ background: 'rgba(192,132,252,0.06)', border: '1px solid rgba(192,132,252,0.18)', borderRadius: '14px', padding: '18px 24px', marginBottom: '16px' }}>
             <p style={{ fontSize: '0.625rem', fontWeight: 700, color: C.blue, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '5px' }}>
               <Star size={10}/> Core Strengths
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
               {CORE_STRENGTHS.map(s => (
-                <span key={s} style={{ fontSize: '0.875rem', color: C.blue, padding: '4px 14px', borderRadius: '980px', background: 'rgba(59,130,246,0.1)', border: '1px solid rgba(59,130,246,0.25)', fontWeight: 600 }}>{s}</span>
+                <span key={s} style={{ fontSize: '0.875rem', color: C.blue, padding: '4px 14px', borderRadius: '980px', background: 'rgba(192,132,252,0.1)', border: '1px solid rgba(192,132,252,0.25)', fontWeight: 600 }}>{s}</span>
               ))}
             </div>
           </motion.div>
@@ -696,14 +696,14 @@ export default function App() {
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
             <a href="mailto:shrivastavashubham213@gmail.com"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '12px 26px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, boxShadow: '0 4px 20px rgba(59,130,246,0.32)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(59,130,246,0.5)'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(59,130,246,0.32)'; }}>
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '12px 26px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, boxShadow: '0 4px 20px rgba(192,132,252,0.32)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(192,132,252,0.5)'; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(192,132,252,0.32)'; }}>
               <Mail size={14}/> shrivastavashubham213@gmail.com
             </a>
             <a href="https://linkedin.com/in/shubhamshrivastava11/" target="_blank" rel="noreferrer"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: `1px solid ${C.border}`, padding: '12px 24px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s, transform 0.15s' }}
-              onMouseEnter={e => { e.currentTarget.style.color = C.blue; e.currentTarget.style.borderColor = 'rgba(59,130,246,0.4)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+              onMouseEnter={e => { e.currentTarget.style.color = C.blue; e.currentTarget.style.borderColor = 'rgba(192,132,252,0.4)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
               onMouseLeave={e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; e.currentTarget.style.transform = ''; }}>
               <LinkedIn/> LinkedIn
             </a>

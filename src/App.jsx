@@ -142,10 +142,10 @@ const projects = [
   {
     id: 'locus',
     slug: 'locus', index: '06', tag: 'AI · Team Productivity',
-    title: 'Locus',
+    title: 'Locus AI',
     company: 'Founder · AI PM Bootcamp', period: '2026',
     heroValue: '3', heroLabel: 'tools unified — Slack, Notion, Gmail',
-    hook: "Teams make dozens of decisions a week scattered across Slack threads and Notion docs — then lose track of why a call was made or who owns the follow-up. Locus auto-captures decisions, action items, and blockers as your team communicates, and resurfaces them through a searchable Decision Log and a synthesized weekly Pulse digest every Monday. Core insight validated through 10+ VoC interviews; full product designed end-to-end in Figma, building toward MVP.",
+    hook: "Teams make dozens of decisions a week scattered across Slack threads and Notion docs — then lose track of why a call was made or who owns the follow-up. Locus AI auto-captures decisions, action items, and blockers as your team communicates, and resurfaces them through a searchable Decision Log and a synthesized weekly Pulse digest every Monday. Core insight validated through 10+ VoC interviews; full product designed end-to-end in Figma, building toward MVP.",
     scope: 'Solo founder · AI PM Bootcamp Cohort 9 · VoC interviews complete · 40+ screens designed in Figma · MVP in active development.',
     aiNote: 'Context-aware NLP classifier tags every Slack/Notion/Gmail message as a Decision, Action Item, or Blocker — each one cited back to its source thread.',
     metrics: [
@@ -158,7 +158,7 @@ const projects = [
     badges: [{ label: '◇ 40+ Screens in Figma', color: '#7C3AED' }],
     designPreview: {
       hero: '/locus/locus-landing-hero.png',
-      heroAlt: 'Locus landing page — hero and product dashboard',
+      heroAlt: 'Locus AI landing page — hero and product dashboard',
       thumbs: [
         { src: '/locus/locus-dashboard.png', alt: 'Dashboard screen' },
         { src: '/locus/locus-decision-log.png', alt: 'Decision Log screen' },
@@ -187,7 +187,7 @@ const projects = [
 
 /* ── Work section structure ── */
 const HIGHLIGHTS = [
-  { label: '40+ screens designed end-to-end in Figma — Locus, self-designed flagship product', anchor: '#locus' },
+  { label: '40+ screens designed end-to-end in Figma — Locus AI, self-designed flagship product', anchor: '#locus' },
   { label: '$2.4M annual savings — J&J AI Invoice Pipeline & Cloud Migration', anchor: '#jj-ai-invoice' },
   { label: '$50M+ transaction volume on day one — AML Compliance Engine (Bank of China)', anchor: '#cygnus-aml' },
   { label: '0 → 75K installs in 9 months — Consumer Mobile App (Digital iTechnology)', anchor: '#digital-i-mobile' },
@@ -343,7 +343,7 @@ export default function App() {
             Shubham<span style={{ ...G, fontWeight: 800 }}>.</span>
           </span>
           <nav className="hidden md:flex items-center gap-8">
-            {[['Locus', '#locus'], ['Work', '#work'], ['Experience', '#experience'], ['Skills', '#skills']].map(([l, h]) => (
+            {[['Locus AI', '#locus'], ['Work', '#work'], ['Experience', '#experience'], ['Skills', '#skills']].map(([l, h]) => (
               <a key={l} href={h} className="nav-link" style={{ fontSize: '0.875rem', fontWeight: 500 }}>{l}</a>
             ))}
           </nav>
@@ -434,13 +434,13 @@ export default function App() {
                   {...hoverGhost}>
                   <Download size={15}/> Resume
                 </a>
-                <a href="https://linkedin.com/in/shubhamshrivastava11/" target="_blank" rel="noreferrer"
+                <a href="https://linkedin.com/in/shubhamshrivastava11/" target="_blank" rel="noreferrer" aria-label="LinkedIn"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(20,18,38,0.045)', color: C.muted, border: `1px solid ${C.border}`, padding: '10px 16px', borderRadius: '980px', textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s' }}
                   onMouseEnter={e => { e.currentTarget.style.color = C.purple; e.currentTarget.style.borderColor = 'rgba(124,58,237,0.4)'; }}
                   onMouseLeave={e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; }}>
                   <LinkedIn/>
                 </a>
-                <a href="https://github.com/shubhamshrivastava11" target="_blank" rel="noreferrer"
+                <a href="https://github.com/shubhamshrivastava11" target="_blank" rel="noreferrer" aria-label="GitHub"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(20,18,38,0.045)', color: C.muted, border: `1px solid ${C.border}`, padding: '10px 16px', borderRadius: '980px', textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s' }}
                   onMouseEnter={e => { e.currentTarget.style.color = C.text; e.currentTarget.style.borderColor = 'rgba(20,18,38,0.25)'; }}
                   onMouseLeave={e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; }}>
@@ -460,7 +460,7 @@ export default function App() {
                 {/* Glow behind photo */}
                 <div style={{ position: 'absolute', inset: '-20px', background: 'radial-gradient(ellipse at center, rgba(124,58,237,0.15) 0%, transparent 70%)', borderRadius: '50%', zIndex: 0 }}/>
                 <div style={{ position: 'relative', zIndex: 1, width: '260px', height: '320px', borderRadius: '28px', overflow: 'hidden', boxShadow: `0 0 0 1px rgba(124,58,237,0.22), 0 20px 48px rgba(20,18,38,0.18)` }}>
-                  <img src="/profile.png" alt="Shubham Shrivastava" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}/>
+                  <img src="/profile.jpg" alt="Shubham Shrivastava" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}/>
                 </div>
               </div>
             </motion.div>
@@ -506,7 +506,7 @@ export default function App() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '7px', marginBottom: '18px', position: 'relative' }}>
               <Pin size={13} style={{ color: C.purple }} strokeWidth={2.5}/>
               <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: C.purple, textTransform: 'uppercase', letterSpacing: '0.14em' }}>
-                Flagship Product · Pinned
+                Locus AI · Flagship Product · Pinned
               </span>
             </div>
 
@@ -518,7 +518,7 @@ export default function App() {
                   Never lose a <span style={G}>team decision</span> again.
                 </h2>
                 <p style={{ fontSize: '0.9375rem', color: C.muted, lineHeight: 1.75, marginBottom: '22px', maxWidth: '480px' }}>
-                  Locus auto-captures decisions, action items, and blockers from Slack, Notion, and Gmail — resurfacing them through a searchable Decision Log and a weekly Pulse digest. I designed the entire product myself, 40+ screens end-to-end in Figma, before writing a line of backend code.
+                  Locus AI auto-captures decisions, action items, and blockers from Slack, Notion, and Gmail — resurfacing them through a searchable Decision Log and a weekly Pulse digest. I designed the entire product myself, 40+ screens end-to-end in Figma, before writing a line of backend code.
                 </p>
 
                 {/* Stat row */}

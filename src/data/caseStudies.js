@@ -288,7 +288,7 @@ export const caseStudies = [
     tag: 'AI · Team Productivity',
     company: 'Founder · AI PM Bootcamp',
     period: '2026',
-    title: 'Locus — Team Decision Memory',
+    title: 'Locus AI — Team Decision Memory',
     hook: 'Every team loses decisions in the noise of Slack and Notion. I designed 40+ screens end-to-end to fix it — before writing a line of backend code.',
     accentColor: '#4F46E5',
     metrics: [
@@ -316,7 +316,7 @@ export const caseStudies = [
         {
           num: '02',
           title: 'Chose a read-only, zero-workflow-change integration model',
-          body: 'Ruled out anything that required teams to change behavior, like manually logging decisions. Locus connects via OAuth to Slack, Notion, and Gmail as a read-only listener — no exports, no new workflows — so it starts delivering value from day one without any manual data entry.',
+          body: 'Ruled out anything that required teams to change behavior, like manually logging decisions. Locus AI connects via OAuth to Slack, Notion, and Gmail as a read-only listener — no exports, no new workflows — so it starts delivering value from day one without any manual data entry.',
         },
         {
           num: '03',
@@ -341,14 +341,14 @@ export const caseStudies = [
     },
     galleryIntro: 'A sample of the 40+ screens I designed end-to-end in Figma — from first-touch marketing to the core product surface.',
     gallery: [
-      { src: '/locus/locus-landing-hero.png', alt: 'Locus landing page', title: 'Landing page', caption: 'The pitch: "Never lose a team decision again." Above-the-fold hero pairs the value prop with a live dashboard preview.' },
-      { src: '/locus/locus-welcome.png', alt: 'Locus welcome and sign-in screen', title: 'Welcome / sign-in', caption: 'Google OAuth sign-in — the lowest-friction entry point for a tool that needs to feel trustworthy on day one.' },
-      { src: '/locus/locus-onboarding.png', alt: 'Locus onboarding flow', title: 'Guided onboarding', caption: 'Step 1 of 3: connect Slack, Notion, and Gmail as read-only sources. No exports, no copy-paste, no new workflows.' },
-      { src: '/locus/locus-dashboard.png', alt: 'Locus dashboard', title: 'Dashboard', caption: 'The daily home screen — open decisions, action items, and blockers at a glance, plus natural-language search across everything captured.' },
-      { src: '/locus/locus-search-results.png', alt: 'Locus search results', title: 'Search results', caption: 'Every answer links back to its original Slack thread or Notion doc — no context lost in translation.' },
-      { src: '/locus/locus-decision-log.png', alt: 'Locus decision log table', title: 'Decision Log', caption: 'The full, filterable record of every decision, action item, and blocker — searchable by type, source, and status.' },
-      { src: '/locus/locus-pulse.png', alt: 'Locus weekly Pulse digest', title: 'Team Pulse', caption: 'A synthesized weekly digest, delivered every Monday, so catching up never means scrolling back through a week of Slack.' },
-      { src: '/locus/locus-pricing.png', alt: 'Locus pricing plans', title: 'Pricing', caption: 'Individual ($12/mo) and Team ($15/user/mo) tiers, modeled against an 87% gross-margin target and break-even at 27–35 users.' },
+      { src: '/locus/locus-landing-hero.png', alt: 'Locus AI landing page', title: 'Landing page', caption: 'The pitch: "Never lose a team decision again." Above-the-fold hero pairs the value prop with a live dashboard preview.' },
+      { src: '/locus/locus-welcome.png', alt: 'Locus AI welcome and sign-in screen', title: 'Welcome / sign-in', caption: 'Google OAuth sign-in — the lowest-friction entry point for a tool that needs to feel trustworthy on day one.' },
+      { src: '/locus/locus-onboarding.png', alt: 'Locus AI onboarding flow', title: 'Guided onboarding', caption: 'Step 1 of 3: connect Slack, Notion, and Gmail as read-only sources. No exports, no copy-paste, no new workflows.' },
+      { src: '/locus/locus-dashboard.png', alt: 'Locus AI dashboard', title: 'Dashboard', caption: 'The daily home screen — open decisions, action items, and blockers at a glance, plus natural-language search across everything captured.' },
+      { src: '/locus/locus-search-results.png', alt: 'Locus AI search results', title: 'Search results', caption: 'Every answer links back to its original Slack thread or Notion doc — no context lost in translation.' },
+      { src: '/locus/locus-decision-log.png', alt: 'Locus AI decision log table', title: 'Decision Log', caption: 'The full, filterable record of every decision, action item, and blocker — searchable by type, source, and status.' },
+      { src: '/locus/locus-pulse.png', alt: 'Locus AI weekly Pulse digest', title: 'Team Pulse', caption: 'A synthesized weekly digest, delivered every Monday, so catching up never means scrolling back through a week of Slack.' },
+      { src: '/locus/locus-pricing.png', alt: 'Locus AI pricing plans', title: 'Pricing', caption: 'Individual ($12/mo) and Team ($15/user/mo) tiers, modeled against an 87% gross-margin target and break-even at 27–35 users.' },
     ],
     results: {
       heading: 'Where the product stands',

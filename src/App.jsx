@@ -134,20 +134,31 @@ const projects = [
   },
   {
     id: 'locus',
-    slug: null, index: '06', tag: 'AI · Privacy · Productivity',
+    slug: 'locus', index: '06', tag: 'AI · Team Productivity',
     title: 'Locus',
     company: 'Founder · AI PM Bootcamp', period: '2026',
-    heroValue: '0 bytes', heroLabel: 'stored — session-only',
-    hook: "CPAs, auditors, and consultants can't use mainstream AI tools for client work — data privacy rules prevent uploading sensitive documents to cloud services. Locus solves this with zero-storage document intelligence: documents live in RAM only and are destroyed at session end. Core insight validated through 10+ VoC interviews; building toward MVP targeting 87% gross margin.",
-    scope: 'Solo founder · AI PM Bootcamp Cohort 9 · VoC interviews complete · MVP in active development.',
-    aiNote: 'Zero-storage RAG pipeline — ChromaDB in-memory + Claude API. No documents persist after the session ends.',
+    heroValue: '3', heroLabel: 'tools unified — Slack, Notion, Gmail',
+    hook: "Teams make dozens of decisions a week scattered across Slack threads and Notion docs — then lose track of why a call was made or who owns the follow-up. Locus auto-captures decisions, action items, and blockers as your team communicates, and resurfaces them through a searchable Decision Log and a synthesized weekly Pulse digest every Monday. Core insight validated through 10+ VoC interviews; full product designed end-to-end in Figma, building toward MVP.",
+    scope: 'Solo founder · AI PM Bootcamp Cohort 9 · VoC interviews complete · 40+ screens designed in Figma · MVP in active development.',
+    aiNote: 'Context-aware NLP classifier tags every Slack/Notion/Gmail message as a Decision, Action Item, or Blocker — each one cited back to its source thread.',
     metrics: [
-      { value: '0 bytes', label: 'Data persisted post-session' },
+      { value: '$12–15', label: 'Per user / month' },
       { value: '4M+',    label: 'Addressable professionals' },
       { value: '87%',    label: 'Gross margin target' },
     ],
-    tags: ['Claude API', 'FastAPI', 'LangChain', 'ChromaDB', 'Privacy'],
+    tags: ['Claude API', 'FastAPI', 'Slack API', 'Notion API', 'RAG'],
     filters: ['0→1', 'AI-heavy', 'Consumer'],
+    badges: [{ label: '◇ 40+ Screens in Figma', color: '#C084FC' }],
+    designPreview: {
+      hero: '/locus/locus-landing-hero.png',
+      heroAlt: 'Locus landing page — hero and product dashboard',
+      thumbs: [
+        { src: '/locus/locus-dashboard.png', alt: 'Dashboard screen' },
+        { src: '/locus/locus-decision-log.png', alt: 'Decision Log screen' },
+        { src: '/locus/locus-pulse.png', alt: 'Weekly Pulse digest screen' },
+        { src: '/locus/locus-search-results.png', alt: 'Search results screen' },
+      ],
+    },
   },
   {
     id: 'ai-job-copilot',
@@ -564,6 +575,32 @@ export default function App() {
                         {/* AI note */}
                         {p.aiNote && (
                           <p style={{ fontSize: '0.6875rem', color: '#34D399', lineHeight: 1.5, marginBottom: '14px', paddingLeft: '10px', borderLeft: `2px solid rgba(192,132,252,0.45)` }}>⚡ {p.aiNote}</p>
+                        )}
+
+                        {/* Design preview (Figma) */}
+                        {p.designPreview && (
+                          <div style={{ marginBottom: '14px' }}>
+                            <img
+                              src={p.designPreview.hero}
+                              alt={p.designPreview.heroAlt}
+                              loading="lazy"
+                              style={{ width: '100%', display: 'block', borderRadius: '10px', border: `1px solid ${C.border}`, boxShadow: '0 8px 24px rgba(0,0,0,0.35)' }}
+                            />
+                            <div style={{ display: 'flex', gap: '6px', marginTop: '6px' }}>
+                              {p.designPreview.thumbs.map((t, ti) => (
+                                <a key={ti} href={t.src} target="_blank" rel="noreferrer" style={{ flex: 1, display: 'block' }}>
+                                  <img
+                                    src={t.src}
+                                    alt={t.alt}
+                                    loading="lazy"
+                                    style={{ width: '100%', height: '52px', objectFit: 'cover', objectPosition: 'top', borderRadius: '6px', border: `1px solid ${C.border}`, transition: 'border-color 0.15s, opacity 0.15s' }}
+                                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(192,132,252,0.5)'; e.currentTarget.style.opacity = '0.85'; }}
+                                    onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.opacity = '1'; }}
+                                  />
+                                </a>
+                              ))}
+                            </div>
+                          </div>
                         )}
 
                         {/* Metrics */}

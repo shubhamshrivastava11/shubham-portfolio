@@ -38,6 +38,8 @@ export default function CaseStudy() {
   }
 
   const accent = cs.accentColor;
+  const hasGallery = Boolean(cs.gallery && cs.gallery.length);
+  const num = { problem: '01', approach: '02', built: '03', gallery: '04', results: hasGallery ? '05' : '04', learnings: hasGallery ? '06' : '05' };
 
   return (
     <div style={{ background: C.bg, color: C.text, minHeight: '100vh' }}>
@@ -75,7 +77,7 @@ export default function CaseStudy() {
 
         {/* Problem */}
         <motion.section {...up(0.05)} style={{ marginBottom: '48px' }}>
-          <SLabel accent={accent} num="01" label="The Problem"/>
+          <SLabel accent={accent} num={num.problem} label="The Problem"/>
           <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: C.text, letterSpacing: '-0.015em', marginBottom: '16px' }}>{cs.problem.heading}</h2>
           {cs.problem.body.map((p, i) => (
             <p key={i} style={{ fontSize: '0.9375rem', color: C.muted, lineHeight: 1.78, marginBottom: '16px' }}>{p}</p>
@@ -87,7 +89,7 @@ export default function CaseStudy() {
 
         {/* Approach */}
         <motion.section {...up(0.08)} style={{ marginBottom: '48px' }}>
-          <SLabel accent={accent} num="02" label="My Approach"/>
+          <SLabel accent={accent} num={num.approach} label="My Approach"/>
           <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: C.text, letterSpacing: '-0.015em', marginBottom: '28px' }}>{cs.approach.heading}</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {cs.approach.steps.map((s, i) => (
@@ -106,7 +108,7 @@ export default function CaseStudy() {
 
         {/* What I Built */}
         <motion.section {...up(0.1)} style={{ marginBottom: '48px' }}>
-          <SLabel accent={accent} num="03" label="What I Built"/>
+          <SLabel accent={accent} num={num.built} label="What I Built"/>
           <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: C.text, letterSpacing: '-0.015em', marginBottom: '20px' }}>{cs.built.heading}</h2>
           <div className="grid md:grid-cols-2 gap-3">
             {cs.built.items.map((item, i) => (
@@ -121,9 +123,30 @@ export default function CaseStudy() {
           </div>
         </motion.section>
 
+        {/* Product Design Gallery */}
+        {hasGallery && (
+          <motion.section {...up(0.11)} style={{ marginBottom: '48px' }}>
+            <SLabel accent={accent} num={num.gallery} label="Product Design"/>
+            {cs.galleryIntro && (
+              <p style={{ fontSize: '0.9375rem', color: C.muted, lineHeight: 1.72, marginBottom: '24px' }}>{cs.galleryIntro}</p>
+            )}
+            <div className="grid md:grid-cols-2 gap-3">
+              {cs.gallery.map((g, i) => (
+                <div key={i} style={{ borderRadius: '14px', overflow: 'hidden', background: C.surface, border: `1px solid ${C.border}` }}>
+                  <img src={g.src} alt={g.alt} loading="lazy" style={{ width: '100%', display: 'block', borderBottom: `1px solid ${C.border}` }}/>
+                  <div style={{ padding: '12px 16px' }}>
+                    <p style={{ fontSize: '0.8125rem', fontWeight: 600, color: C.text, marginBottom: '2px' }}>{g.title}</p>
+                    <p style={{ fontSize: '0.8125rem', color: C.subtle, lineHeight: 1.55 }}>{g.caption}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.section>
+        )}
+
         {/* Results */}
         <motion.section {...up(0.12)} style={{ marginBottom: '48px' }}>
-          <SLabel accent={accent} num="04" label="Results"/>
+          <SLabel accent={accent} num={num.results} label="Results"/>
           <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: C.text, letterSpacing: '-0.015em', marginBottom: '20px' }}>{cs.results.heading}</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {cs.results.items.map((r, i) => (
@@ -143,7 +166,7 @@ export default function CaseStudy() {
 
         {/* Learnings */}
         <motion.section {...up(0.14)} style={{ marginBottom: '64px' }}>
-          <SLabel accent={accent} num="05" label="What I Learned"/>
+          <SLabel accent={accent} num={num.learnings} label="What I Learned"/>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {cs.learnings.map((l, i) => (
               <div key={i} style={{ padding: '18px 20px', borderRadius: '14px', background: C.surface, border: `1px solid ${C.border}` }}>

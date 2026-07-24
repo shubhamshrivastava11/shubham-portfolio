@@ -283,4 +283,86 @@ export const caseStudies = [
       { title: 'A/B testing culture requires PM leadership to establish', body: 'The team was nervous about running experiments — worried about "hurting" some users. I had to actively make the case that decisions made without data were already hurting users. Once the first test shipped and the data was clear, the team was fully bought in.' },
     ],
   },
+  {
+    slug: 'locus',
+    tag: 'AI · Team Productivity',
+    company: 'Founder · AI PM Bootcamp',
+    period: '2026',
+    title: 'Locus — Team Decision Memory',
+    hook: 'Every team loses decisions in the noise of Slack and Notion. I designed 40+ screens end-to-end to fix it — before writing a line of backend code.',
+    accentColor: '#6366F1',
+    metrics: [
+      { value: '40+', label: 'Screens designed' },
+      { value: '10+', label: 'VoC interviews' },
+      { value: '87%', label: 'Gross margin target' },
+      { value: '$12–15', label: 'Price per user / mo' },
+    ],
+    problem: {
+      heading: 'Decisions get made in Slack threads and forgotten by Friday',
+      body: [
+        'Every fast-moving team makes dozens of small decisions a week — which library to use, who owns a blocker, why a deadline moved — and almost none of it gets written down anywhere durable. It lives in a Slack thread that scrolls away, a Notion comment nobody re-reads, or an email that gets archived. Three weeks later, someone asks "wait, why did we do it this way?" and the answer requires archaeology.',
+        'I saw this pattern repeatedly across my own PM work — re-explaining decisions to new teammates, re-litigating settled debates, and losing time to Slack search that returns everything except the one message that mattered. There was no dedicated "team memory" layer sitting on top of the tools teams already use.',
+      ],
+      callout: 'In VoC interviews, every PM, consultant, and eng lead I talked to described re-explaining the same decision more than once in a single quarter — with no source of truth to point to.',
+    },
+    approach: {
+      heading: 'Designing the product before writing a line of backend code',
+      steps: [
+        {
+          num: '01',
+          title: 'Validated the pain with 10+ VoC interviews',
+          body: "Talked to PMs, consultants, and engineering leads about how they currently track decisions. The consistent finding: everyone already has the data, in Slack, Notion, and Gmail — what's missing is a layer that reads it passively and resurfaces it on demand, not another tool people have to remember to update.",
+        },
+        {
+          num: '02',
+          title: 'Chose a read-only, zero-workflow-change integration model',
+          body: 'Ruled out anything that required teams to change behavior, like manually logging decisions. Locus connects via OAuth to Slack, Notion, and Gmail as a read-only listener — no exports, no new workflows — so it starts delivering value from day one without any manual data entry.',
+        },
+        {
+          num: '03',
+          title: 'Designed the full product in Figma before scoping engineering',
+          body: 'Rather than wireframe-then-build, I designed 40+ high-fidelity screens across the entire product surface — marketing site, onboarding, dashboard, Decision Log, Team Pulse, Search, and Settings — to pressure-test the information architecture and pricing model before committing engineering time.',
+        },
+        {
+          num: '04',
+          title: 'Modeled the business against a break-even target',
+          body: 'Priced at $12/month individual and $15/user/month team tier, targeting 87% gross margin and break-even at 27–35 users. Kept CAC near-zero by designing for community-led growth — Reddit and Product Hunt — rather than paid acquisition.',
+        },
+      ],
+    },
+    built: {
+      heading: 'What I designed',
+      items: [
+        { label: 'Marketing site & onboarding', desc: 'Landing page, Google OAuth sign-in, and a 3-step guided setup (connect Slack/Notion/Gmail → account ready) designed to get a team from zero to first captured decision in under 2 minutes.' },
+        { label: 'Dashboard & natural-language search', desc: 'A "Good morning" home screen surfacing open decisions, action items, and blockers at a glance, plus a search bar that answers questions like "What did we decide about the Q3 timeline?" with cited sources.' },
+        { label: 'Decision Log', desc: 'A filterable, paginated table of every captured Decision, Action Item, and Blocker — type, summary, source thread, date, and status (Current / Confirmed / Superseded) — fully searchable and exportable.' },
+        { label: 'Team Pulse — weekly digest', desc: "An auto-synthesized Monday digest summarizing the week's top decisions, action items, and open blockers by confidence and recency, so no one has to scroll back through a week of Slack to catch up." },
+      ],
+    },
+    galleryIntro: 'A sample of the 40+ screens I designed end-to-end in Figma — from first-touch marketing to the core product surface.',
+    gallery: [
+      { src: '/locus/locus-landing-hero.png', alt: 'Locus landing page', title: 'Landing page', caption: 'The pitch: "Never lose a team decision again." Above-the-fold hero pairs the value prop with a live dashboard preview.' },
+      { src: '/locus/locus-welcome.png', alt: 'Locus welcome and sign-in screen', title: 'Welcome / sign-in', caption: 'Google OAuth sign-in — the lowest-friction entry point for a tool that needs to feel trustworthy on day one.' },
+      { src: '/locus/locus-onboarding.png', alt: 'Locus onboarding flow', title: 'Guided onboarding', caption: 'Step 1 of 3: connect Slack, Notion, and Gmail as read-only sources. No exports, no copy-paste, no new workflows.' },
+      { src: '/locus/locus-dashboard.png', alt: 'Locus dashboard', title: 'Dashboard', caption: 'The daily home screen — open decisions, action items, and blockers at a glance, plus natural-language search across everything captured.' },
+      { src: '/locus/locus-search-results.png', alt: 'Locus search results', title: 'Search results', caption: 'Every answer links back to its original Slack thread or Notion doc — no context lost in translation.' },
+      { src: '/locus/locus-decision-log.png', alt: 'Locus decision log table', title: 'Decision Log', caption: 'The full, filterable record of every decision, action item, and blocker — searchable by type, source, and status.' },
+      { src: '/locus/locus-pulse.png', alt: 'Locus weekly Pulse digest', title: 'Team Pulse', caption: 'A synthesized weekly digest, delivered every Monday, so catching up never means scrolling back through a week of Slack.' },
+      { src: '/locus/locus-pricing.png', alt: 'Locus pricing plans', title: 'Pricing', caption: 'Individual ($12/mo) and Team ($15/user/mo) tiers, modeled against an 87% gross-margin target and break-even at 27–35 users.' },
+    ],
+    results: {
+      heading: 'Where the product stands',
+      items: [
+        { before: 'Hypothesis only', after: '10+ VoC interviews validated', label: 'Problem validation' },
+        { before: 'Concept sketch', after: '40+ hi-fi screens shipped', label: 'Product design' },
+        { before: 'No pricing model', after: '87% margin target · break-even at 27–35 users', label: 'Business model' },
+        { before: 'Design phase', after: 'Backend + MVP in active development', label: 'Current status' },
+      ],
+    },
+    learnings: [
+      { title: 'Designing the full surface first exposes gaps early', body: 'Laying out every settings screen — Capture Controls, Privacy, Connected Sources — before writing a spec forced me to answer monetization and data-retention questions, like the 30-day raw-content purge policy, months before an engineer would have hit them.' },
+      { title: 'Read-only, zero-workflow-change integrations lower the adoption bar the most', body: 'Every VoC interview confirmed the same thing: teams will not adopt a tool that asks them to manually log anything. Designing Locus as a passive listener rather than a new inbox to check was the single highest-leverage product decision.' },
+      { title: 'A weekly digest beats a dashboard nobody opens', body: 'Early concepts leaned entirely on a pull-based dashboard. Adding Pulse — a push-based Monday digest — came directly from VoC feedback that people forget to check dashboards but do read a well-timed Monday email.' },
+    ],
+  },
 ];

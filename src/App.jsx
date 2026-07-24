@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Mail, Briefcase, GraduationCap, Award, ArrowRight, Download, MapPin, Star } from 'lucide-react';
+import { Mail, Briefcase, GraduationCap, Award, ArrowRight, Download, MapPin, Star, Pin } from 'lucide-react';
 
 const LinkedIn = () => (
   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
@@ -15,27 +15,34 @@ const GitHub = () => (
   </svg>
 );
 
-/* ── Color tokens ── */
+/* ── Color tokens (light theme) ──
+   Same violet→indigo identity as before, recalibrated to AA-contrast
+   depths for a white page. Lime is reserved for the Locus spotlight only. */
 const C = {
-  bg:      '#000000',
-  surface: '#111111',
-  s2:      'rgba(17,17,17,0.9)',
-  border:  'rgba(255,255,255,0.09)',
-  bHover:  'rgba(255,255,255,0.2)',
-  text:    '#FFFFFF',
-  muted:   '#E4E4E7',
-  subtle:  '#A1A1AA',
-  blue:    '#818CF8',
-  indigo:  '#6366F1',
-  emerald: '#34D399',
-  gold:    '#FCD34D',
-  purple:  '#C084FC',
-  green:   '#4ADE80',
+  bg:         '#FFFFFF',
+  surface:    '#F7F6FB',
+  surfaceAlt: '#F0EDFA',
+  border:     'rgba(20,18,38,0.10)',
+  bHover:     'rgba(20,18,38,0.22)',
+  text:       '#14121F',
+  muted:      '#45414F',
+  subtle:     '#6B6775',
+  blue:       '#4F46E5',
+  indigo:     '#4F46E5',
+  emerald:    '#047857',
+  gold:       '#B45309',
+  purple:     '#7C3AED',
+  green:      '#16A34A',
+  lime:       '#84CC16',
 };
 
-const GRAD = 'linear-gradient(135deg, #C084FC 0%, #818CF8 100%)';
+/* Translucent dark-on-light fills for "ghost" elements that used to be white-on-black */
+const GHOST_BG = 'rgba(20,18,38,0.045)';
+const GHOST_BG_HOVER = 'rgba(20,18,38,0.08)';
+
+const GRAD = 'linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%)';
 const G = { background: GRAD, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' };
-const GE = { background: 'linear-gradient(135deg, #34D399 0%, #818CF8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' };
+const GE = { background: 'linear-gradient(135deg, #047857 0%, #4F46E5 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' };
 
 /* ── Rotating hero achievements ── */
 const ACHIEVEMENTS = [
@@ -63,7 +70,7 @@ const projects = [
     tags: ['AI Design', 'React Native', 'AR/VR', 'Affiliate Commerce', '0-to-1'],
     url: 'https://www.heyfurnish.com',
     featured: true,
-    badges: [{ label: '● Website Live', color: '#34D399' }, { label: '◉ Mobile Beta · AR/VR', color: '#C084FC' }],
+    badges: [{ label: '● Website Live', color: '#047857' }, { label: '◉ Mobile Beta · AR/VR', color: '#7C3AED' }],
     filters: ['0→1', 'AI-heavy', 'Consumer'],
   },
   {
@@ -148,7 +155,7 @@ const projects = [
     ],
     tags: ['Claude API', 'FastAPI', 'Slack API', 'Notion API', 'RAG'],
     filters: ['0→1', 'AI-heavy', 'Consumer'],
-    badges: [{ label: '◇ 40+ Screens in Figma', color: '#C084FC' }],
+    badges: [{ label: '◇ 40+ Screens in Figma', color: '#7C3AED' }],
     designPreview: {
       hero: '/locus/locus-landing-hero.png',
       heroAlt: 'Locus landing page — hero and product dashboard',
@@ -162,7 +169,7 @@ const projects = [
   },
   {
     id: 'ai-job-copilot',
-    slug: null, index: '07', tag: 'AI · Productivity',
+    slug: null, index: '06', tag: 'AI · Productivity',
     title: 'AI Job Co-pilot',
     company: 'Side Project', period: '2025',
     heroValue: '80%+', heroLabel: 'time saved per application',
@@ -180,6 +187,7 @@ const projects = [
 
 /* ── Work section structure ── */
 const HIGHLIGHTS = [
+  { label: '40+ screens designed end-to-end in Figma — Locus, self-designed flagship product', anchor: '#locus' },
   { label: '$2.4M annual savings — J&J AI Invoice Pipeline & Cloud Migration', anchor: '#jj-ai-invoice' },
   { label: '$50M+ transaction volume on day one — AML Compliance Engine (Bank of China)', anchor: '#cygnus-aml' },
   { label: '0 → 75K installs in 9 months — Consumer Mobile App (Digital iTechnology)', anchor: '#digital-i-mobile' },
@@ -199,11 +207,18 @@ const GROUPS = [
   {
     label: 'Consumer Growth · Side Projects & Experiments',
     desc: 'Growth-stage products, rapid experiments, and founder bets built on tight timelines.',
-    ids: ['digital-i-mobile', 'locus', 'ai-job-copilot'],
+    ids: ['digital-i-mobile', 'ai-job-copilot'],
   },
 ];
 
 const FILTER_TABS = ['All', 'Enterprise AI', '0→1', 'Consumer', 'AI-heavy'];
+
+const LOCUS_SPOTLIGHT_STATS = [
+  { value: '40+',    label: 'Screens designed' },
+  { value: '10+',    label: 'VoC interviews' },
+  { value: '87%',    label: 'Margin target' },
+  { value: '$12–15', label: 'Per user / mo' },
+];
 
 /* ── Experience & education ── */
 const timeline = [
@@ -293,8 +308,8 @@ const up = (delay = 0) => ({
 
 /* ── Hover helpers (inline event handlers) ── */
 const hoverGhost = {
-  onMouseEnter: e => { e.currentTarget.style.color = C.text; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'; e.currentTarget.style.transform = 'translateY(-1px)'; },
-  onMouseLeave: e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; e.currentTarget.style.transform = ''; },
+  onMouseEnter: e => { e.currentTarget.style.color = C.text; e.currentTarget.style.borderColor = 'rgba(20,18,38,0.25)'; e.currentTarget.style.background = GHOST_BG_HOVER; e.currentTarget.style.transform = 'translateY(-1px)'; },
+  onMouseLeave: e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; e.currentTarget.style.background = GHOST_BG; e.currentTarget.style.transform = ''; },
 };
 
 /* ── Section header ── */
@@ -328,14 +343,14 @@ export default function App() {
             Shubham<span style={{ ...G, fontWeight: 800 }}>.</span>
           </span>
           <nav className="hidden md:flex items-center gap-8">
-            {[['Work', '#work'], ['Experience', '#experience'], ['Skills', '#skills']].map(([l, h]) => (
+            {[['Locus', '#locus'], ['Work', '#work'], ['Experience', '#experience'], ['Skills', '#skills']].map(([l, h]) => (
               <a key={l} href={h} className="nav-link" style={{ fontSize: '0.875rem', fontWeight: 500 }}>{l}</a>
             ))}
           </nav>
           <a href="mailto:shrivastavashubham213@gmail.com"
-            style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff', background: GRAD, padding: '8px 20px', borderRadius: '980px', boxShadow: '0 4px 20px rgba(192,132,252,0.35)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 24px rgba(192,132,252,0.55)'; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(192,132,252,0.35)'; }}>
+            style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff', background: GRAD, padding: '8px 20px', borderRadius: '980px', boxShadow: '0 4px 20px rgba(124,58,237,0.35)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 24px rgba(124,58,237,0.55)'; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(124,58,237,0.35)'; }}>
             Hire Me
           </a>
         </div>
@@ -353,7 +368,7 @@ export default function App() {
             <div className="flex-1">
 
               {/* Status badge */}
-              <motion.div {...up(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '22px', background: 'rgba(192,132,252,0.08)', border: '1px solid rgba(192,132,252,0.22)', borderRadius: '980px', padding: '6px 14px' }}>
+              <motion.div {...up(0)} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '22px', background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.22)', borderRadius: '980px', padding: '6px 14px' }}>
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full rounded-full ping-slow" style={{ background: C.green, opacity: 0.6 }}/>
                   <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: C.green }}/>
@@ -380,7 +395,7 @@ export default function App() {
                   <motion.div key={achIdx}
                     initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.25 }}
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(52,211,153,0.08)', border: '1px solid rgba(52,211,153,0.2)', borderRadius: '980px', padding: '5px 12px' }}>
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(4,120,87,0.08)', border: '1px solid rgba(4,120,87,0.2)', borderRadius: '980px', padding: '5px 12px' }}>
                     <span style={{ fontSize: '0.9375rem', fontWeight: 800, ...GE }}>{ach.value}</span>
                     <span style={{ fontSize: '0.75rem', color: C.muted }}>{ach.label}</span>
                     <span style={{ width: '1px', height: '10px', background: C.border }}/>
@@ -395,7 +410,7 @@ export default function App() {
               </motion.p>
 
               {/* Where I'm best leveraged */}
-              <motion.div {...up(0.115)} style={{ marginBottom: '28px', paddingLeft: '12px', borderLeft: `2px solid rgba(192,132,252,0.3)` }}>
+              <motion.div {...up(0.115)} style={{ marginBottom: '28px', paddingLeft: '12px', borderLeft: `2px solid rgba(124,58,237,0.3)` }}>
                 <p style={{ fontSize: '0.625rem', color: C.subtle, fontWeight: 600, marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Where I'm best leveraged</p>
                 <p style={{ fontSize: '0.8125rem', color: C.muted, lineHeight: 1.6 }}>
                   <span style={{ color: C.blue }}>FinTech · MedTech · GovTech</span>
@@ -409,25 +424,25 @@ export default function App() {
               {/* CTAs */}
               <motion.div {...up(0.12)} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
                 <a href="#work"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '10px 22px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, boxShadow: '0 4px 20px rgba(192,132,252,0.32)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
-                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(192,132,252,0.5)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(192,132,252,0.32)'; }}>
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '10px 22px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, boxShadow: '0 4px 20px rgba(124,58,237,0.32)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(124,58,237,0.5)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(124,58,237,0.32)'; }}>
                   See My Work <ArrowRight size={15}/>
                 </a>
                 <a href="/resume.pdf" target="_blank" rel="noreferrer"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: `1px solid ${C.border}`, padding: '10px 22px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s, transform 0.15s' }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(20,18,38,0.045)', color: C.muted, border: `1px solid ${C.border}`, padding: '10px 22px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s, transform 0.15s' }}
                   {...hoverGhost}>
                   <Download size={15}/> Resume
                 </a>
                 <a href="https://linkedin.com/in/shubhamshrivastava11/" target="_blank" rel="noreferrer"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: `1px solid ${C.border}`, padding: '10px 16px', borderRadius: '980px', textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s' }}
-                  onMouseEnter={e => { e.currentTarget.style.color = C.purple; e.currentTarget.style.borderColor = 'rgba(192,132,252,0.4)'; }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(20,18,38,0.045)', color: C.muted, border: `1px solid ${C.border}`, padding: '10px 16px', borderRadius: '980px', textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s' }}
+                  onMouseEnter={e => { e.currentTarget.style.color = C.purple; e.currentTarget.style.borderColor = 'rgba(124,58,237,0.4)'; }}
                   onMouseLeave={e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; }}>
                   <LinkedIn/>
                 </a>
                 <a href="https://github.com/shubhamshrivastava11" target="_blank" rel="noreferrer"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: `1px solid ${C.border}`, padding: '10px 16px', borderRadius: '980px', textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s' }}
-                  onMouseEnter={e => { e.currentTarget.style.color = C.text; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'; }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(20,18,38,0.045)', color: C.muted, border: `1px solid ${C.border}`, padding: '10px 16px', borderRadius: '980px', textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s' }}
+                  onMouseEnter={e => { e.currentTarget.style.color = C.text; e.currentTarget.style.borderColor = 'rgba(20,18,38,0.25)'; }}
                   onMouseLeave={e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; }}>
                   <GitHub/>
                 </a>
@@ -443,8 +458,8 @@ export default function App() {
             <motion.div {...up(0.05)} className="flex justify-center md:justify-end flex-shrink-0">
               <div style={{ position: 'relative' }}>
                 {/* Glow behind photo */}
-                <div style={{ position: 'absolute', inset: '-20px', background: 'radial-gradient(ellipse at center, rgba(192,132,252,0.15) 0%, transparent 70%)', borderRadius: '50%', zIndex: 0 }}/>
-                <div style={{ position: 'relative', zIndex: 1, width: '260px', height: '320px', borderRadius: '28px', overflow: 'hidden', boxShadow: `0 0 0 1px rgba(192,132,252,0.2), 0 24px 64px rgba(0,0,0,0.7)` }}>
+                <div style={{ position: 'absolute', inset: '-20px', background: 'radial-gradient(ellipse at center, rgba(124,58,237,0.15) 0%, transparent 70%)', borderRadius: '50%', zIndex: 0 }}/>
+                <div style={{ position: 'relative', zIndex: 1, width: '260px', height: '320px', borderRadius: '28px', overflow: 'hidden', boxShadow: `0 0 0 1px rgba(124,58,237,0.22), 0 20px 48px rgba(20,18,38,0.18)` }}>
                   <img src="/profile.png" alt="Shubham Shrivastava" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}/>
                 </div>
               </div>
@@ -468,6 +483,102 @@ export default function App() {
             ))}
           </motion.div>
 
+        </div>
+      </section>
+
+      {/* ── LOCUS SPOTLIGHT ── */}
+      <section id="locus" style={{ padding: '8px 0 64px', background: C.bg }}>
+        <div style={{ maxWidth: '1040px', margin: '0 auto', padding: '0 24px' }}>
+          <motion.div {...up(0)}
+            style={{
+              position: 'relative',
+              borderRadius: '28px',
+              padding: 'clamp(28px,4vw,52px)',
+              background: `linear-gradient(175deg, ${C.surface} 0%, #FFFFFF 65%)`,
+              border: '1px solid rgba(124,58,237,0.16)',
+              boxShadow: '0 24px 64px rgba(20,18,38,0.08), 0 4px 20px rgba(124,58,237,0.06)',
+              overflow: 'hidden',
+            }}>
+            {/* Lime glow — the one nod to Locus's own brand, kept local to this section */}
+            <div style={{ position: 'absolute', top: '-140px', right: '-120px', width: '340px', height: '340px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(132,204,22,0.22) 0%, transparent 70%)', pointerEvents: 'none' }}/>
+
+            {/* Eyebrow */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '7px', marginBottom: '18px', position: 'relative' }}>
+              <Pin size={13} style={{ color: C.purple }} strokeWidth={2.5}/>
+              <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: C.purple, textTransform: 'uppercase', letterSpacing: '0.14em' }}>
+                Flagship Product · Pinned
+              </span>
+            </div>
+
+            <div className="flex flex-col-reverse gap-10 lg:flex-row lg:items-center lg:gap-14" style={{ position: 'relative' }}>
+
+              {/* ── LEFT: story ── */}
+              <div style={{ flex: '1 1 380px' }}>
+                <h2 style={{ fontSize: 'clamp(1.75rem,3.4vw,2.75rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, color: C.text, marginBottom: '16px' }}>
+                  Never lose a <span style={G}>team decision</span> again.
+                </h2>
+                <p style={{ fontSize: '0.9375rem', color: C.muted, lineHeight: 1.75, marginBottom: '22px', maxWidth: '480px' }}>
+                  Locus auto-captures decisions, action items, and blockers from Slack, Notion, and Gmail — resurfacing them through a searchable Decision Log and a weekly Pulse digest. I designed the entire product myself, 40+ screens end-to-end in Figma, before writing a line of backend code.
+                </p>
+
+                {/* Stat row */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '26px', marginBottom: '26px' }}>
+                  {LOCUS_SPOTLIGHT_STATS.map((m, i) => (
+                    <div key={i}>
+                      <p style={{ fontSize: '1.3125rem', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1, ...GE }}>{m.value}</p>
+                      <p style={{ fontSize: '0.625rem', color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '4px' }}>{m.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTAs */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
+                  <Link to="/case/locus"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '11px 24px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, boxShadow: '0 4px 20px rgba(124,58,237,0.3)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+                    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 26px rgba(124,58,237,0.45)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(124,58,237,0.3)'; }}>
+                    View full case study <ArrowRight size={15}/>
+                  </Link>
+                  <a href="#work"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GHOST_BG, color: C.muted, border: `1px solid ${C.border}`, padding: '11px 22px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s' }}
+                    {...hoverGhost}>
+                    See all work
+                  </a>
+                </div>
+              </div>
+
+              {/* ── RIGHT: framed screenshot ── */}
+              <div style={{ flex: '1 1 420px' }}>
+                <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid ${C.border}`, boxShadow: '0 20px 48px rgba(20,18,38,0.14)', background: '#FFFFFF' }}>
+                  <div style={{ display: 'flex', gap: '6px', padding: '10px 14px', borderBottom: `1px solid ${C.border}`, background: '#FAFAFC' }}>
+                    <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#F87171' }}/>
+                    <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#FBBF24' }}/>
+                    <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#34D399' }}/>
+                  </div>
+                  <img src="/locus/locus-dashboard.png" alt="Locus dashboard — decisions, action items, and blockers at a glance" style={{ width: '100%', display: 'block' }}/>
+                </div>
+                <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
+                  {[
+                    { src: '/locus/locus-decision-log.png', alt: 'Decision Log screen' },
+                    { src: '/locus/locus-pulse.png', alt: 'Weekly Pulse digest screen' },
+                    { src: '/locus/locus-search-results.png', alt: 'Search results screen' },
+                  ].map((t, ti) => (
+                    <Link key={ti} to="/case/locus" style={{ flex: 1, display: 'block' }}>
+                      <img
+                        src={t.src}
+                        alt={t.alt}
+                        loading="lazy"
+                        style={{ width: '100%', height: '56px', objectFit: 'cover', objectPosition: 'top', borderRadius: '8px', border: `1px solid ${C.border}`, transition: 'border-color 0.15s, opacity 0.15s' }}
+                        onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(124,58,237,0.5)'; e.currentTarget.style.opacity = '0.85'; }}
+                        onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.opacity = '1'; }}
+                      />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -540,7 +651,7 @@ export default function App() {
                           display: 'flex', flexDirection: 'column',
                           gridColumn: spanFull ? 'span 2 / span 2' : undefined,
                           transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
-                          ...(p.featured ? { border: `1px solid rgba(192,132,252,0.28)`, boxShadow: '0 0 32px rgba(192,132,252,0.07)' } : {}),
+                          ...(p.featured ? { border: `1px solid rgba(124,58,237,0.28)`, boxShadow: '0 0 32px rgba(124,58,237,0.07)' } : {}),
                         }}
                         whileHover={{ y: -3, transition: { duration: 0.18 } }}>
 
@@ -569,12 +680,12 @@ export default function App() {
 
                         {/* Scope line */}
                         {p.scope && (
-                          <p style={{ fontSize: '0.6875rem', color: C.subtle, lineHeight: 1.5, marginBottom: p.aiNote ? '6px' : '14px', paddingLeft: '10px', borderLeft: `2px solid rgba(192,132,252,0.25)`, fontStyle: 'italic' }}>{p.scope}</p>
+                          <p style={{ fontSize: '0.6875rem', color: C.subtle, lineHeight: 1.5, marginBottom: p.aiNote ? '6px' : '14px', paddingLeft: '10px', borderLeft: `2px solid rgba(124,58,237,0.25)`, fontStyle: 'italic' }}>{p.scope}</p>
                         )}
 
                         {/* AI note */}
                         {p.aiNote && (
-                          <p style={{ fontSize: '0.6875rem', color: '#34D399', lineHeight: 1.5, marginBottom: '14px', paddingLeft: '10px', borderLeft: `2px solid rgba(192,132,252,0.45)` }}>⚡ {p.aiNote}</p>
+                          <p style={{ fontSize: '0.6875rem', color: '#047857', lineHeight: 1.5, marginBottom: '14px', paddingLeft: '10px', borderLeft: `2px solid rgba(124,58,237,0.45)` }}>⚡ {p.aiNote}</p>
                         )}
 
                         {/* Design preview (Figma) */}
@@ -584,7 +695,7 @@ export default function App() {
                               src={p.designPreview.hero}
                               alt={p.designPreview.heroAlt}
                               loading="lazy"
-                              style={{ width: '100%', display: 'block', borderRadius: '10px', border: `1px solid ${C.border}`, boxShadow: '0 8px 24px rgba(0,0,0,0.35)' }}
+                              style={{ width: '100%', display: 'block', borderRadius: '10px', border: `1px solid ${C.border}`, boxShadow: '0 8px 24px rgba(20,18,38,0.12)' }}
                             />
                             <div style={{ display: 'flex', gap: '6px', marginTop: '6px' }}>
                               {p.designPreview.thumbs.map((t, ti) => (
@@ -594,7 +705,7 @@ export default function App() {
                                     alt={t.alt}
                                     loading="lazy"
                                     style={{ width: '100%', height: '52px', objectFit: 'cover', objectPosition: 'top', borderRadius: '6px', border: `1px solid ${C.border}`, transition: 'border-color 0.15s, opacity 0.15s' }}
-                                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(192,132,252,0.5)'; e.currentTarget.style.opacity = '0.85'; }}
+                                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(124,58,237,0.5)'; e.currentTarget.style.opacity = '0.85'; }}
                                     onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.opacity = '1'; }}
                                   />
                                 </a>
@@ -621,16 +732,16 @@ export default function App() {
                           {p.slug && (
                             <Link to={`/case/${p.slug}`}
                               style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
-                              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(192,132,252,0.45)'; }}
+                              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(124,58,237,0.45)'; }}
                               onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}>
                               Case study <ArrowRight size={11}/>
                             </Link>
                           )}
                           {p.url && (
                             <a href={p.url} target="_blank" rel="noopener noreferrer"
-                              style={{ marginLeft: p.slug ? '0' : 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none', boxShadow: p.featured ? '0 4px 16px rgba(192,132,252,0.3)' : 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
-                              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(192,132,252,0.5)'; }}
-                              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = p.featured ? '0 4px 16px rgba(192,132,252,0.3)' : 'none'; }}>
+                              style={{ marginLeft: p.slug ? '0' : 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none', boxShadow: p.featured ? '0 4px 16px rgba(124,58,237,0.3)' : 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+                              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(124,58,237,0.5)'; }}
+                              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = p.featured ? '0 4px 16px rgba(124,58,237,0.3)' : 'none'; }}>
                               Live site <ArrowRight size={11}/>
                             </a>
                           )}
@@ -659,7 +770,7 @@ export default function App() {
               return (
                 <motion.div key={i} {...up(i * 0.04)}
                   style={{ background: C.surface, border: `1px solid ${C.border}`, borderLeft: `2px solid ${accent}`, borderRadius: '14px', padding: '18px 22px', transition: 'border-color 0.2s, box-shadow 0.2s' }}
-                  whileHover={{ borderColor: C.bHover, boxShadow: '0 6px 32px rgba(0,0,0,0.28)' }}>
+                  whileHover={{ borderColor: C.bHover, boxShadow: '0 8px 28px rgba(20,18,38,0.12)' }}>
 
                   <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
                     <span style={{ fontSize: '0.625rem', fontWeight: 600, color: accent, textTransform: 'uppercase', letterSpacing: '0.08em', background: `${accent}14`, padding: '2px 8px', borderRadius: '980px', display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
@@ -707,13 +818,13 @@ export default function App() {
           </motion.div>
 
           {/* Core strengths */}
-          <motion.div {...up(0.04)} style={{ background: 'rgba(192,132,252,0.06)', border: '1px solid rgba(192,132,252,0.18)', borderRadius: '14px', padding: '18px 24px', marginBottom: '16px' }}>
+          <motion.div {...up(0.04)} style={{ background: 'rgba(124,58,237,0.06)', border: '1px solid rgba(124,58,237,0.18)', borderRadius: '14px', padding: '18px 24px', marginBottom: '16px' }}>
             <p style={{ fontSize: '0.625rem', fontWeight: 700, color: C.blue, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '5px' }}>
               <Star size={10}/> Core Strengths
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
               {CORE_STRENGTHS.map(s => (
-                <span key={s} style={{ fontSize: '0.875rem', color: C.blue, padding: '4px 14px', borderRadius: '980px', background: 'rgba(192,132,252,0.1)', border: '1px solid rgba(192,132,252,0.25)', fontWeight: 600 }}>{s}</span>
+                <span key={s} style={{ fontSize: '0.875rem', color: C.blue, padding: '4px 14px', borderRadius: '980px', background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.25)', fontWeight: 600 }}>{s}</span>
               ))}
             </div>
           </motion.div>
@@ -735,7 +846,7 @@ export default function App() {
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
               {certs.map(c => (
-                <span key={c} style={{ fontSize: '0.8125rem', color: C.muted, padding: '4px 12px', borderRadius: '980px', background: 'rgba(245,158,11,0.07)', border: '1px solid rgba(245,158,11,0.18)' }}>{c}</span>
+                <span key={c} style={{ fontSize: '0.8125rem', color: C.muted, padding: '4px 12px', borderRadius: '980px', background: 'rgba(180,83,9,0.07)', border: '1px solid rgba(180,83,9,0.18)' }}>{c}</span>
               ))}
             </div>
           </motion.div>
@@ -757,20 +868,20 @@ export default function App() {
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
             <a href="mailto:shrivastavashubham213@gmail.com"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '12px 26px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, boxShadow: '0 4px 20px rgba(192,132,252,0.32)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(192,132,252,0.5)'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(192,132,252,0.32)'; }}>
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '12px 26px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, boxShadow: '0 4px 20px rgba(124,58,237,0.32)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(124,58,237,0.5)'; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(124,58,237,0.32)'; }}>
               <Mail size={14}/> shrivastavashubham213@gmail.com
             </a>
             <a href="https://linkedin.com/in/shubhamshrivastava11/" target="_blank" rel="noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: `1px solid ${C.border}`, padding: '12px 24px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s, transform 0.15s' }}
-              onMouseEnter={e => { e.currentTarget.style.color = C.purple; e.currentTarget.style.borderColor = 'rgba(192,132,252,0.4)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(20,18,38,0.045)', color: C.muted, border: `1px solid ${C.border}`, padding: '12px 24px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s, transform 0.15s' }}
+              onMouseEnter={e => { e.currentTarget.style.color = C.purple; e.currentTarget.style.borderColor = 'rgba(124,58,237,0.4)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
               onMouseLeave={e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; e.currentTarget.style.transform = ''; }}>
               <LinkedIn/> LinkedIn
             </a>
             <a href="https://github.com/shubhamshrivastava11" target="_blank" rel="noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.06)', color: C.muted, border: `1px solid ${C.border}`, padding: '12px 24px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s, transform 0.15s' }}
-              onMouseEnter={e => { e.currentTarget.style.color = C.text; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(20,18,38,0.045)', color: C.muted, border: `1px solid ${C.border}`, padding: '12px 24px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s, transform 0.15s' }}
+              onMouseEnter={e => { e.currentTarget.style.color = C.text; e.currentTarget.style.borderColor = 'rgba(20,18,38,0.25)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
               onMouseLeave={e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; e.currentTarget.style.transform = ''; }}>
               <GitHub/> GitHub
             </a>
@@ -779,7 +890,7 @@ export default function App() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ background: 'rgba(255,255,255,0.02)', borderTop: `1px solid ${C.border}`, padding: '32px 28px' }}>
+      <footer style={{ background: C.surface, borderTop: `1px solid ${C.border}`, padding: '32px 28px' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
           <span style={{ fontSize: '1.0625rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
             Shubham<span style={G}>.</span>

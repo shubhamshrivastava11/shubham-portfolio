@@ -77,7 +77,7 @@ export const caseStudies = [
     period: 'May – Oct 2025',
     title: 'State Education Compliance Platform',
     hook: 'Caught 50+ critical defects before launch. Cut bug fix time by 60%. Without adding a single headcount.',
-    accentColor: '#10b981',
+    accentColor: '#047857',
     metrics: [
       { value: '50+', label: 'Defects caught pre-launch' },
       { value: '41%', label: 'Data accuracy lift' },
@@ -148,7 +148,7 @@ export const caseStudies = [
     period: 'Jan – Mar 2025',
     title: 'AML & ISO 20022 Compliance Engine',
     hook: 'Zero to compliance-ready MVP in 8 weeks. $50M+ in transaction volume on day one.',
-    accentColor: '#f59e0b',
+    accentColor: '#B45309',
     metrics: [
       { value: '$50M+', label: 'Transaction volume at launch' },
       { value: '97%', label: 'Submission accuracy' },
@@ -219,7 +219,7 @@ export const caseStudies = [
     period: 'Mar – Dec 2024',
     title: 'Mobile App — 0 to 75K Users',
     hook: 'Took an app from zero to 75K installs while lifting retention 15 points in under a year.',
-    accentColor: '#f43f5e',
+    accentColor: '#BE123C',
     metrics: [
       { value: '75K', label: 'App installs' },
       { value: '33%', label: 'Onboarding completion lift' },
@@ -290,7 +290,7 @@ export const caseStudies = [
     period: '2026',
     title: 'Locus — Team Decision Memory',
     hook: 'Every team loses decisions in the noise of Slack and Notion. I designed 40+ screens end-to-end to fix it — before writing a line of backend code.',
-    accentColor: '#6366F1',
+    accentColor: '#4F46E5',
     metrics: [
       { value: '40+', label: 'Screens designed' },
       { value: '10+', label: 'VoC interviews' },

@@ -4,16 +4,16 @@ import { ArrowLeft, ChevronRight } from 'lucide-react';
 import { caseStudies } from '../data/caseStudies';
 
 const C = {
-  bg:     '#000000',
-  surface:'rgba(255,255,255,0.03)',
-  border: 'rgba(255,255,255,0.08)',
-  text:   '#FFFFFF',
-  muted:  '#E4E4E7',
-  subtle: '#A1A1AA',
-  purple: '#C084FC',
+  bg:     '#FFFFFF',
+  surface:'#F7F6FB',
+  border: 'rgba(20,18,38,0.10)',
+  text:   '#14121F',
+  muted:  '#45414F',
+  subtle: '#6B6775',
+  purple: '#7C3AED',
 };
 
-const GRAD = 'linear-gradient(135deg, #C084FC 0%, #818CF8 100%)';
+const GRAD = 'linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%)';
 const G = { background: GRAD, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' };
 
 const up = (delay = 0) => ({
@@ -73,7 +73,7 @@ export default function CaseStudy() {
           </div>
         </motion.div>
 
-        <div style={{ height: '1px', background: 'rgba(255,255,255,0.07)', marginBottom: '48px' }}/>
+        <div style={{ height: '1px', background: 'rgba(20,18,38,0.10)', marginBottom: '48px' }}/>
 
         {/* Problem */}
         <motion.section {...up(0.05)} style={{ marginBottom: '48px' }}>
@@ -179,7 +179,7 @@ export default function CaseStudy() {
 
         {/* Bottom nav */}
         <motion.div {...up(0.16)}>
-          <div style={{ height: '1px', background: 'rgba(255,255,255,0.07)', marginBottom: '28px' }}/>
+          <div style={{ height: '1px', background: 'rgba(20,18,38,0.10)', marginBottom: '28px' }}/>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Link to="/" className="nav-link inline-flex items-center gap-2" style={{ fontSize: '0.9375rem' }}>
               <ArrowLeft size={14}/> All projects
@@ -205,7 +205,7 @@ function SLabel({ accent, num, label }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '18px' }}>
       <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: accent }}>{num}</span>
-      <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.07)' }}/>
+      <div style={{ flex: 1, height: '1px', background: 'rgba(20,18,38,0.10)' }}/>
       <span style={{ fontSize: '0.6875rem', fontWeight: 600, color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.1em' }}>{label}</span>
     </div>
   );

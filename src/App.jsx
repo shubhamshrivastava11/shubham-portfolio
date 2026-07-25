@@ -72,6 +72,7 @@ const BRANDS = {
   productschool:  { mono: 'PS',  color: '#7C3AED', name: 'Product School' },
   britishcouncil: { mono: 'BC',  color: '#4F46E5', name: 'British Council' },
   heyfurnish:     { mono: 'HF',  color: '#047857', name: 'HeyFurnish' },
+  locus:          { mono: 'LO',  color: '#84CC16', name: 'Locus AI' },
   cygnus:         { mono: 'CY',  color: '#B45309', name: 'Cygnus Compliance' },
   digitalitech:   { mono: 'DI',  color: '#BE123C', name: 'Digital iTechnology' },
   openlogix:      { mono: 'OL',  color: '#0369A1', name: 'Openlogix' },
@@ -343,6 +344,14 @@ const LOCUS_SPOTLIGHT_STATS = [
 
 /* ── Experience & education ── */
 const timeline = [
+  { type: 'work', period: '2026 – Present', role: 'Founder & Product Designer',
+    org: 'Locus AI', location: 'Remote', domain: 'AI · Team Productivity', accent: '#84CC16', brand: 'locus',
+    keyResult: { value: '25 VoC', label: 'Interviews validating 5 hypotheses' },
+    bullets: [
+      'Designed 40+ high-fidelity screens end-to-end in Figma across the full product surface (marketing site, onboarding, dashboard, Decision Log, Team Pulse, Search, Settings) before scoping engineering',
+      'Ran 25 Voice of Customer interviews across PMs and designers to validate the core insight and pressure-test the pricing model against a 27–35 user break-even target',
+      'Chose a read-only, zero-workflow-change integration model (OAuth into Slack, Notion, Gmail) so teams get value from day one with no manual data entry',
+    ]},
   { type: 'work', period: '2025 – Present', role: 'Founder & Product Lead',
     org: 'HeyFurnish', location: 'Remote', domain: 'AI · Home & Lifestyle', accent: '#0F766E', brand: 'heyfurnish',
     keyResult: { value: 'Live + Beta', label: 'Web launched · Mobile in AR/VR beta' },

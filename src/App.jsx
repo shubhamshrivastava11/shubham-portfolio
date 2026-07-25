@@ -633,7 +633,7 @@ export default function App() {
                 {/* Group header */}
                 <div style={{ marginBottom: '16px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '6px' }}>
-                    <span style={{ fontSize: '0.625rem', fontWeight: 700, color: C.blue, textTransform: 'uppercase', letterSpacing: '0.12em', whiteSpace: 'nowrap' }}>{group.label}</span>
+                    <span style={{ fontSize: '0.625rem', fontWeight: 700, color: C.blue, textTransform: 'uppercase', letterSpacing: '0.12em' }}>{group.label}</span>
                     <div style={{ flex: 1, height: '1px', background: C.border }}/>
                   </div>
                   <p style={{ fontSize: '0.8125rem', color: C.subtle }}>{group.desc}</p>
@@ -656,7 +656,7 @@ export default function App() {
                         whileHover={{ y: -3, transition: { duration: 0.18 } }}>
 
                         {/* Top row */}
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', gap: '10px', marginBottom: '12px' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '7px', flexWrap: 'wrap' }}>
                             <span style={{ fontSize: '0.625rem', color: C.subtle, fontVariantNumeric: 'tabular-nums' }}>{p.index}</span>
                             <span style={{ width: '1px', height: '9px', background: C.border }}/>
@@ -665,7 +665,7 @@ export default function App() {
                               <span key={b.label} style={{ fontSize: '0.625rem', fontWeight: 600, color: b.color, background: `${b.color}1A`, border: `1px solid ${b.color}33`, padding: '2px 8px', borderRadius: '980px' }}>{b.label}</span>
                             ))}
                           </div>
-                          <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: '12px' }}>
+                          <div style={{ textAlign: 'right', marginLeft: 'auto', maxWidth: '200px' }}>
                             <p style={{ fontSize: p.featured ? '1.625rem' : '1.375rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1, ...GE }}>{p.heroValue}</p>
                             <p style={{ fontSize: '0.5625rem', color: C.subtle, marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{p.heroLabel}</p>
                           </div>
@@ -868,7 +868,7 @@ export default function App() {
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
             <a href="mailto:shrivastavashubham213@gmail.com"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '12px 26px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, boxShadow: '0 4px 20px rgba(124,58,237,0.32)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GRAD, color: '#fff', padding: '12px 26px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, boxShadow: '0 4px 20px rgba(124,58,237,0.32)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s', wordBreak: 'break-word', maxWidth: '100%' }}
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(124,58,237,0.5)'; }}
               onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(124,58,237,0.32)'; }}>
               <Mail size={14}/> shrivastavashubham213@gmail.com

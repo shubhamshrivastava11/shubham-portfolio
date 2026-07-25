@@ -15,6 +15,90 @@ const GitHub = () => (
   </svg>
 );
 
+/* ── Brand logos ──
+   Real logos (sourced from an open, CC0-licensed icon set) get an actual
+   SVG. Brands that library excludes for trademark reasons (AWS, Azure,
+   Salesforce, Tableau, Slack...) plus employers/universities/cert bodies
+   with no safe logo source get a designed monogram badge instead, in the
+   brand's real color where confidently known, or the site's own accent
+   palette otherwise. */
+const BRANDS = {
+  python:         { logo: '/logos/python.svg', name: 'Python' },
+  react:          { logo: '/logos/react.svg', name: 'React' },
+  figma:          { logo: '/logos/figma.svg', name: 'Figma' },
+  notion:         { logo: '/logos/notion.svg', name: 'Notion' },
+  google:         { logo: '/logos/google.svg', name: 'Google' },
+  googleanalytics:{ logo: '/logos/googleanalytics.svg', name: 'Google Analytics' },
+  googlecloud:    { logo: '/logos/googlecloud.svg', name: 'Google Cloud' },
+  databricks:     { logo: '/logos/databricks.svg', name: 'Databricks' },
+  postman:        { logo: '/logos/postman.svg', name: 'Postman' },
+  coursera:       { logo: '/logos/coursera.svg', name: 'Coursera' },
+  apple:          { logo: '/logos/apple.svg', name: 'Apple' },
+  youtube:        { logo: '/logos/youtube.svg', name: 'YouTube' },
+  jira:           { logo: '/logos/jira.svg', name: 'Jira' },
+  mixpanel:       { logo: '/logos/mixpanel.svg', name: 'Mixpanel' },
+  sap:            { logo: '/logos/sap.svg', name: 'SAP' },
+  miro:           { logo: '/logos/miro.svg', name: 'Miro' },
+  claude:         { logo: '/logos/claude.svg', name: 'Claude' },
+  anthropic:      { logo: '/logos/anthropic.svg', name: 'Anthropic' },
+  fastapi:        { logo: '/logos/fastapi.svg', name: 'FastAPI' },
+  langchain:      { logo: '/logos/langchain.svg', name: 'LangChain' },
+  scrumalliance:  { logo: '/logos/scrumalliance.svg', name: 'Scrum Alliance' },
+  trello:         { logo: '/logos/trello.svg', name: 'Trello' },
+  zoom:           { logo: '/logos/zoom.svg', name: 'Zoom' },
+  linkedin:       { component: 'LinkedIn', name: 'LinkedIn' },
+  github:         { component: 'GitHub', name: 'GitHub' },
+
+  // Fallback monograms — real known brand color
+  aws:            { mono: 'AWS', color: '#FF9900', name: 'AWS' },
+  azuredevops:    { mono: 'ADO', color: '#0078D4', name: 'Azure DevOps' },
+  salesforce:     { mono: 'SF',  color: '#00A1E0', name: 'Salesforce' },
+  tableau:        { mono: 'TB',  color: '#E97627', name: 'Tableau' },
+  powerbi:        { mono: 'PBI', color: '#F2C811', name: 'Power BI' },
+  slack:          { mono: 'SL',  color: '#4A154B', name: 'Slack' },
+  jnj:            { mono: 'J&J', color: '#CC0000', name: 'Johnson & Johnson' },
+  deloitte:       { mono: 'DC',  color: '#86BC25', name: 'Deloitte' },
+  pmi:            { mono: 'PMI', color: '#6E217A', name: 'Project Management Institute' },
+  mulesoft:       { mono: 'MU',  color: '#00A0DF', name: 'MuleSoft' },
+
+  // Fallback monograms — site accent palette (no confidently-known brand color)
+  amplitude:      { mono: 'AM',  color: '#7C3AED', name: 'Amplitude' },
+  productboard:   { mono: 'PB',  color: '#4F46E5', name: 'Productboard' },
+  deeplearningai: { mono: 'DL',  color: '#047857', name: 'DeepLearning.AI' },
+  marquis:        { mono: 'WW',  color: '#B45309', name: "Marquis Who's Who" },
+  pendo:          { mono: 'PD',  color: '#BE123C', name: 'Pendo.io' },
+  workato:        { mono: 'WK',  color: '#0F766E', name: 'Workato' },
+  wes:            { mono: 'WES', color: '#0369A1', name: 'World Education Services' },
+  productschool:  { mono: 'PS',  color: '#7C3AED', name: 'Product School' },
+  britishcouncil: { mono: 'BC',  color: '#4F46E5', name: 'British Council' },
+  heyfurnish:     { mono: 'HF',  color: '#047857', name: 'HeyFurnish' },
+  cygnus:         { mono: 'CY',  color: '#B45309', name: 'Cygnus Compliance' },
+  digitalitech:   { mono: 'DI',  color: '#BE123C', name: 'Digital iTechnology' },
+  openlogix:      { mono: 'OL',  color: '#0369A1', name: 'Openlogix' },
+  worldsoft:      { mono: 'WT',  color: '#4F46E5', name: 'Worldsoft Technologies' },
+  oakland:        { mono: 'OU',  color: '#7C3AED', name: 'Oakland University' },
+  rgpv:           { mono: 'RG',  color: '#047857', name: 'Rajiv Gandhi Proudyogiki Vishwavidyalaya' },
+};
+
+const Brand = ({ id, size = 16, radius }) => {
+  const b = BRANDS[id];
+  if (!b) return null;
+  if (b.logo) {
+    return <img src={b.logo} alt="" title={b.name} width={size} height={size} loading="lazy" style={{ display: 'inline-block', objectFit: 'contain', flexShrink: 0 }}/>;
+  }
+  if (b.component === 'LinkedIn') return <span title={b.name} style={{ display: 'inline-flex', color: C.subtle, flexShrink: 0 }}><LinkedIn/></span>;
+  if (b.component === 'GitHub') return <span title={b.name} style={{ display: 'inline-flex', color: C.subtle, flexShrink: 0 }}><GitHub/></span>;
+  return (
+    <span title={b.name} style={{
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+      width: size, height: size, borderRadius: radius ?? Math.round(size * 0.28),
+      background: b.color, color: '#fff', fontSize: Math.max(7, size * 0.34), fontWeight: 800, letterSpacing: '-0.02em',
+    }}>
+      {b.mono}
+    </span>
+  );
+};
+
 /* ── Color tokens (light theme) ──
    Same violet→indigo identity as before, recalibrated to AA-contrast
    depths for a white page. Lime is reserved for the Locus spotlight only. */
@@ -223,7 +307,7 @@ const LOCUS_SPOTLIGHT_STATS = [
 /* ── Experience & education ── */
 const timeline = [
   { type: 'work', period: '2025 – Present', role: 'Founder & Product Lead',
-    org: 'HeyFurnish', location: 'Remote', domain: 'AI · Home & Lifestyle', accent: '#0F766E',
+    org: 'HeyFurnish', location: 'Remote', domain: 'AI · Home & Lifestyle', accent: '#0F766E', brand: 'heyfurnish',
     keyResult: { value: 'Live + Beta', label: 'Web launched · Mobile in AR/VR beta' },
     bullets: [
       'Defined ICP (homeowners undertaking full-room renovations, $800–$2K budgets) through 15+ discovery interviews before writing a line of code',
@@ -231,7 +315,7 @@ const timeline = [
       'Running iterative AR/VR feedback loops with mobile beta users ahead of final release — real-scale room visualization as the core differentiator vs. web-only competitors',
     ]},
   { type: 'work', period: 'Oct 2025 – Present', role: 'Product Manager II, Enterprise AI & Platform',
-    org: 'Johnson & Johnson', location: 'Jersey City, NJ', domain: 'MedTech · Enterprise AI', accent: '#7C3AED',
+    org: 'Johnson & Johnson', location: 'Jersey City, NJ', domain: 'MedTech · Enterprise AI', accent: '#7C3AED', brand: 'jnj',
     keyResult: { value: '$2.4M', label: 'Annual savings delivered' },
     bullets: [
       'Partnered with Engineering, Finance, Legal & Compliance across 5 global regions to align discovery, phasing, and acceptance criteria for a decade-long platform replacement',
@@ -239,7 +323,7 @@ const timeline = [
       'Owned roadmap sequencing and executive stakeholder communication through a regulated cloud migration — zero compliance incidents across all deployment phases',
     ]},
   { type: 'work', period: 'May – Oct 2025', role: 'Product Manager, Government Compliance',
-    org: 'Deloitte Consulting', location: 'Jersey City, NJ', domain: 'GovTech · Compliance SaaS', accent: '#047857',
+    org: 'Deloitte Consulting', location: 'Jersey City, NJ', domain: 'GovTech · Compliance SaaS', accent: '#047857', brand: 'deloitte',
     keyResult: { value: '50+', label: 'Critical defects caught pre-launch' },
     bullets: [
       'Coordinated QA, Engineering, and State Compliance Officers across 15+ agencies and 6 modules — designed UAT processes, severity taxonomy, and triage SLAs from zero',
@@ -247,7 +331,7 @@ const timeline = [
       'Rebuilt the QA-to-Engineering handoff: defined runbooks and escalation paths that cut decision latency without adding headcount',
     ]},
   { type: 'work', period: 'Jan – Mar 2025', role: 'Product Manager, AML & Regulatory Compliance',
-    org: 'Cygnus Compliance (Bank of China)', location: 'New York, NY', domain: 'FinTech · Regulatory Reporting', accent: '#B45309',
+    org: 'Cygnus Compliance (Bank of China)', location: 'New York, NY', domain: 'FinTech · Regulatory Reporting', accent: '#B45309', brand: 'cygnus',
     keyResult: { value: '$50M+', label: 'Transaction volume on day one' },
     bullets: [
       'Led discovery and roadmap for a greenfield AML product — 3 rounds of usability testing with 20+ compliance officers shaped every prioritization decision from day one',
@@ -255,7 +339,7 @@ const timeline = [
       'Used post-launch VoC data to identify the top escalation drivers and eliminate them within 2 sprint cycles — ticket volume fell 60%',
     ]},
   { type: 'work', period: 'Mar – Dec 2024', role: 'Product Manager, Consumer Mobile App',
-    org: 'Digital iTechnology', location: 'Austin, TX', domain: 'D2C · Consumer Mobile', accent: '#BE123C',
+    org: 'Digital iTechnology', location: 'Austin, TX', domain: 'D2C · Consumer Mobile', accent: '#BE123C', brand: 'digitalitech',
     keyResult: { value: '75K', label: 'Installs from zero in 9 months' },
     bullets: [
       'Designed and ran 5 sequential A/B tests targeting onboarding funnel failure points identified via Amplitude cohort analysis — systematically eliminated each drop-off',
@@ -263,23 +347,23 @@ const timeline = [
       'Led GTM strategy and channel mix decisions — defined launch sequencing and KPIs that drove 40% DAU/MAU in Q1 post-launch',
     ]},
   { type: 'work', period: 'Jun – Sep 2023', role: 'Associate PM, Digital Investment Platform',
-    org: 'Openlogix (K2 Partnering Solutions)', location: 'Bloomfield Hills, MI', domain: 'FinTech · WealthTech', accent: '#0369A1',
+    org: 'Openlogix (K2 Partnering Solutions)', location: 'Bloomfield Hills, MI', domain: 'FinTech · WealthTech', accent: '#0369A1', brand: 'openlogix',
     keyResult: { value: '$2.5M', label: 'AUM secured at pilot launch' },
     bullets: [
       'Applied ICE scoring across 50K+ SQL records to rationalize roadmap prioritization and reduce decision delays by 35%',
       'Delivered a compliance-ready investment platform MVP — coordinated Engineering, Compliance, and client stakeholders in parallel to hit a hard go-live date',
     ]},
   { type: 'edu', period: 'Jan 2022 – Dec 2023', role: 'M.S. Information Technology Management',
-    org: 'Oakland University', location: 'Michigan, USA', domain: 'Graduate Studies', bullets: [] },
+    org: 'Oakland University', location: 'Michigan, USA', domain: 'Graduate Studies', brand: 'oakland', bullets: [] },
   { type: 'work', period: 'Jan 2018 – Nov 2020', role: 'Business Analyst, FinTech & Retail Banking',
-    org: 'Worldsoft Technologies', location: 'Bhopal, India', domain: 'FinTech · Retail Banking', accent: '#4F46E5',
+    org: 'Worldsoft Technologies', location: 'Bhopal, India', domain: 'FinTech · Retail Banking', accent: '#4F46E5', brand: 'worldsoft',
     keyResult: { value: '31%', label: 'Account activation lift across 30K+ users' },
     bullets: [
       'Designed API integration strategy with banking partners — defined data contracts and error handling that drove account activation at scale across 30K+ users',
       'Built SQL dashboards tracking 12+ compliance KPIs, giving operations real-time regulatory health visibility and cutting support tickets by 45%',
     ]},
   { type: 'edu', period: 'Aug 2013 – May 2017', role: 'B.E. Computer Science',
-    org: 'Rajiv Gandhi Proudyogiki Vishwavidyalaya', location: 'Bhopal, India', domain: 'Undergraduate Studies', bullets: [] },
+    org: 'Rajiv Gandhi Proudyogiki Vishwavidyalaya', location: 'Bhopal, India', domain: 'Undergraduate Studies', brand: 'rgpv', bullets: [] },
 ];
 
 const CORE_STRENGTHS = [
@@ -289,6 +373,18 @@ const CORE_STRENGTHS = [
   '0→1 product development',
 ];
 
+/* Only actual branded tools get a logo — generic methodology/skill labels (A/B Testing, RAG, OKRs...) stay plain text */
+const SKILL_BRAND = {
+  Python: 'python', 'Power BI': 'powerbi', Tableau: 'tableau', Amplitude: 'amplitude', Mixpanel: 'mixpanel',
+  AWS: 'aws', 'Azure DevOps': 'azuredevops', SAP: 'sap', Jira: 'jira', Figma: 'figma', Productboard: 'productboard', Miro: 'miro', Notion: 'notion',
+};
+
+/* Same idea for project tech tags */
+const TAG_BRAND = {
+  AWS: 'aws', 'React Native': 'react', 'Python ML': 'python', Python: 'python',
+  'Claude API': 'claude', FastAPI: 'fastapi', 'Slack API': 'slack', 'Notion API': 'notion',
+};
+
 const skills = [
   { group: 'AI & ML',           items: ['LLMs', 'RAG', 'NLP', 'Prompt Engineering', 'Anomaly Detection', 'GenAI', 'ML Evaluation'] },
   { group: 'Product',           items: ['PRD Authoring', 'Roadmapping', 'OKRs', 'A/B Testing', 'Cohort Analysis', 'ICE/RICE', 'UAT', 'GTM Strategy', 'User Research'] },
@@ -296,7 +392,70 @@ const skills = [
   { group: 'Platforms & Tools', items: ['AWS', 'Azure DevOps', 'SAP', 'REST APIs', 'Jira', 'Figma', 'Productboard', 'Miro', 'Notion'] },
 ];
 
-const certs = ['Certified Scrum Product Owner (CSPO)', 'Certified Scrum Master (CSM)', 'Advanced Google Analytics', 'Product Analytics Certification'];
+const CERTIFICATIONS = [
+  {
+    group: 'AI & GenAI',
+    items: [
+      { name: 'AI For Everyone', issuer: 'DeepLearning.AI', brand: 'deeplearningai', date: 'May 2026' },
+      { name: 'Artificial Intelligence Micro-Certification (AIC)™', issuer: 'Product School', brand: 'productschool', date: 'Sep 2024' },
+      { name: 'Gen AI & Business Operations', issuer: 'Workato', brand: 'workato', date: 'May 2024', expires: 'May 2026' },
+      { name: 'Responsible AI: Applying AI Principles with Google Cloud', issuer: 'Google', brand: 'google', date: 'Apr 2024' },
+      { name: 'Introduction to Responsible AI', issuer: 'Google', brand: 'google', date: 'Apr 2024' },
+      { name: 'Introduction to Generative AI', issuer: 'Google Cloud Training Online', brand: 'googlecloud', date: 'Apr 2024' },
+    ],
+  },
+  {
+    group: 'Product & Agile',
+    items: [
+      { name: 'Certified Scrum Master (CSM)', issuer: 'Scrum Alliance', brand: 'scrumalliance', date: 'Mar 2025', expires: 'Mar 2027' },
+      { name: 'Certified Scrum Product Owner (CSPO)', issuer: 'Scrum Alliance', brand: 'scrumalliance', date: 'Mar 2025', expires: 'Mar 2027' },
+      { name: 'Product Discovery Certification', issuer: 'Pendo.io', brand: 'pendo', date: 'Mar 2025' },
+      { name: 'Fundamentals of Agile Project Management', issuer: 'Project Management Institute', brand: 'pmi', date: 'Mar 2025' },
+      { name: 'Product Analytics Micro-Certification (PAC)™', issuer: 'Product School', brand: 'productschool', date: 'Oct 2024' },
+      { name: 'Product Launches Micro-Certification (PRLC)™', issuer: 'Product School', brand: 'productschool', date: 'Sep 2024' },
+      { name: 'Product Discovery Micro-Certification (PDC)™', issuer: 'Product School', brand: 'productschool', date: 'Sep 2024' },
+      { name: 'Business Analysis & Process Management', issuer: 'Coursera', brand: 'coursera', date: 'Apr 2024' },
+      { name: 'Business Analysis Foundations', issuer: 'Project Management Institute', brand: 'pmi', date: 'Mar 2024' },
+      { name: 'Technical Product Management', issuer: 'Project Management Institute', brand: 'pmi', date: 'Mar 2024' },
+      { name: 'Product Management: Building a Product Roadmap', issuer: 'LinkedIn', brand: 'linkedin', date: 'Mar 2024' },
+      { name: 'Product Management: Launching Your Product', issuer: 'LinkedIn', brand: 'linkedin', date: 'Mar 2024' },
+      { name: 'Product Management First Steps', issuer: 'LinkedIn', brand: 'linkedin', date: 'Mar 2024' },
+    ],
+  },
+  {
+    group: 'Cloud & Analytics',
+    items: [
+      { name: 'Academy Accreditation — Databricks Lakehouse Fundamentals', issuer: 'Databricks', brand: 'databricks', date: 'May 2024', expired: 'May 2025' },
+      { name: 'Advanced Google Analytics', issuer: 'Google', brand: 'google', date: 'Apr 2024', expires: 'Apr 2027' },
+      { name: 'Google Analytics Individual Qualification', issuer: 'Google', brand: 'google', date: 'Apr 2024', expired: 'Apr 2025' },
+      { name: 'Google Cloud Foundations', issuer: 'LinkedIn', brand: 'linkedin', date: 'Apr 2024' },
+      { name: 'YouTube Music Certification', issuer: 'YouTube', brand: 'youtube', date: 'Apr 2024', expired: 'Oct 2025' },
+    ],
+  },
+  {
+    group: 'Automation & Integration',
+    items: [
+      { name: 'Automation Pro III', issuer: 'Workato', brand: 'workato', date: 'May 2024', expires: 'May 2026' },
+      { name: 'Automation Pro II', issuer: 'Workato', brand: 'workato', date: 'May 2024', expires: 'May 2026' },
+      { name: 'Automation Pro I', issuer: 'Workato', brand: 'workato', date: 'May 2024', expires: 'May 2026' },
+      { name: 'GEARS — Starting Your Enterprise Automation Journey', issuer: 'Workato', brand: 'workato', date: 'May 2024' },
+      { name: 'Enterprise Automation Certification', issuer: 'Workato', brand: 'workato', date: 'May 2024', expires: 'May 2026' },
+      { name: 'Salesforce Certified Mulesoft Integration Associate', issuer: 'MuleSoft', brand: 'mulesoft', date: 'Jul 2023', expired: 'Jul 2025' },
+      { name: 'Postman API Fundamentals Student Expert', issuer: 'Postman', brand: 'postman', date: 'Sep 2023' },
+      { name: 'Adventurer', issuer: 'Trailhead by Salesforce', brand: 'salesforce', date: 'Jun 2023' },
+      { name: "Dreamforce '23", issuer: 'Salesforce', brand: 'salesforce', date: 'Dec 2023' },
+    ],
+  },
+  {
+    group: 'Recognition & Other',
+    items: [
+      { name: 'Honored Listee', issuer: "Marquis Who's Who", brand: 'marquis', date: 'Mar 2025', expires: 'Dec 2029' },
+      { name: 'Apple Search Ads Certification', issuer: 'Apple', brand: 'apple', date: 'Apr 2024' },
+      { name: 'International English Language Testing System', issuer: 'British Council', brand: 'britishcouncil', date: 'Dec 2020', expired: 'Dec 2022' },
+      { name: 'International Academic Qualifications', issuer: 'World Education Services', brand: 'wes', date: 'Jun 2021' },
+    ],
+  },
+];
 
 const TESTIMONIALS = [
   {
@@ -747,7 +906,12 @@ export default function App() {
 
                         {/* Tags + CTA */}
                         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px' }}>
-                          {p.tags.slice(0, p.featured ? 5 : 3).map(t => <span key={t} className="pill-tag" style={{ fontSize: '0.625rem', padding: '2px 8px' }}>{t}</span>)}
+                          {p.tags.slice(0, p.featured ? 5 : 3).map(t => (
+                            <span key={t} className="pill-tag" style={{ fontSize: '0.625rem', padding: '2px 8px', ...(TAG_BRAND[t] ? { display: 'inline-flex', alignItems: 'center', gap: '5px' } : {}) }}>
+                              {TAG_BRAND[t] && <Brand id={TAG_BRAND[t]} size={11} radius={3}/>}
+                              {t}
+                            </span>
+                          ))}
                           {p.slug && (
                             <Link to={`/case/${p.slug}`}
                               style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
@@ -800,7 +964,8 @@ export default function App() {
                   </div>
 
                   <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, color: C.text, letterSpacing: '-0.01em', marginBottom: '2px' }}>{item.role}</h3>
-                  <p style={{ fontSize: '0.8125rem', color: accent, fontWeight: 500, marginBottom: item.bullets.length > 0 ? '12px' : 0 }}>
+                  <p style={{ display: 'flex', alignItems: 'center', gap: '7px', fontSize: '0.8125rem', color: accent, fontWeight: 500, marginBottom: item.bullets.length > 0 ? '12px' : 0 }}>
+                    {item.brand && <Brand id={item.brand} size={16} radius={5}/>}
                     {item.org} · {item.location}
                   </p>
 
@@ -853,21 +1018,47 @@ export default function App() {
               <motion.div key={i} {...up(i * 0.06)} className="glass-card" style={{ padding: '20px 24px' }}>
                 <p style={{ fontSize: '0.625rem', fontWeight: 700, color: C.blue, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px' }}>{g.group}</p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
-                  {g.items.map(item => <span key={item} className="pill-tag">{item}</span>)}
+                  {g.items.map(item => (
+                    <span key={item} className="pill-tag" style={SKILL_BRAND[item] ? { display: 'inline-flex', alignItems: 'center', gap: '6px' } : undefined}>
+                      {SKILL_BRAND[item] && <Brand id={SKILL_BRAND[item]} size={14} radius={4}/>}
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <motion.div {...up(0.22)} className="glass-card" style={{ padding: '20px 24px' }}>
-            <p style={{ fontSize: '0.625rem', fontWeight: 700, color: C.gold, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '5px' }}>
-              <Award size={10}/> Certifications
+          <motion.div {...up(0.22)} style={{ marginTop: '8px' }}>
+            <p style={{ fontSize: '0.625rem', fontWeight: 700, color: C.gold, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <Award size={10}/> Licenses & Certifications
             </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
-              {certs.map(c => (
-                <span key={c} style={{ fontSize: '0.8125rem', color: C.muted, padding: '4px 12px', borderRadius: '980px', background: 'rgba(180,83,9,0.07)', border: '1px solid rgba(180,83,9,0.18)' }}>{c}</span>
-              ))}
-            </div>
+            <p style={{ fontSize: '0.8125rem', color: C.subtle, marginBottom: '20px' }}>
+              {CERTIFICATIONS.reduce((n, g) => n + g.items.length, 0)} credentials across product, AI, agile, and automation.
+            </p>
+
+            {CERTIFICATIONS.map((group, gi) => (
+              <div key={group.group} style={{ marginBottom: gi === CERTIFICATIONS.length - 1 ? 0 : '22px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                  <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: C.text, whiteSpace: 'nowrap' }}>{group.group}</span>
+                  <span style={{ fontSize: '0.625rem', color: C.subtle }}>({group.items.length})</span>
+                  <div style={{ flex: 1, height: '1px', background: C.border }}/>
+                </div>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                  {group.items.map((c, i) => (
+                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', padding: '10px 12px', borderRadius: '12px', background: C.surface, border: `1px solid ${C.border}` }}>
+                      <Brand id={c.brand} size={22} radius={6}/>
+                      <div style={{ minWidth: 0 }}>
+                        <p style={{ fontSize: '0.8125rem', fontWeight: 600, color: C.text, lineHeight: 1.35 }}>{c.name}</p>
+                        <p style={{ fontSize: '0.6875rem', color: C.subtle, marginTop: '2px' }}>
+                          {c.issuer} · {c.date}{c.expires ? ` – ${c.expires}` : ''}{c.expired ? ` (expired ${c.expired})` : ''}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </motion.div>
         </div>
       </section>

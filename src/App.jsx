@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Mail, Briefcase, GraduationCap, Award, ArrowRight, Download, MapPin, Star, Pin, Quote } from 'lucide-react';
+import { Mail, Briefcase, GraduationCap, Award, ArrowRight, Download, MapPin, Star, Pin, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const LinkedIn = () => (
   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
@@ -99,6 +99,53 @@ const Brand = ({ id, size = 16, radius }) => {
     }}>
       {b.mono}
     </span>
+  );
+};
+
+/* Explicit prev/next controls for horizontal decks — horizontal scroll is
+   easy to miss (no vertical-scroll muscle memory, no swipe on desktop), so
+   don't rely on people discovering it. Arrows disable at each end. */
+const DeckArrows = ({ deckRef, count }) => {
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  useEffect(() => {
+    const el = deckRef.current;
+    if (!el) return;
+    const update = () => {
+      setAtStart(el.scrollLeft <= 4);
+      setAtEnd(el.scrollLeft >= el.scrollWidth - el.clientWidth - 4);
+    };
+    // Re-measure after layout settles (content just changed size/count) and on scroll/resize
+    const raf = requestAnimationFrame(update);
+    el.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => { cancelAnimationFrame(raf); el.removeEventListener('scroll', update); window.removeEventListener('resize', update); };
+  }, [deckRef, count]);
+
+  const scrollBy = dir => deckRef.current?.scrollBy({ left: dir * 320, behavior: 'smooth' });
+
+  const btn = (dir, disabled) => (
+    <button aria-label={dir < 0 ? 'Scroll left' : 'Scroll right'} onClick={() => scrollBy(dir)} disabled={disabled}
+      style={{
+        display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '30px', height: '30px', borderRadius: '50%',
+        border: `1px solid ${C.border}`, background: C.bg, color: disabled ? C.border : C.muted,
+        cursor: disabled ? 'default' : 'pointer', transition: 'color 0.15s, border-color 0.15s',
+      }}
+      onMouseEnter={e => { if (!disabled) { e.currentTarget.style.color = C.purple; e.currentTarget.style.borderColor = 'rgba(124,58,237,0.4)'; } }}
+      onMouseLeave={e => { e.currentTarget.style.color = disabled ? C.border : C.muted; e.currentTarget.style.borderColor = C.border; }}>
+      {dir < 0 ? <ChevronLeft size={16}/> : <ChevronRight size={16}/>}
+    </button>
+  );
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+      <span style={{ fontSize: '0.6875rem', color: C.subtle }}>{count} {count === 1 ? 'entry' : 'entries'} — scroll or use arrows</span>
+      <div style={{ display: 'flex', gap: '6px' }}>
+        {btn(-1, atStart)}
+        {btn(1, atEnd)}
+      </div>
+    </div>
   );
 };
 
@@ -465,6 +512,8 @@ export default function App() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState('heyfurnish');
   const [selectedRole, setSelectedRole] = useState(0);
+  const workDeckRef = useRef(null);
+  const expDeckRef = useRef(null);
   const [achIdx, setAchIdx] = useState(0);
 
   useEffect(() => {
@@ -773,13 +822,15 @@ export default function App() {
           </motion.div>
 
           {(() => {
-            const visibleProjects = activeFilter === 'All' ? projects : projects.filter(p => p.filters.includes(activeFilter));
+            const gridProjects = projects.filter(p => p.id !== 'locus'); // Locus AI has its own spotlight section above — avoid duplicating it here
+            const visibleProjects = activeFilter === 'All' ? gridProjects : gridProjects.filter(p => p.filters.includes(activeFilter));
             const selected = visibleProjects.find(p => p.id === selectedProject) || visibleProjects[0];
             if (!selected) return <p style={{ fontSize: '0.875rem', color: C.subtle }}>No projects match this filter.</p>;
             return (
               <>
+                <DeckArrows deckRef={workDeckRef} count={visibleProjects.length}/>
                 {/* Horizontal scrollable deck */}
-                <motion.div {...up(0.1)} id="work-deck" className="hscroll" style={{ display: 'flex', gap: '10px', overflowX: 'auto', scrollSnapType: 'x mandatory', paddingBottom: '14px', marginBottom: '8px' }}>
+                <motion.div {...up(0.1)} id="work-deck" ref={workDeckRef} className="hscroll" style={{ display: 'flex', gap: '10px', overflowX: 'auto', scrollSnapType: 'x mandatory', paddingBottom: '14px', marginBottom: '8px' }}>
                   {visibleProjects.map(p => {
                     const isSelected = p.id === selected.id;
                     return (
@@ -929,8 +980,9 @@ export default function App() {
             const accent = isWork ? (item.accent || C.blue) : C.gold;
             return (
               <>
+                <DeckArrows deckRef={expDeckRef} count={timeline.length}/>
                 {/* Horizontal scrollable deck */}
-                <motion.div {...up(0.06)} className="hscroll" style={{ display: 'flex', gap: '10px', overflowX: 'auto', scrollSnapType: 'x mandatory', paddingBottom: '14px', marginBottom: '20px' }}>
+                <motion.div {...up(0.06)} ref={expDeckRef} className="hscroll" style={{ display: 'flex', gap: '10px', overflowX: 'auto', scrollSnapType: 'x mandatory', paddingBottom: '14px', marginBottom: '20px' }}>
                   {timeline.map((t, i) => {
                     const tIsWork = t.type === 'work';
                     const tAccent = tIsWork ? (t.accent || C.blue) : C.gold;

@@ -392,16 +392,18 @@ const skills = [
   { group: 'Platforms & Tools', items: ['AWS', 'Azure DevOps', 'SAP', 'REST APIs', 'Jira', 'Figma', 'Productboard', 'Miro', 'Notion'] },
 ];
 
+/* Curated to what's relevant/impactful for a Senior AI PM search — dropped
+   redundant tiers (5x Workato Automation Pro I–III), duplicate intro
+   courses, and credentials unrelated to the pitch (IELTS, YouTube Music,
+   Apple Search Ads, Dreamforce attendance, WES degree-equivalency). */
 const CERTIFICATIONS = [
   {
     group: 'AI & GenAI',
     items: [
       { name: 'AI For Everyone', issuer: 'DeepLearning.AI', brand: 'deeplearningai', date: 'May 2026' },
       { name: 'Artificial Intelligence Micro-Certification (AIC)™', issuer: 'Product School', brand: 'productschool', date: 'Sep 2024' },
-      { name: 'Gen AI & Business Operations', issuer: 'Workato', brand: 'workato', date: 'May 2024', expires: 'May 2026' },
       { name: 'Responsible AI: Applying AI Principles with Google Cloud', issuer: 'Google', brand: 'google', date: 'Apr 2024' },
-      { name: 'Introduction to Responsible AI', issuer: 'Google', brand: 'google', date: 'Apr 2024' },
-      { name: 'Introduction to Generative AI', issuer: 'Google Cloud Training Online', brand: 'googlecloud', date: 'Apr 2024' },
+      { name: 'Gen AI & Business Operations', issuer: 'Workato', brand: 'workato', date: 'May 2024', expires: 'May 2026' },
     ],
   },
   {
@@ -411,48 +413,22 @@ const CERTIFICATIONS = [
       { name: 'Certified Scrum Product Owner (CSPO)', issuer: 'Scrum Alliance', brand: 'scrumalliance', date: 'Mar 2025', expires: 'Mar 2027' },
       { name: 'Product Discovery Certification', issuer: 'Pendo.io', brand: 'pendo', date: 'Mar 2025' },
       { name: 'Fundamentals of Agile Project Management', issuer: 'Project Management Institute', brand: 'pmi', date: 'Mar 2025' },
-      { name: 'Product Analytics Micro-Certification (PAC)™', issuer: 'Product School', brand: 'productschool', date: 'Oct 2024' },
-      { name: 'Product Launches Micro-Certification (PRLC)™', issuer: 'Product School', brand: 'productschool', date: 'Sep 2024' },
-      { name: 'Product Discovery Micro-Certification (PDC)™', issuer: 'Product School', brand: 'productschool', date: 'Sep 2024' },
-      { name: 'Business Analysis & Process Management', issuer: 'Coursera', brand: 'coursera', date: 'Apr 2024' },
-      { name: 'Business Analysis Foundations', issuer: 'Project Management Institute', brand: 'pmi', date: 'Mar 2024' },
       { name: 'Technical Product Management', issuer: 'Project Management Institute', brand: 'pmi', date: 'Mar 2024' },
-      { name: 'Product Management: Building a Product Roadmap', issuer: 'LinkedIn', brand: 'linkedin', date: 'Mar 2024' },
-      { name: 'Product Management: Launching Your Product', issuer: 'LinkedIn', brand: 'linkedin', date: 'Mar 2024' },
-      { name: 'Product Management First Steps', issuer: 'LinkedIn', brand: 'linkedin', date: 'Mar 2024' },
+      { name: 'Product Analytics Micro-Certification (PAC)™', issuer: 'Product School', brand: 'productschool', date: 'Oct 2024' },
     ],
   },
   {
-    group: 'Cloud & Analytics',
+    group: 'Cloud & Data',
     items: [
-      { name: 'Academy Accreditation — Databricks Lakehouse Fundamentals', issuer: 'Databricks', brand: 'databricks', date: 'May 2024', expired: 'May 2025' },
       { name: 'Advanced Google Analytics', issuer: 'Google', brand: 'google', date: 'Apr 2024', expires: 'Apr 2027' },
-      { name: 'Google Analytics Individual Qualification', issuer: 'Google', brand: 'google', date: 'Apr 2024', expired: 'Apr 2025' },
+      { name: 'Academy Accreditation — Databricks Lakehouse Fundamentals', issuer: 'Databricks', brand: 'databricks', date: 'May 2024' },
       { name: 'Google Cloud Foundations', issuer: 'LinkedIn', brand: 'linkedin', date: 'Apr 2024' },
-      { name: 'YouTube Music Certification', issuer: 'YouTube', brand: 'youtube', date: 'Apr 2024', expired: 'Oct 2025' },
     ],
   },
   {
-    group: 'Automation & Integration',
-    items: [
-      { name: 'Automation Pro III', issuer: 'Workato', brand: 'workato', date: 'May 2024', expires: 'May 2026' },
-      { name: 'Automation Pro II', issuer: 'Workato', brand: 'workato', date: 'May 2024', expires: 'May 2026' },
-      { name: 'Automation Pro I', issuer: 'Workato', brand: 'workato', date: 'May 2024', expires: 'May 2026' },
-      { name: 'GEARS — Starting Your Enterprise Automation Journey', issuer: 'Workato', brand: 'workato', date: 'May 2024' },
-      { name: 'Enterprise Automation Certification', issuer: 'Workato', brand: 'workato', date: 'May 2024', expires: 'May 2026' },
-      { name: 'Salesforce Certified Mulesoft Integration Associate', issuer: 'MuleSoft', brand: 'mulesoft', date: 'Jul 2023', expired: 'Jul 2025' },
-      { name: 'Postman API Fundamentals Student Expert', issuer: 'Postman', brand: 'postman', date: 'Sep 2023' },
-      { name: 'Adventurer', issuer: 'Trailhead by Salesforce', brand: 'salesforce', date: 'Jun 2023' },
-      { name: "Dreamforce '23", issuer: 'Salesforce', brand: 'salesforce', date: 'Dec 2023' },
-    ],
-  },
-  {
-    group: 'Recognition & Other',
+    group: 'Recognition',
     items: [
       { name: 'Honored Listee', issuer: "Marquis Who's Who", brand: 'marquis', date: 'Mar 2025', expires: 'Dec 2029' },
-      { name: 'Apple Search Ads Certification', issuer: 'Apple', brand: 'apple', date: 'Apr 2024' },
-      { name: 'International English Language Testing System', issuer: 'British Council', brand: 'britishcouncil', date: 'Dec 2020', expired: 'Dec 2022' },
-      { name: 'International Academic Qualifications', issuer: 'World Education Services', brand: 'wes', date: 'Jun 2021' },
     ],
   },
 ];

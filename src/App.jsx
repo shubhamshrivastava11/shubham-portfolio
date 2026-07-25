@@ -223,7 +223,7 @@ const LOCUS_SPOTLIGHT_STATS = [
 /* ── Experience & education ── */
 const timeline = [
   { type: 'work', period: '2025 – Present', role: 'Founder & Product Lead',
-    org: 'HeyFurnish', location: 'Remote', domain: 'AI · Home & Lifestyle',
+    org: 'HeyFurnish', location: 'Remote', domain: 'AI · Home & Lifestyle', accent: '#0F766E',
     keyResult: { value: 'Live + Beta', label: 'Web launched · Mobile in AR/VR beta' },
     bullets: [
       'Defined ICP (homeowners undertaking full-room renovations, $800–$2K budgets) through 15+ discovery interviews before writing a line of code',
@@ -231,7 +231,7 @@ const timeline = [
       'Running iterative AR/VR feedback loops with mobile beta users ahead of final release — real-scale room visualization as the core differentiator vs. web-only competitors',
     ]},
   { type: 'work', period: 'Oct 2025 – Present', role: 'Product Manager II, Enterprise AI & Platform',
-    org: 'Johnson & Johnson', location: 'Jersey City, NJ', domain: 'MedTech · Enterprise AI',
+    org: 'Johnson & Johnson', location: 'Jersey City, NJ', domain: 'MedTech · Enterprise AI', accent: '#7C3AED',
     keyResult: { value: '$2.4M', label: 'Annual savings delivered' },
     bullets: [
       'Partnered with Engineering, Finance, Legal & Compliance across 5 global regions to align discovery, phasing, and acceptance criteria for a decade-long platform replacement',
@@ -239,7 +239,7 @@ const timeline = [
       'Owned roadmap sequencing and executive stakeholder communication through a regulated cloud migration — zero compliance incidents across all deployment phases',
     ]},
   { type: 'work', period: 'May – Oct 2025', role: 'Product Manager, Government Compliance',
-    org: 'Deloitte Consulting', location: 'Jersey City, NJ', domain: 'GovTech · Compliance SaaS',
+    org: 'Deloitte Consulting', location: 'Jersey City, NJ', domain: 'GovTech · Compliance SaaS', accent: '#047857',
     keyResult: { value: '50+', label: 'Critical defects caught pre-launch' },
     bullets: [
       'Coordinated QA, Engineering, and State Compliance Officers across 15+ agencies and 6 modules — designed UAT processes, severity taxonomy, and triage SLAs from zero',
@@ -247,7 +247,7 @@ const timeline = [
       'Rebuilt the QA-to-Engineering handoff: defined runbooks and escalation paths that cut decision latency without adding headcount',
     ]},
   { type: 'work', period: 'Jan – Mar 2025', role: 'Product Manager, AML & Regulatory Compliance',
-    org: 'Cygnus Compliance (Bank of China)', location: 'New York, NY', domain: 'FinTech · Regulatory Reporting',
+    org: 'Cygnus Compliance (Bank of China)', location: 'New York, NY', domain: 'FinTech · Regulatory Reporting', accent: '#B45309',
     keyResult: { value: '$50M+', label: 'Transaction volume on day one' },
     bullets: [
       'Led discovery and roadmap for a greenfield AML product — 3 rounds of usability testing with 20+ compliance officers shaped every prioritization decision from day one',
@@ -255,7 +255,7 @@ const timeline = [
       'Used post-launch VoC data to identify the top escalation drivers and eliminate them within 2 sprint cycles — ticket volume fell 60%',
     ]},
   { type: 'work', period: 'Mar – Dec 2024', role: 'Product Manager, Consumer Mobile App',
-    org: 'Digital iTechnology', location: 'Austin, TX', domain: 'D2C · Consumer Mobile',
+    org: 'Digital iTechnology', location: 'Austin, TX', domain: 'D2C · Consumer Mobile', accent: '#BE123C',
     keyResult: { value: '75K', label: 'Installs from zero in 9 months' },
     bullets: [
       'Designed and ran 5 sequential A/B tests targeting onboarding funnel failure points identified via Amplitude cohort analysis — systematically eliminated each drop-off',
@@ -263,7 +263,7 @@ const timeline = [
       'Led GTM strategy and channel mix decisions — defined launch sequencing and KPIs that drove 40% DAU/MAU in Q1 post-launch',
     ]},
   { type: 'work', period: 'Jun – Sep 2023', role: 'Associate PM, Digital Investment Platform',
-    org: 'Openlogix (K2 Partnering Solutions)', location: 'Bloomfield Hills, MI', domain: 'FinTech · WealthTech',
+    org: 'Openlogix (K2 Partnering Solutions)', location: 'Bloomfield Hills, MI', domain: 'FinTech · WealthTech', accent: '#0369A1',
     keyResult: { value: '$2.5M', label: 'AUM secured at pilot launch' },
     bullets: [
       'Applied ICE scoring across 50K+ SQL records to rationalize roadmap prioritization and reduce decision delays by 35%',
@@ -272,7 +272,7 @@ const timeline = [
   { type: 'edu', period: 'Jan 2022 – Dec 2023', role: 'M.S. Information Technology Management',
     org: 'Oakland University', location: 'Michigan, USA', domain: 'Graduate Studies', bullets: [] },
   { type: 'work', period: 'Jan 2018 – Nov 2020', role: 'Business Analyst, FinTech & Retail Banking',
-    org: 'Worldsoft Technologies', location: 'Bhopal, India', domain: 'FinTech · Retail Banking',
+    org: 'Worldsoft Technologies', location: 'Bhopal, India', domain: 'FinTech · Retail Banking', accent: '#4F46E5',
     keyResult: { value: '31%', label: 'Account activation lift across 30K+ users' },
     bullets: [
       'Designed API integration strategy with banking partners — defined data contracts and error handling that drove account activation at scale across 30K+ users',
@@ -766,7 +766,7 @@ export default function App() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {timeline.map((item, i) => {
               const isWork = item.type === 'work';
-              const accent = isWork ? C.blue : C.gold;
+              const accent = isWork ? (item.accent || C.blue) : C.gold;
               return (
                 <motion.div key={i} {...up(i * 0.04)}
                   style={{ background: C.surface, border: `1px solid ${C.border}`, borderLeft: `2px solid ${accent}`, borderRadius: '14px', padding: '18px 22px', transition: 'border-color 0.2s, box-shadow 0.2s' }}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Mail, Briefcase, GraduationCap, Award, ArrowRight, Download, MapPin, Star, Pin } from 'lucide-react';
+import { Mail, Briefcase, GraduationCap, Award, ArrowRight, Download, MapPin, Star, Pin, Quote } from 'lucide-react';
 
 const LinkedIn = () => (
   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
@@ -298,6 +298,25 @@ const skills = [
 
 const certs = ['Certified Scrum Product Owner (CSPO)', 'Certified Scrum Master (CSM)', 'Advanced Google Analytics', 'Product Analytics Certification'];
 
+const TESTIMONIALS = [
+  {
+    quote: "After collaborating closely with Shubham on a project, I must say, his exceptional skills and dedication truly stood out. Shubham consistently showed strong leadership qualities, skillfully coordinating tasks and ensuring we met our project milestones. His strategic approach and keen attention to detail were incredibly valuable to our team's success. Wishing him all the best in his future endeavors.",
+    name: 'Deepa Palariya',
+    title: 'Data Analyst, Magna International',
+    relationship: 'Worked together on the same team',
+    date: 'April 2024',
+    accent: '#7C3AED',
+  },
+  {
+    quote: 'I had the pleasure of working with Shubham at Openlogix, where he impressed me with his technical expertise, problem-solving skills, and dedication to delivering high-quality solutions. Shubham is a skilled software engineer with a strong understanding of backend development. He is a great team player who communicates effectively and is always eager to learn and take on new challenges.',
+    name: 'Akash Ranglani',
+    title: 'Mulesoft Integration Architect',
+    relationship: 'Managed Shubham directly at Openlogix',
+    date: 'April 2024',
+    accent: '#0369A1',
+  },
+];
+
 /* ── Animation helper ── */
 const up = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -343,7 +362,7 @@ export default function App() {
             Shubham<span style={{ ...G, fontWeight: 800 }}>.</span>
           </span>
           <nav className="hidden md:flex items-center gap-8">
-            {[['Locus AI', '#locus'], ['Work', '#work'], ['Experience', '#experience'], ['Skills', '#skills']].map(([l, h]) => (
+            {[['Locus AI', '#locus'], ['Work', '#work'], ['Experience', '#experience'], ['Skills', '#skills'], ['Testimonials', '#testimonials']].map(([l, h]) => (
               <a key={l} href={h} className="nav-link" style={{ fontSize: '0.875rem', fontWeight: 500 }}>{l}</a>
             ))}
           </nav>
@@ -850,6 +869,40 @@ export default function App() {
               ))}
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── TESTIMONIALS ── */}
+      <section id="testimonials" style={{ background: C.bg, padding: '64px 0', borderTop: `1px solid ${C.border}` }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 28px' }}>
+          <motion.div {...up(0)}>
+            <SH eyebrow="Social Proof" title="What colleagues say"/>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-3">
+            {TESTIMONIALS.map((t, i) => (
+              <motion.div key={i} {...up(i * 0.08)} className="glass-card" style={{ padding: '24px 26px', display: 'flex', flexDirection: 'column' }}>
+                <Quote size={20} style={{ color: t.accent, opacity: 0.5, marginBottom: '10px', flexShrink: 0 }} fill={t.accent} strokeWidth={0}/>
+                <p style={{ fontSize: '0.9375rem', color: C.text, lineHeight: 1.7, fontStyle: 'italic', marginBottom: '20px', flex: 1 }}>
+                  "{t.quote}"
+                </p>
+                <div className="divider" style={{ marginBottom: '16px' }}/>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ flexShrink: 0, width: '38px', height: '38px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8125rem', fontWeight: 700, color: '#fff', background: t.accent }}>
+                    {t.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <p style={{ fontSize: '0.875rem', fontWeight: 600, color: C.text }}>{t.name}</p>
+                    <p style={{ fontSize: '0.75rem', color: C.subtle }}>{t.title}</p>
+                  </div>
+                  <span style={{ color: C.subtle, flexShrink: 0 }}><LinkedIn/></span>
+                </div>
+                <p style={{ fontSize: '0.6875rem', color: C.subtle, marginTop: '12px', paddingTop: '12px', borderTop: `1px dashed ${C.border}` }}>
+                  {t.relationship} · {t.date} · LinkedIn recommendation
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

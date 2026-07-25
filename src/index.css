@@ -20,7 +20,7 @@
 }
 
 /* Scroll offset for fixed nav (52px nav + 12px breathing room) */
-#locus, #work, #experience, #skills {
+#locus, #work, #experience, #skills, #testimonials {
   scroll-margin-top: 64px;
 }
 

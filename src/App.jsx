@@ -88,11 +88,14 @@ const Brand = ({ id, size = 16, radius }) => {
   }
   if (b.component === 'LinkedIn') return <span title={b.name} style={{ display: 'inline-flex', color: C.subtle, flexShrink: 0 }}><LinkedIn/></span>;
   if (b.component === 'GitHub') return <span title={b.name} style={{ display: 'inline-flex', color: C.subtle, flexShrink: 0 }}><GitHub/></span>;
+  /* Fallback monograms are deliberately mono-tone (not per-brand color) —
+     a wall of differently-colored invented badges next to real, correctly
+     colored logos read as noisy. Real logos carry the color; these recede. */
   return (
     <span title={b.name} style={{
       display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
       width: size, height: size, borderRadius: radius ?? Math.round(size * 0.28),
-      background: b.color, color: '#fff', fontSize: Math.max(7, size * 0.34), fontWeight: 800, letterSpacing: '-0.02em',
+      background: C.text, color: '#fff', fontSize: Math.max(7, size * 0.34), fontWeight: 800, letterSpacing: '-0.02em',
     }}>
       {b.mono}
     </span>

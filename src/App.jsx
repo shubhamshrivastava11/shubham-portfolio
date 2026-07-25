@@ -56,8 +56,8 @@ const BRANDS = {
   tableau:        { mono: 'TB',  color: '#E97627', name: 'Tableau' },
   powerbi:        { mono: 'PBI', color: '#F2C811', name: 'Power BI' },
   slack:          { mono: 'SL',  color: '#4A154B', name: 'Slack' },
-  jnj:            { mono: 'J&J', color: '#CC0000', name: 'Johnson & Johnson' },
-  deloitte:       { mono: 'DC',  color: '#86BC25', name: 'Deloitte' },
+  jnj:            { logo: '/logos/jnj.svg', wordmark: true, name: 'Johnson & Johnson' },
+  deloitte:       { logo: '/logos/deloitte.svg', wordmark: true, name: 'Deloitte' },
   pmi:            { mono: 'PMI', color: '#6E217A', name: 'Project Management Institute' },
   mulesoft:       { mono: 'MU',  color: '#00A0DF', name: 'MuleSoft' },
 
@@ -76,7 +76,7 @@ const BRANDS = {
   digitalitech:   { mono: 'DI',  color: '#BE123C', name: 'Digital iTechnology' },
   openlogix:      { mono: 'OL',  color: '#0369A1', name: 'Openlogix' },
   worldsoft:      { mono: 'WT',  color: '#4F46E5', name: 'Worldsoft Technologies' },
-  oakland:        { mono: 'OU',  color: '#7C3AED', name: 'Oakland University' },
+  oakland:        { logo: '/logos/oakland.svg', wordmark: true, name: 'Oakland University' },
   rgpv:           { mono: 'RG',  color: '#047857', name: 'Rajiv Gandhi Proudyogiki Vishwavidyalaya' },
 };
 
@@ -84,7 +84,12 @@ const Brand = ({ id, size = 16, radius }) => {
   const b = BRANDS[id];
   if (!b) return null;
   if (b.logo) {
-    return <img src={b.logo} alt="" title={b.name} width={size} height={size} loading="lazy" style={{ display: 'inline-block', objectFit: 'contain', flexShrink: 0 }}/>;
+    // Wordmark logos (company text logos, wide aspect ratio) get a fixed
+    // height + auto width instead of a forced square — squashing "Deloitte."
+    // into a 16x16 box would render it as an unreadable sliver.
+    return b.wordmark
+      ? <img src={b.logo} alt="" title={b.name} loading="lazy" style={{ display: 'inline-block', height: size, width: 'auto', maxWidth: size * 4.5, objectFit: 'contain', flexShrink: 0 }}/>
+      : <img src={b.logo} alt="" title={b.name} width={size} height={size} loading="lazy" style={{ display: 'inline-block', objectFit: 'contain', flexShrink: 0 }}/>;
   }
   if (b.component === 'LinkedIn') return <span title={b.name} style={{ display: 'inline-flex', color: C.subtle, flexShrink: 0 }}><LinkedIn/></span>;
   if (b.component === 'GitHub') return <span title={b.name} style={{ display: 'inline-flex', color: C.subtle, flexShrink: 0 }}><GitHub/></span>;
@@ -997,10 +1002,10 @@ export default function App() {
                           boxShadow: isSelected ? `0 6px 18px ${tAccent}22` : 'none',
                           transition: 'border-color 0.15s, box-shadow 0.15s, background 0.15s',
                         }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '10px' }}>
-                          {t.brand ? <Brand id={t.brand} size={18} radius={5}/> : (tIsWork ? <Briefcase size={13} style={{ color: tAccent }}/> : <GraduationCap size={13} style={{ color: tAccent }}/>)}
-                          <span style={{ fontSize: '0.5625rem', color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t.period}</span>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', minHeight: '18px' }}>
+                          {t.brand ? <Brand id={t.brand} size={16} radius={5}/> : (tIsWork ? <Briefcase size={13} style={{ color: tAccent }}/> : <GraduationCap size={13} style={{ color: tAccent }}/>)}
                         </div>
+                        <span style={{ display: 'block', fontSize: '0.5625rem', color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>{t.period}</span>
                         <p style={{ fontSize: '0.8125rem', fontWeight: 700, color: C.text, letterSpacing: '-0.01em', lineHeight: 1.25, marginBottom: '3px' }}>{t.org}</p>
                         <p style={{ fontSize: '0.6875rem', color: C.subtle, lineHeight: 1.3 }}>{t.role}</p>
                       </button>

@@ -972,25 +972,24 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── EXPERIENCE ── */}
+      {/* ── EXPERIENCE (work only) ── */}
       <section id="experience" style={{ background: C.bg, padding: '64px 0', borderTop: `1px solid ${C.border}` }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 28px' }}>
           <motion.div {...up(0)}>
-            <SH eyebrow="Experience & Education" title="Career timeline"/>
+            <SH eyebrow="Experience" title="Career timeline"/>
           </motion.div>
 
           {(() => {
-            const item = timeline[selectedRole];
-            const isWork = item.type === 'work';
-            const accent = isWork ? (item.accent || C.blue) : C.gold;
+            const workEntries = timeline.filter(t => t.type === 'work');
+            const item = workEntries[selectedRole];
+            const accent = item.accent || C.blue;
             return (
               <>
-                <DeckArrows deckRef={expDeckRef} count={timeline.length}/>
+                <DeckArrows deckRef={expDeckRef} count={workEntries.length}/>
                 {/* Horizontal scrollable deck */}
                 <motion.div {...up(0.06)} ref={expDeckRef} className="hscroll" style={{ display: 'flex', gap: '10px', overflowX: 'auto', scrollSnapType: 'x mandatory', paddingBottom: '14px', marginBottom: '20px' }}>
-                  {timeline.map((t, i) => {
-                    const tIsWork = t.type === 'work';
-                    const tAccent = tIsWork ? (t.accent || C.blue) : C.gold;
+                  {workEntries.map((t, i) => {
+                    const tAccent = t.accent || C.blue;
                     const isSelected = i === selectedRole;
                     return (
                       <button key={i} onClick={() => setSelectedRole(i)}
@@ -1003,7 +1002,7 @@ export default function App() {
                           transition: 'border-color 0.15s, box-shadow 0.15s, background 0.15s',
                         }}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', minHeight: '18px' }}>
-                          {t.brand ? <Brand id={t.brand} size={16} radius={5}/> : (tIsWork ? <Briefcase size={13} style={{ color: tAccent }}/> : <GraduationCap size={13} style={{ color: tAccent }}/>)}
+                          {t.brand ? <Brand id={t.brand} size={16} radius={5}/> : <Briefcase size={13} style={{ color: tAccent }}/>}
                         </div>
                         <span style={{ display: 'block', fontSize: '0.5625rem', color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>{t.period}</span>
                         <p style={{ fontSize: '0.8125rem', fontWeight: 700, color: C.text, letterSpacing: '-0.01em', lineHeight: 1.25, marginBottom: '3px' }}>{t.org}</p>
@@ -1021,7 +1020,7 @@ export default function App() {
 
                     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
                       <span style={{ fontSize: '0.625rem', fontWeight: 600, color: accent, textTransform: 'uppercase', letterSpacing: '0.08em', background: `${accent}14`, padding: '2px 8px', borderRadius: '980px', display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
-                        {isWork ? <Briefcase size={8}/> : <GraduationCap size={8}/>} {isWork ? 'Work' : 'Education'}
+                        <Briefcase size={8}/> Work
                       </span>
                       <span style={{ fontSize: '0.6875rem', color: C.subtle }}>{item.period}</span>
                       <span style={{ fontSize: '0.6875rem', color: C.subtle }}>· {item.domain}</span>
@@ -1056,6 +1055,31 @@ export default function App() {
               </>
             );
           })()}
+        </div>
+      </section>
+
+      {/* ── EDUCATION ── */}
+      <section style={{ background: C.bg, padding: '48px 0 64px', borderTop: `1px solid ${C.border}` }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 28px' }}>
+          <motion.div {...up(0)} style={{ marginBottom: '20px' }}>
+            <p style={{ fontSize: '0.625rem', fontWeight: 700, color: C.gold, textTransform: 'uppercase', letterSpacing: '0.1em', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <GraduationCap size={11}/> Education
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-3">
+            {timeline.filter(t => t.type === 'edu').map((e, i) => (
+              <motion.div key={i} {...up(i * 0.06)}
+                style={{ background: C.surface, border: `1px solid ${C.border}`, borderLeft: `2px solid ${C.gold}`, borderRadius: '14px', padding: '20px 24px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                  {e.brand && <Brand id={e.brand} size={20} radius={6}/>}
+                  <span style={{ fontSize: '0.6875rem', color: C.subtle }}>{e.period}</span>
+                </div>
+                <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, color: C.text, letterSpacing: '-0.01em', marginBottom: '2px' }}>{e.role}</h3>
+                <p style={{ fontSize: '0.8125rem', color: C.gold, fontWeight: 500 }}>{e.org} · {e.location}</p>
+                <p style={{ fontSize: '0.75rem', color: C.subtle, marginTop: '4px' }}>{e.domain}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

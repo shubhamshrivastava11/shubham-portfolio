@@ -132,7 +132,7 @@ export default function CaseStudy() {
               {cs.voc.quotes.map((q, i) => (
                 <div key={i} style={{ padding: '16px 18px', borderRadius: '12px', background: C.surface, border: `1px solid ${C.border}` }}>
                   <p style={{ fontSize: '0.875rem', color: C.text, fontStyle: 'italic', lineHeight: 1.6, marginBottom: '8px' }}>"{q.quote}"</p>
-                  <p style={{ fontSize: '0.75rem', color: C.subtle }}>— {q.role}</p>
+                  <p style={{ fontSize: '0.75rem', color: C.subtle }}>{q.role}</p>
                 </div>
               ))}
             </div>

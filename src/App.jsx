@@ -145,7 +145,7 @@ const DeckArrows = ({ deckRef, count }) => {
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
-      <span style={{ fontSize: '0.6875rem', color: C.subtle }}>{count} {count === 1 ? 'entry' : 'entries'} — scroll or use arrows</span>
+      <span style={{ fontSize: '0.6875rem', color: C.subtle }}>{count} {count === 1 ? 'entry' : 'entries'} · scroll or use arrows</span>
       <div style={{ display: 'flex', gap: '6px' }}>
         {btn(-1, atStart)}
         {btn(1, atEnd)}
@@ -198,9 +198,9 @@ const projects = [
     title: 'HeyFurnish',
     company: 'Founder & Product Lead', period: '2025 – Present',
     heroValue: '90s', heroLabel: 'to full design package',
-    hook: 'Most furniture-buying happens room-by-room — leaving homes visually unbalanced and budgets misallocated. I designed and shipped HeyFurnish to fix this: an AI platform that simultaneously optimizes budget across furniture, lighting, décor, and storage, generating three tiered design packages in 90 seconds. Web is live; mobile app is in AR/VR beta for real-scale room visualization before final launch.',
+    hook: 'Most furniture-buying happens room-by-room, leaving homes visually unbalanced and budgets misallocated. I designed and shipped HeyFurnish to fix this: an AI platform that simultaneously optimizes budget across furniture, lighting, décor, and storage, generating three tiered design packages in 90 seconds. Web is live; mobile app is in AR/VR beta for real-scale room visualization before final launch.',
     scope: 'Sole founder · Full-stack product ownership from zero: strategy, AI architecture, affiliate monetization, and mobile roadmap · Patent-pending budget allocation engine · 35+ vendor integrations.',
-    aiNote: 'Cross-room constraint-satisfaction engine — simultaneously allocates budget across all room elements rather than styling pieces in isolation.',
+    aiNote: 'Cross-room constraint-satisfaction engine that simultaneously allocates budget across all room elements rather than styling pieces in isolation.',
     metrics: [
       { value: '90s',   label: 'To first design package' },
       { value: '$1.2K', label: 'Avg savings vs. designer' },
@@ -218,7 +218,7 @@ const projects = [
     title: 'AI Invoice Pipeline & Cloud Migration',
     company: 'Johnson & Johnson', period: 'Oct 2025 – Present',
     heroValue: '$2.4M', heroLabel: 'annual savings',
-    hook: "J&J's invoice processing ran on decade-old SAP infrastructure — siloed across 5 global regions, manual at scale, and accumulating compliance risk. I led end-to-end platform migration to AWS and shipped an NLP/RAG extraction pipeline with LLM hallucination guardrails and PII controls, replacing manual review for a significant share of invoice volume.",
+    hook: "J&J's invoice processing ran on decade-old SAP infrastructure: siloed across 5 global regions, manual at scale, and accumulating compliance risk. I led end-to-end platform migration to AWS and shipped an NLP/RAG extraction pipeline with LLM hallucination guardrails and PII controls, replacing manual review for a significant share of invoice volume.",
     scope: '5 global regions · Engineering, Finance, Legal & Compliance cross-functional · MedTech regulatory context · Phased migration with zero compliance incidents.',
     aiNote: 'LLM hallucination guardrails keep all outputs audit-safe; PII controls meet MedTech regulatory standards before any data persists.',
     metrics: [
@@ -235,9 +235,9 @@ const projects = [
     title: 'State Education Compliance Platform',
     company: 'Deloitte Consulting', period: 'May – Oct 2025',
     heroValue: '50+', heroLabel: 'defects caught pre-launch',
-    hook: 'The platform had no formal UAT process — defects surfaced late, sprint planning was reactive, and engineering triage averaged 4 days per issue. I designed the UAT lifecycle from scratch across 6 modules, applied AI text clustering to 1,200+ backlog items to eliminate low-signal work, and rebuilt the QA-to-engineering handoff — with zero added headcount.',
+    hook: 'The platform had no formal UAT process, so defects surfaced late, sprint planning was reactive, and engineering triage averaged 4 days per issue. I designed the UAT lifecycle from scratch across 6 modules, applied AI text clustering to 1,200+ backlog items to eliminate low-signal work, and rebuilt the QA-to-engineering handoff with zero added headcount.',
     scope: '15+ state education agencies · 6 product modules · AI text clustering (unsupervised NLP) on 1,200+ backlog items · Multi-agency regulated environment.',
-    aiNote: 'Unsupervised NLP text clustering applied to 1,200+ backlog items — surfaced high-signal work before sprint planning without tooling investment.',
+    aiNote: 'Unsupervised NLP text clustering applied to 1,200+ backlog items surfaced high-signal work before sprint planning without tooling investment.',
     metrics: [
       { value: '50+',  label: 'Defects caught pre-launch' },
       { value: '1.6d', label: 'MTTR (was 4 days)' },
@@ -252,7 +252,7 @@ const projects = [
     title: 'AML & ISO 20022 Compliance Engine',
     company: 'Cygnus Compliance / Bank of China', period: 'Jan – Mar 2025',
     heroValue: '$50M+', heroLabel: 'transaction volume at launch',
-    hook: 'No existing product, a hard regulatory deadline, and a bank client needing ISO 20022 + AML compliance from zero. I led the full lifecycle — discovery, three rounds of usability testing with 20+ compliance officers, prioritized roadmap, and shipped to production — taking submission accuracy from 85% to 97% in 8 weeks from kickoff.',
+    hook: 'No existing product, a hard regulatory deadline, and a bank client needing ISO 20022 + AML compliance from zero. I led the full lifecycle: discovery, three rounds of usability testing with 20+ compliance officers, a prioritized roadmap, and shipping to production, taking submission accuracy from 85% to 97% in 8 weeks from kickoff.',
     scope: '0→1 in 8 weeks · PCI-DSS + AML/KYC compliance · 20+ compliance officer stakeholders · B2B regulated financial services.',
     metrics: [
       { value: '$50M+', label: 'Transaction volume at launch' },
@@ -265,10 +265,10 @@ const projects = [
   {
     id: 'digital-i-mobile',
     slug: 'digital-i-mobile', index: '05', tag: 'D2C · Consumer Mobile',
-    title: 'Mobile App — 0 to 75K Users',
+    title: 'Mobile App: 0 to 75K Users',
     company: 'Digital iTechnology', period: 'Mar – Dec 2024',
     heroValue: '75K', heroLabel: 'installs from zero',
-    hook: 'The app launched with a broken onboarding funnel — killing conversions before users reached core value — and no experimentation framework in place. I owned the full product lifecycle: designed and ran 5 sequential A/B tests to fix the funnel, built a behavioral cohort framework to identify and re-engage high-churn segments, and led the GTM plan that hit 40% DAU/MAU within Q1.',
+    hook: 'The app launched with a broken onboarding funnel that killed conversions before users reached core value, and no experimentation framework in place. I owned the full product lifecycle: designed and ran 5 sequential A/B tests to fix the funnel, built a behavioral cohort framework to identify and re-engage high-churn segments, and led the GTM plan that hit 40% DAU/MAU within Q1.',
     scope: 'Full lifecycle ownership · D2C consumer mobile · Amplitude + Mixpanel for behavioral cohort analysis and experiment measurement.',
     metrics: [
       { value: '75K', label: 'Installs from zero' },
@@ -283,10 +283,10 @@ const projects = [
     slug: 'locus', index: '06', tag: 'AI · Team Productivity',
     title: 'Locus AI',
     company: 'Founder · AI PM Bootcamp', period: '2026',
-    heroValue: '3', heroLabel: 'tools unified — Slack, Notion, Gmail',
-    hook: "Teams make dozens of decisions a week scattered across Slack threads and Notion docs — then lose track of why a call was made or who owns the follow-up. Locus AI auto-captures decisions, action items, and blockers as your team communicates, and resurfaces them through a searchable Decision Log and a synthesized weekly Pulse digest every Monday. Core insight validated through 25 VoC interviews scored against 5 hypotheses; full product designed end-to-end in Figma, building toward MVP.",
+    heroValue: '3', heroLabel: 'tools unified: Slack, Notion, Gmail',
+    hook: "Teams make dozens of decisions a week scattered across Slack threads and Notion docs, then lose track of why a call was made or who owns the follow-up. Locus AI auto-captures decisions, action items, and blockers as your team communicates, and resurfaces them through a searchable Decision Log and a synthesized weekly Pulse digest every Monday. Core insight validated through 25 VoC interviews scored against 5 hypotheses; full product designed end-to-end in Figma, building toward MVP.",
     scope: 'Solo founder · AI PM Bootcamp Cohort 9 · 25 VoC interviews complete · 40+ screens designed in Figma · MVP in active development.',
-    aiNote: 'Context-aware NLP classifier tags every Slack/Notion/Gmail message as a Decision, Action Item, or Blocker — each one cited back to its source thread.',
+    aiNote: 'Context-aware NLP classifier tags every Slack/Notion/Gmail message as a Decision, Action Item, or Blocker, each one cited back to its source thread.',
     metrics: [
       { value: '$12–15', label: 'Per user / month' },
       { value: '4M+',    label: 'Addressable professionals' },
@@ -297,7 +297,7 @@ const projects = [
     badges: [{ label: '◇ 40+ Screens in Figma', color: '#7C3AED' }],
     designPreview: {
       hero: '/locus/locus-landing-hero.png',
-      heroAlt: 'Locus AI landing page — hero and product dashboard',
+      heroAlt: 'Locus AI landing page: hero and product dashboard',
       thumbs: [
         { src: '/locus/locus-dashboard.png', alt: 'Dashboard screen' },
         { src: '/locus/locus-decision-log.png', alt: 'Decision Log screen' },
@@ -326,10 +326,10 @@ const projects = [
 
 /* ── Work section structure ── */
 const HIGHLIGHTS = [
-  { label: '40+ screens designed end-to-end in Figma — Locus AI, self-designed flagship product', anchor: '#locus' },
-  { label: '$2.4M annual savings — J&J AI Invoice Pipeline & Cloud Migration', projectId: 'jj-ai-invoice' },
-  { label: '$50M+ transaction volume on day one — AML Compliance Engine (Bank of China)', projectId: 'cygnus-aml' },
-  { label: '0 → 75K installs in 9 months — Consumer Mobile App (Digital iTechnology)', projectId: 'digital-i-mobile' },
+  { label: '40+ screens designed end-to-end in Figma for Locus AI, self-designed flagship product', anchor: '#locus' },
+  { label: '$2.4M annual savings: J&J AI Invoice Pipeline & Cloud Migration', projectId: 'jj-ai-invoice' },
+  { label: '$50M+ transaction volume on day one: AML Compliance Engine (Bank of China)', projectId: 'cygnus-aml' },
+  { label: '0 → 75K installs in 9 months: Consumer Mobile App (Digital iTechnology)', projectId: 'digital-i-mobile' },
 ];
 
 const FILTER_TABS = ['All', 'Enterprise AI', '0→1', 'Consumer', 'AI-heavy'];
@@ -349,7 +349,7 @@ const timeline = [
     bullets: [
       'Defined ICP (homeowners undertaking full-room renovations, $800–$2K budgets) through 15+ discovery interviews before writing a line of code',
       'Architected patent-pending cross-room budget allocation engine; chose affiliate-first monetization (free → $19/mo Pro → $49/mo Studio) targeting sub-30-day payback',
-      'Running iterative AR/VR feedback loops with mobile beta users ahead of final release — real-scale room visualization as the core differentiator vs. web-only competitors',
+      'Running iterative AR/VR feedback loops with mobile beta users ahead of final release, with real-scale room visualization as the core differentiator vs. web-only competitors',
     ]},
   { type: 'work', period: 'Oct 2025 – Present', role: 'Product Manager II, Enterprise AI & Platform',
     org: 'Johnson & Johnson', location: 'Jersey City, NJ', domain: 'MedTech · Enterprise AI', accent: '#7C3AED', brand: 'jnj',
@@ -357,38 +357,38 @@ const timeline = [
     bullets: [
       'Partnered with Engineering, Finance, Legal & Compliance across 5 global regions to align discovery, phasing, and acceptance criteria for a decade-long platform replacement',
       'Led AI product decisions: evaluated multiple extraction approaches, selected NLP/RAG with LLM hallucination guardrails after red-teaming outputs against MedTech audit standards',
-      'Owned roadmap sequencing and executive stakeholder communication through a regulated cloud migration — zero compliance incidents across all deployment phases',
+      'Owned roadmap sequencing and executive stakeholder communication through a regulated cloud migration, with zero compliance incidents across all deployment phases',
     ]},
   { type: 'work', period: 'May – Oct 2025', role: 'Product Manager, Government Compliance',
     org: 'Deloitte Consulting', location: 'Jersey City, NJ', domain: 'GovTech · Compliance SaaS', accent: '#047857', brand: 'deloitte',
     keyResult: { value: '50+', label: 'Critical defects caught pre-launch' },
     bullets: [
-      'Coordinated QA, Engineering, and State Compliance Officers across 15+ agencies and 6 modules — designed UAT processes, severity taxonomy, and triage SLAs from zero',
-      'Applied AI text clustering to 1,200+ backlog items in a single session — separated high-signal from noise before sprint planning without tooling spend',
+      'Coordinated QA, Engineering, and State Compliance Officers across 15+ agencies and 6 modules, designing UAT processes, severity taxonomy, and triage SLAs from zero',
+      'Applied AI text clustering to 1,200+ backlog items in a single session, separating high-signal from noise before sprint planning without tooling spend',
       'Rebuilt the QA-to-Engineering handoff: defined runbooks and escalation paths that cut decision latency without adding headcount',
     ]},
   { type: 'work', period: 'Jan – Mar 2025', role: 'Product Manager, AML & Regulatory Compliance',
     org: 'Cygnus Compliance (Bank of China)', location: 'New York, NY', domain: 'FinTech · Regulatory Reporting', accent: '#B45309', brand: 'cygnus',
     keyResult: { value: '$50M+', label: 'Transaction volume on day one' },
     bullets: [
-      'Led discovery and roadmap for a greenfield AML product — 3 rounds of usability testing with 20+ compliance officers shaped every prioritization decision from day one',
+      'Led discovery and roadmap for a greenfield AML product; 3 rounds of usability testing with 20+ compliance officers shaped every prioritization decision from day one',
       'Translated PCI-DSS, AML/KYC, and ISO 20022 requirements into a phased delivery plan that reached production in 8 weeks from kickoff',
-      'Used post-launch VoC data to identify the top escalation drivers and eliminate them within 2 sprint cycles — ticket volume fell 60%',
+      'Used post-launch VoC data to identify the top escalation drivers and eliminate them within 2 sprint cycles, cutting ticket volume by 60%',
     ]},
   { type: 'work', period: 'Mar – Dec 2024', role: 'Product Manager, Consumer Mobile App',
     org: 'Digital iTechnology', location: 'Austin, TX', domain: 'D2C · Consumer Mobile', accent: '#BE123C', brand: 'digitalitech',
     keyResult: { value: '75K', label: 'Installs from zero in 9 months' },
     bullets: [
-      'Designed and ran 5 sequential A/B tests targeting onboarding funnel failure points identified via Amplitude cohort analysis — systematically eliminated each drop-off',
+      'Designed and ran 5 sequential A/B tests targeting onboarding funnel failure points identified via Amplitude cohort analysis, systematically eliminating each drop-off',
       'Built a behavioral segmentation framework (activation, high-churn, re-engagement cohorts) enabling targeted in-app and push campaigns at scale via Mixpanel',
-      'Led GTM strategy and channel mix decisions — defined launch sequencing and KPIs that drove 40% DAU/MAU in Q1 post-launch',
+      'Led GTM strategy and channel mix decisions, defining launch sequencing and KPIs that drove 40% DAU/MAU in Q1 post-launch',
     ]},
   { type: 'work', period: 'Jun – Sep 2023', role: 'Associate PM, Digital Investment Platform',
     org: 'Openlogix (K2 Partnering Solutions)', location: 'Bloomfield Hills, MI', domain: 'FinTech · WealthTech', accent: '#0369A1', brand: 'openlogix',
     keyResult: { value: '$2.5M', label: 'AUM secured at pilot launch' },
     bullets: [
       'Applied ICE scoring across 50K+ SQL records to rationalize roadmap prioritization and reduce decision delays by 35%',
-      'Delivered a compliance-ready investment platform MVP — coordinated Engineering, Compliance, and client stakeholders in parallel to hit a hard go-live date',
+      'Delivered a compliance-ready investment platform MVP, coordinating Engineering, Compliance, and client stakeholders in parallel to hit a hard go-live date',
     ]},
   { type: 'edu', period: 'Jan 2022 – Dec 2023', role: 'M.S. Information Technology Management',
     org: 'Oakland University', location: 'Michigan, USA', domain: 'Graduate Studies', brand: 'oakland', bullets: [] },
@@ -396,7 +396,7 @@ const timeline = [
     org: 'Worldsoft Technologies', location: 'Bhopal, India', domain: 'FinTech · Retail Banking', accent: '#4F46E5', brand: 'worldsoft',
     keyResult: { value: '31%', label: 'Account activation lift across 30K+ users' },
     bullets: [
-      'Designed API integration strategy with banking partners — defined data contracts and error handling that drove account activation at scale across 30K+ users',
+      'Designed API integration strategy with banking partners, defining data contracts and error handling that drove account activation at scale across 30K+ users',
       'Built SQL dashboards tracking 12+ compliance KPIs, giving operations real-time regulatory health visibility and cutting support tickets by 45%',
     ]},
   { type: 'edu', period: 'Aug 2013 – May 2017', role: 'B.E. Computer Science',
@@ -458,7 +458,7 @@ const CERTIFICATIONS = [
     group: 'Cloud & Data',
     items: [
       { name: 'Advanced Google Analytics', issuer: 'Google', brand: 'google', date: 'Apr 2024', expires: 'Apr 2027' },
-      { name: 'Academy Accreditation — Databricks Lakehouse Fundamentals', issuer: 'Databricks', brand: 'databricks', date: 'May 2024' },
+      { name: 'Academy Accreditation: Databricks Lakehouse Fundamentals', issuer: 'Databricks', brand: 'databricks', date: 'May 2024' },
       { name: 'Google Cloud Foundations', issuer: 'LinkedIn', brand: 'linkedin', date: 'Apr 2024' },
     ],
   },
@@ -601,7 +601,7 @@ export default function App() {
 
               {/* Bio */}
               <motion.p {...up(0.1)} style={{ fontSize: '0.9375rem', color: C.muted, maxWidth: '480px', marginBottom: '18px', lineHeight: 1.75 }}>
-                I ship AI-native products in regulated domains — and build 0→1 bets that find product-market fit. From $2.4M savings pipelines at J&J to founding HeyFurnish from scratch, I lead with discovery, move fast with data, and own outcomes end-to-end.
+                I ship AI-native products in regulated domains and build 0→1 bets that find product-market fit. From $2.4M savings pipelines at J&J to founding HeyFurnish from scratch, I lead with discovery, move fast with data, and own outcomes end-to-end.
               </motion.p>
 
               {/* Where I'm best leveraged */}
@@ -713,7 +713,7 @@ export default function App() {
                   Never lose a <span style={G}>team decision</span> again.
                 </h2>
                 <p style={{ fontSize: '0.9375rem', color: C.muted, lineHeight: 1.75, marginBottom: '22px', maxWidth: '480px' }}>
-                  Locus AI auto-captures decisions, action items, and blockers from Slack, Notion, and Gmail — resurfacing them through a searchable Decision Log and a weekly Pulse digest. I designed the entire product myself, 40+ screens end-to-end in Figma, before writing a line of backend code.
+                  Locus AI auto-captures decisions, action items, and blockers from Slack, Notion, and Gmail, resurfacing them through a searchable Decision Log and a weekly Pulse digest. I designed the entire product myself, 40+ screens end-to-end in Figma, before writing a line of backend code.
                 </p>
 
                 {/* Stat row */}
@@ -750,7 +750,7 @@ export default function App() {
                     <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#FBBF24' }}/>
                     <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#34D399' }}/>
                   </div>
-                  <img src="/locus/locus-dashboard.png" alt="Locus dashboard — decisions, action items, and blockers at a glance" style={{ width: '100%', display: 'block' }}/>
+                  <img src="/locus/locus-dashboard.png" alt="Locus dashboard: decisions, action items, and blockers at a glance" style={{ width: '100%', display: 'block' }}/>
                 </div>
                 <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
                   {[
@@ -1194,7 +1194,7 @@ export default function App() {
             Looking for an AI PM<br/>who can <span style={G}>own it end-to-end</span>?
           </h2>
           <p style={{ fontSize: '1rem', color: C.muted, lineHeight: 1.7, marginBottom: '10px' }}>
-            I'm best suited for <strong style={{ color: C.text }}>Senior PM and Staff PM roles</strong> where AI/ML is core to the product — in FinTech, MedTech, GovTech, or Enterprise SaaS.
+            I'm best suited for <strong style={{ color: C.text }}>Senior PM and Staff PM roles</strong> where AI/ML is core to the product: FinTech, MedTech, GovTech, or Enterprise SaaS.
           </p>
           <p style={{ fontSize: '0.9375rem', color: C.subtle, lineHeight: 1.65, marginBottom: '32px' }}>
             I operate at both <span style={{ color: C.blue }}>0→1</span> (greenfield, discovery-first, fast validation) and <span style={{ color: C.emerald }}>1→10</span> (experimentation, cross-functional execution, data-driven scaling). Let's see if there's a fit.

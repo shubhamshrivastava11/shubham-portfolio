@@ -283,10 +283,10 @@ const projects = [
     id: 'locus',
     slug: 'locus', index: '06', tag: 'AI · Team Productivity',
     title: 'Locus AI',
-    company: 'Founder · AI PM Bootcamp', period: '2026',
+    company: 'Founder & Head of Product · AI PM Bootcamp', period: '2026',
     heroValue: '3', heroLabel: 'tools unified: Slack, Notion, Gmail',
-    hook: "Teams make dozens of decisions a week scattered across Slack threads and Notion docs, then lose track of why a call was made or who owns the follow-up. Locus AI auto-captures decisions, action items, and blockers as your team communicates, and resurfaces them through a searchable Decision Log and a synthesized weekly Pulse digest every Monday. Core insight validated through 25 VoC interviews scored against 5 hypotheses; full product designed end-to-end in Figma, building toward MVP.",
-    scope: 'Solo founder · AI PM Bootcamp Cohort 9 · 25 VoC interviews complete · 40+ screens designed in Figma · MVP in active development.',
+    hook: "Teams make dozens of decisions a week scattered across Slack threads and Notion docs, then lose track of why a call was made or who owns the follow-up. Locus AI auto-captures decisions, action items, and blockers as your team communicates, and resurfaces them through a searchable Decision Log and a synthesized weekly Pulse digest every Monday. Core insight validated through a 25-interview structured VoC study scored against 5 hypotheses (30+ customer interviews to date); full product designed end-to-end in Figma while leading a 15+ person team, building toward MVP.",
+    scope: 'Founder & Head of Product · leading a distributed team of 15+ · 25-interview VoC study scored (30+ customer interviews to date) · 40+ screens designed in Figma · MVP in active development.',
     aiNote: 'Context-aware NLP classifier tags every Slack/Notion/Gmail message as a Decision, Action Item, or Blocker, each one cited back to its source thread.',
     metrics: [
       { value: '$12–15', label: 'Per user / month' },
@@ -327,7 +327,7 @@ const projects = [
 
 /* ── Work section structure ── */
 const HIGHLIGHTS = [
-  { label: '40+ screens designed end-to-end in Figma for Locus AI, self-designed flagship product', anchor: '#locus' },
+  { label: '40+ screens designed end-to-end in Figma for Locus AI, the flagship product I lead a 15+ person team to build', anchor: '#locus' },
   { label: '$2.4M annual savings: J&J AI Invoice Pipeline & Cloud Migration', projectId: 'jj-ai-invoice' },
   { label: '$50M+ transaction volume on day one: AML Compliance Engine (Bank of China)', projectId: 'cygnus-aml' },
   { label: '0 → 75K installs in 9 months: Consumer Mobile App (Digital iTechnology)', projectId: 'digital-i-mobile' },
@@ -344,13 +344,13 @@ const LOCUS_SPOTLIGHT_STATS = [
 
 /* ── Experience & education ── */
 const timeline = [
-  { type: 'work', period: '2026 – Present', role: 'Founder & Product Designer',
+  { type: 'work', period: '2026 – Present', role: 'Founder & Head of Product',
     org: 'Locus AI', location: 'Remote', domain: 'AI · Team Productivity', accent: '#84CC16', brand: 'locus',
-    keyResult: { value: '25 VoC', label: 'Interviews validating 5 hypotheses' },
+    keyResult: { value: '15+', label: 'Team members led across 5 disciplines' },
     bullets: [
-      'Designed 40+ high-fidelity screens end-to-end in Figma across the full product surface (marketing site, onboarding, dashboard, Decision Log, Team Pulse, Search, Settings) before scoping engineering',
-      'Ran 25 Voice of Customer interviews across PMs and designers to validate the core insight and pressure-test the pricing model against a 27–35 user break-even target',
-      'Chose a read-only, zero-workflow-change integration model (OAuth into Slack, Notion, Gmail) so teams get value from day one with no manual data entry',
+      'Lead a globally distributed team of 15+ across backend engineering, frontend engineering, data science, UI/UX, and product, building Locus AI to automate repetitive coordination work across tools and time zones',
+      'Own product strategy, roadmap execution, and GTM experimentation; personally designed 40+ high-fidelity screens end-to-end in Figma before scoping engineering',
+      'Conducted 30+ customer interviews to date, including a structured 25-interview study scored against 5 hypotheses, to validate pain points, refine product direction, and shape the MVP',
     ]},
   { type: 'work', period: '2025 – Present', role: 'Founder & Product Lead',
     org: 'HeyFurnish', location: 'Remote', domain: 'AI · Home & Lifestyle', accent: '#0F766E', brand: 'heyfurnish',
@@ -722,7 +722,7 @@ export default function App() {
                   Never lose a <span style={G}>team decision</span> again.
                 </h2>
                 <p style={{ fontSize: '0.9375rem', color: C.muted, lineHeight: 1.75, marginBottom: '22px', maxWidth: '480px' }}>
-                  Locus AI auto-captures decisions, action items, and blockers from Slack, Notion, and Gmail, resurfacing them through a searchable Decision Log and a weekly Pulse digest. I designed the entire product myself, 40+ screens end-to-end in Figma, before writing a line of backend code.
+                  Locus AI auto-captures decisions, action items, and blockers from Slack, Notion, and Gmail, resurfacing them through a searchable Decision Log and a weekly Pulse digest. I lead a distributed team of 15+ across engineering, data science, and design, own product strategy and GTM, and personally designed 40+ screens end-to-end in Figma before scoping engineering.
                 </p>
 
                 {/* Stat row */}

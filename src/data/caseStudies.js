@@ -286,10 +286,10 @@ export const caseStudies = [
   {
     slug: 'locus',
     tag: 'AI · Team Productivity',
-    company: 'Founder · AI PM Bootcamp',
+    company: 'Founder & Head of Product · AI PM Bootcamp',
     period: '2026',
     title: 'Locus AI: Team Decision Memory',
-    hook: 'Every team loses decisions in the noise of Slack and Notion. I designed 40+ screens end-to-end to fix it, before writing a line of backend code.',
+    hook: 'Every team loses decisions in the noise of Slack and Notion. I lead a distributed team of 15+ building the fix, and personally designed 40+ screens end-to-end in Figma before writing a line of backend code.',
     accentColor: '#4F46E5',
     metrics: [
       { value: '40+', label: 'Screens designed' },

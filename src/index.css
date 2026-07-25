@@ -88,3 +88,15 @@
 
 /* Divider */
 .divider { height: 1px; background: rgba(20,18,38,0.10); }
+
+/* Horizontal scroll decks (Work, Experience) — thin visible scrollbar as a
+   discoverability affordance, native touch scroll on mobile */
+.hscroll {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(20,18,38,0.22) transparent;
+}
+.hscroll::-webkit-scrollbar { height: 6px; }
+.hscroll::-webkit-scrollbar-track { background: transparent; }
+.hscroll::-webkit-scrollbar-thumb { background: rgba(20,18,38,0.18); border-radius: 980px; }
+.hscroll::-webkit-scrollbar-thumb:hover { background: rgba(20,18,38,0.3); }

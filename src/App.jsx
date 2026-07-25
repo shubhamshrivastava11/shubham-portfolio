@@ -275,27 +275,9 @@ const projects = [
 /* ── Work section structure ── */
 const HIGHLIGHTS = [
   { label: '40+ screens designed end-to-end in Figma — Locus AI, self-designed flagship product', anchor: '#locus' },
-  { label: '$2.4M annual savings — J&J AI Invoice Pipeline & Cloud Migration', anchor: '#jj-ai-invoice' },
-  { label: '$50M+ transaction volume on day one — AML Compliance Engine (Bank of China)', anchor: '#cygnus-aml' },
-  { label: '0 → 75K installs in 9 months — Consumer Mobile App (Digital iTechnology)', anchor: '#digital-i-mobile' },
-];
-
-const GROUPS = [
-  {
-    label: '0→1 · Founder',
-    desc: 'Products I designed, built, and shipped from scratch — full ownership from discovery to launch.',
-    ids: ['heyfurnish'],
-  },
-  {
-    label: 'Enterprise AI & Compliance Platforms',
-    desc: 'AI-native products inside regulated, multi-stakeholder environments with real business and compliance stakes.',
-    ids: ['jj-ai-invoice', 'deloitte-compliance', 'cygnus-aml'],
-  },
-  {
-    label: 'Consumer Growth · Side Projects & Experiments',
-    desc: 'Growth-stage products, rapid experiments, and founder bets built on tight timelines.',
-    ids: ['digital-i-mobile', 'ai-job-copilot'],
-  },
+  { label: '$2.4M annual savings — J&J AI Invoice Pipeline & Cloud Migration', projectId: 'jj-ai-invoice' },
+  { label: '$50M+ transaction volume on day one — AML Compliance Engine (Bank of China)', projectId: 'cygnus-aml' },
+  { label: '0 → 75K installs in 9 months — Consumer Mobile App (Digital iTechnology)', projectId: 'digital-i-mobile' },
 ];
 
 const FILTER_TABS = ['All', 'Enterprise AI', '0→1', 'Consumer', 'AI-heavy'];
@@ -481,6 +463,8 @@ const SH = ({ eyebrow, title }) => (
 
 export default function App() {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [selectedProject, setSelectedProject] = useState('heyfurnish');
+  const [selectedRole, setSelectedRole] = useState(0);
   const [achIdx, setAchIdx] = useState(0);
 
   useEffect(() => {
@@ -751,19 +735,29 @@ export default function App() {
             <p style={{ fontSize: '0.625rem', fontWeight: 700, color: C.blue, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px' }}>Selected highlights</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {HIGHLIGHTS.map((h, i) => (
-                <a key={i} href={h.anchor}
-                  style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.875rem', color: C.muted, textDecoration: 'none', transition: 'color 0.15s' }}
-                  onMouseEnter={e => e.currentTarget.style.color = C.text}
-                  onMouseLeave={e => e.currentTarget.style.color = C.muted}>
-                  <span style={{ color: C.emerald, fontWeight: 700, flexShrink: 0 }}>→</span>
-                  {h.label}
-                </a>
+                h.anchor ? (
+                  <a key={i} href={h.anchor}
+                    style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.875rem', color: C.muted, textDecoration: 'none', transition: 'color 0.15s', textAlign: 'left', background: 'none', border: 'none', padding: 0, font: 'inherit' }}
+                    onMouseEnter={e => e.currentTarget.style.color = C.text}
+                    onMouseLeave={e => e.currentTarget.style.color = C.muted}>
+                    <span style={{ color: C.emerald, fontWeight: 700, flexShrink: 0 }}>→</span>
+                    {h.label}
+                  </a>
+                ) : (
+                  <button key={i} onClick={() => { setActiveFilter('All'); setSelectedProject(h.projectId); document.getElementById('work-deck')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}
+                    style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.875rem', color: C.muted, textDecoration: 'none', transition: 'color 0.15s', textAlign: 'left', background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit' }}
+                    onMouseEnter={e => e.currentTarget.style.color = C.text}
+                    onMouseLeave={e => e.currentTarget.style.color = C.muted}>
+                    <span style={{ color: C.emerald, fontWeight: 700, flexShrink: 0 }}>→</span>
+                    {h.label}
+                  </button>
+                )
               ))}
             </div>
           </motion.div>
 
           {/* Filter bar */}
-          <motion.div {...up(0.08)} style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '32px' }}>
+          <motion.div {...up(0.08)} style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '20px' }}>
             {FILTER_TABS.map(f => (
               <button key={f} onClick={() => setActiveFilter(f)}
                 style={{
@@ -778,143 +772,147 @@ export default function App() {
             ))}
           </motion.div>
 
-          {/* Project groups */}
-          {GROUPS.map((group, gi) => {
-            const groupProjects = projects.filter(p => group.ids.includes(p.id));
-            const visible = activeFilter === 'All'
-              ? groupProjects
-              : groupProjects.filter(p => p.filters.includes(activeFilter));
-            if (visible.length === 0) return null;
+          {(() => {
+            const visibleProjects = activeFilter === 'All' ? projects : projects.filter(p => p.filters.includes(activeFilter));
+            const selected = visibleProjects.find(p => p.id === selectedProject) || visibleProjects[0];
+            if (!selected) return <p style={{ fontSize: '0.875rem', color: C.subtle }}>No projects match this filter.</p>;
             return (
-              <div key={gi} style={{ marginBottom: '40px' }}>
-                {/* Group header */}
-                <div style={{ marginBottom: '16px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '6px' }}>
-                    <span style={{ fontSize: '0.625rem', fontWeight: 700, color: C.blue, textTransform: 'uppercase', letterSpacing: '0.12em' }}>{group.label}</span>
-                    <div style={{ flex: 1, height: '1px', background: C.border }}/>
-                  </div>
-                  <p style={{ fontSize: '0.8125rem', color: C.subtle }}>{group.desc}</p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '10px' }}>
-                  {visible.map((p, i) => {
-                    const isLastOdd = !p.featured && p === visible[visible.length - 1] && visible.length % 2 !== 0;
-                    const spanFull = p.featured || isLastOdd;
+              <>
+                {/* Horizontal scrollable deck */}
+                <motion.div {...up(0.1)} id="work-deck" className="hscroll" style={{ display: 'flex', gap: '10px', overflowX: 'auto', scrollSnapType: 'x mandatory', paddingBottom: '14px', marginBottom: '8px' }}>
+                  {visibleProjects.map(p => {
+                    const isSelected = p.id === selected.id;
                     return (
-                      <motion.article key={p.id} id={p.id} {...up(i * 0.05)}
-                        className="glass-card"
+                      <button key={p.id} onClick={() => setSelectedProject(p.id)}
                         style={{
-                          padding: p.featured ? '24px 28px' : '20px 22px',
-                          display: 'flex', flexDirection: 'column',
-                          gridColumn: spanFull ? 'span 2 / span 2' : undefined,
-                          transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
-                          ...(p.featured ? { border: `1px solid rgba(124,58,237,0.28)`, boxShadow: '0 0 32px rgba(124,58,237,0.07)' } : {}),
-                        }}
-                        whileHover={{ y: -3, transition: { duration: 0.18 } }}>
-
-                        {/* Top row */}
-                        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', gap: '10px', marginBottom: '12px' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '7px', flexWrap: 'wrap' }}>
-                            <span style={{ fontSize: '0.625rem', color: C.subtle, fontVariantNumeric: 'tabular-nums' }}>{p.index}</span>
-                            <span style={{ width: '1px', height: '9px', background: C.border }}/>
-                            <span className="pill-tag" style={{ fontSize: '0.625rem', padding: '2px 8px' }}>{p.tag}</span>
-                            {p.badges && p.badges.map(b => (
-                              <span key={b.label} style={{ fontSize: '0.625rem', fontWeight: 600, color: b.color, background: `${b.color}1A`, border: `1px solid ${b.color}33`, padding: '2px 8px', borderRadius: '980px' }}>{b.label}</span>
-                            ))}
-                          </div>
-                          <div style={{ textAlign: 'right', marginLeft: 'auto', maxWidth: '200px' }}>
-                            <p style={{ fontSize: p.featured ? '1.625rem' : '1.375rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1, ...GE }}>{p.heroValue}</p>
-                            <p style={{ fontSize: '0.5625rem', color: C.subtle, marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{p.heroLabel}</p>
-                          </div>
+                          flexShrink: 0, width: '196px', textAlign: 'left', cursor: 'pointer', scrollSnapAlign: 'start',
+                          padding: '16px 18px', borderRadius: '16px',
+                          background: isSelected ? C.surfaceAlt : C.surface,
+                          border: `1.5px solid ${isSelected ? 'rgba(124,58,237,0.5)' : C.border}`,
+                          boxShadow: isSelected ? '0 6px 20px rgba(124,58,237,0.14)' : 'none',
+                          transition: 'border-color 0.15s, box-shadow 0.15s, background 0.15s',
+                        }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+                          <span style={{ fontSize: '0.625rem', color: C.subtle, fontVariantNumeric: 'tabular-nums' }}>{p.index}</span>
+                          {p.badges?.[0] && <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: p.badges[0].color, flexShrink: 0 }}/>}
                         </div>
-
-                        {/* Title */}
-                        <h3 style={{ fontSize: p.featured ? '1.125rem' : '1rem', fontWeight: 700, color: C.text, letterSpacing: '-0.015em', lineHeight: 1.3, marginBottom: '2px' }}>{p.title}</h3>
-                        <p style={{ fontSize: '0.6875rem', color: C.subtle, marginBottom: '10px' }}>{p.company} · {p.period}</p>
-
-                        {/* Hook */}
-                        <p style={{ fontSize: p.featured ? '0.875rem' : '0.8125rem', color: C.muted, lineHeight: 1.65, marginBottom: '10px', flex: 1 }}>{p.hook}</p>
-
-                        {/* Scope line */}
-                        {p.scope && (
-                          <p style={{ fontSize: '0.6875rem', color: C.subtle, lineHeight: 1.5, marginBottom: p.aiNote ? '6px' : '14px', paddingLeft: '10px', borderLeft: `2px solid rgba(124,58,237,0.25)`, fontStyle: 'italic' }}>{p.scope}</p>
-                        )}
-
-                        {/* AI note */}
-                        {p.aiNote && (
-                          <p style={{ fontSize: '0.6875rem', color: '#047857', lineHeight: 1.5, marginBottom: '14px', paddingLeft: '10px', borderLeft: `2px solid rgba(124,58,237,0.45)` }}>⚡ {p.aiNote}</p>
-                        )}
-
-                        {/* Design preview (Figma) */}
-                        {p.designPreview && (
-                          <div style={{ marginBottom: '14px' }}>
-                            <img
-                              src={p.designPreview.hero}
-                              alt={p.designPreview.heroAlt}
-                              loading="lazy"
-                              style={{ width: '100%', display: 'block', borderRadius: '10px', border: `1px solid ${C.border}`, boxShadow: '0 8px 24px rgba(20,18,38,0.12)' }}
-                            />
-                            <div style={{ display: 'flex', gap: '6px', marginTop: '6px' }}>
-                              {p.designPreview.thumbs.map((t, ti) => (
-                                <a key={ti} href={t.src} target="_blank" rel="noreferrer" style={{ flex: 1, display: 'block' }}>
-                                  <img
-                                    src={t.src}
-                                    alt={t.alt}
-                                    loading="lazy"
-                                    style={{ width: '100%', height: '52px', objectFit: 'cover', objectPosition: 'top', borderRadius: '6px', border: `1px solid ${C.border}`, transition: 'border-color 0.15s, opacity 0.15s' }}
-                                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(124,58,237,0.5)'; e.currentTarget.style.opacity = '0.85'; }}
-                                    onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.opacity = '1'; }}
-                                  />
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Metrics */}
-                        <div style={{ display: 'flex', gap: p.featured ? '24px' : '16px', marginBottom: '14px', flexWrap: 'wrap' }}>
-                          {p.metrics.map((m, j) => (
-                            <div key={j}>
-                              <p style={{ fontSize: p.featured ? '1.0625rem' : '0.9375rem', fontWeight: 700, color: C.emerald, letterSpacing: '-0.018em', lineHeight: 1 }}>{m.value}</p>
-                              <p style={{ fontSize: '0.5625rem', color: C.subtle, marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{m.label}</p>
-                            </div>
-                          ))}
-                        </div>
-
-                        <div className="divider" style={{ marginBottom: '12px' }}/>
-
-                        {/* Tags + CTA */}
-                        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px' }}>
-                          {p.tags.slice(0, p.featured ? 5 : 3).map(t => (
-                            <span key={t} className="pill-tag" style={{ fontSize: '0.625rem', padding: '2px 8px', ...(TAG_BRAND[t] ? { display: 'inline-flex', alignItems: 'center', gap: '5px' } : {}) }}>
-                              {TAG_BRAND[t] && <Brand id={TAG_BRAND[t]} size={11} radius={3}/>}
-                              {t}
-                            </span>
-                          ))}
-                          {p.slug && (
-                            <Link to={`/case/${p.slug}`}
-                              style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
-                              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(124,58,237,0.45)'; }}
-                              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}>
-                              Case study <ArrowRight size={11}/>
-                            </Link>
-                          )}
-                          {p.url && (
-                            <a href={p.url} target="_blank" rel="noopener noreferrer"
-                              style={{ marginLeft: p.slug ? '0' : 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none', boxShadow: p.featured ? '0 4px 16px rgba(124,58,237,0.3)' : 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
-                              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(124,58,237,0.5)'; }}
-                              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = p.featured ? '0 4px 16px rgba(124,58,237,0.3)' : 'none'; }}>
-                              Live site <ArrowRight size={11}/>
-                            </a>
-                          )}
-                        </div>
-                      </motion.article>
+                        <p style={{ fontSize: '0.9375rem', fontWeight: 700, color: C.text, letterSpacing: '-0.01em', lineHeight: 1.25, marginBottom: '3px' }}>{p.title}</p>
+                        <p style={{ fontSize: '0.6875rem', color: C.subtle, marginBottom: '14px' }}>{p.company}</p>
+                        <p style={{ fontSize: '1.1875rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1, ...GE }}>{p.heroValue}</p>
+                        <p style={{ fontSize: '0.5625rem', color: C.subtle, marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{p.heroLabel}</p>
+                      </button>
                     );
                   })}
-                </div>
-              </div>
+                </motion.div>
+
+                {/* Detail panel */}
+                <AnimatePresence mode="wait">
+                  <motion.article key={selected.id}
+                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}
+                    className="glass-card"
+                    style={{ padding: '26px 28px', display: 'flex', flexDirection: 'column', border: `1px solid rgba(124,58,237,0.22)`, boxShadow: '0 0 32px rgba(124,58,237,0.07)' }}>
+
+                    {/* Top row */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', gap: '10px', marginBottom: '12px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '7px', flexWrap: 'wrap' }}>
+                        <span style={{ fontSize: '0.625rem', color: C.subtle, fontVariantNumeric: 'tabular-nums' }}>{selected.index}</span>
+                        <span style={{ width: '1px', height: '9px', background: C.border }}/>
+                        <span className="pill-tag" style={{ fontSize: '0.625rem', padding: '2px 8px' }}>{selected.tag}</span>
+                        {selected.badges && selected.badges.map(b => (
+                          <span key={b.label} style={{ fontSize: '0.625rem', fontWeight: 600, color: b.color, background: `${b.color}1A`, border: `1px solid ${b.color}33`, padding: '2px 8px', borderRadius: '980px' }}>{b.label}</span>
+                        ))}
+                      </div>
+                      <div style={{ textAlign: 'right', marginLeft: 'auto', maxWidth: '200px' }}>
+                        <p style={{ fontSize: '1.625rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1, ...GE }}>{selected.heroValue}</p>
+                        <p style={{ fontSize: '0.5625rem', color: C.subtle, marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{selected.heroLabel}</p>
+                      </div>
+                    </div>
+
+                    {/* Title */}
+                    <h3 style={{ fontSize: '1.125rem', fontWeight: 700, color: C.text, letterSpacing: '-0.015em', lineHeight: 1.3, marginBottom: '2px' }}>{selected.title}</h3>
+                    <p style={{ fontSize: '0.6875rem', color: C.subtle, marginBottom: '10px' }}>{selected.company} · {selected.period}</p>
+
+                    {/* Hook */}
+                    <p style={{ fontSize: '0.875rem', color: C.muted, lineHeight: 1.65, marginBottom: '10px' }}>{selected.hook}</p>
+
+                    {/* Scope line */}
+                    {selected.scope && (
+                      <p style={{ fontSize: '0.6875rem', color: C.subtle, lineHeight: 1.5, marginBottom: selected.aiNote ? '6px' : '14px', paddingLeft: '10px', borderLeft: `2px solid rgba(124,58,237,0.25)`, fontStyle: 'italic' }}>{selected.scope}</p>
+                    )}
+
+                    {/* AI note */}
+                    {selected.aiNote && (
+                      <p style={{ fontSize: '0.6875rem', color: '#047857', lineHeight: 1.5, marginBottom: '14px', paddingLeft: '10px', borderLeft: `2px solid rgba(124,58,237,0.45)` }}>⚡ {selected.aiNote}</p>
+                    )}
+
+                    {/* Design preview (Figma) */}
+                    {selected.designPreview && (
+                      <div style={{ marginBottom: '14px' }}>
+                        <img
+                          src={selected.designPreview.hero}
+                          alt={selected.designPreview.heroAlt}
+                          loading="lazy"
+                          style={{ width: '100%', display: 'block', borderRadius: '10px', border: `1px solid ${C.border}`, boxShadow: '0 8px 24px rgba(20,18,38,0.12)' }}
+                        />
+                        <div style={{ display: 'flex', gap: '6px', marginTop: '6px' }}>
+                          {selected.designPreview.thumbs.map((t, ti) => (
+                            <a key={ti} href={t.src} target="_blank" rel="noreferrer" style={{ flex: 1, display: 'block' }}>
+                              <img
+                                src={t.src}
+                                alt={t.alt}
+                                loading="lazy"
+                                style={{ width: '100%', height: '52px', objectFit: 'cover', objectPosition: 'top', borderRadius: '6px', border: `1px solid ${C.border}`, transition: 'border-color 0.15s, opacity 0.15s' }}
+                                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(124,58,237,0.5)'; e.currentTarget.style.opacity = '0.85'; }}
+                                onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.opacity = '1'; }}
+                              />
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Metrics */}
+                    <div style={{ display: 'flex', gap: '24px', marginBottom: '14px', flexWrap: 'wrap' }}>
+                      {selected.metrics.map((m, j) => (
+                        <div key={j}>
+                          <p style={{ fontSize: '1.0625rem', fontWeight: 700, color: C.emerald, letterSpacing: '-0.018em', lineHeight: 1 }}>{m.value}</p>
+                          <p style={{ fontSize: '0.5625rem', color: C.subtle, marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{m.label}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="divider" style={{ marginBottom: '12px' }}/>
+
+                    {/* Tags + CTA */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px' }}>
+                      {selected.tags.slice(0, 5).map(t => (
+                        <span key={t} className="pill-tag" style={{ fontSize: '0.625rem', padding: '2px 8px', ...(TAG_BRAND[t] ? { display: 'inline-flex', alignItems: 'center', gap: '5px' } : {}) }}>
+                          {TAG_BRAND[t] && <Brand id={TAG_BRAND[t]} size={11} radius={3}/>}
+                          {t}
+                        </span>
+                      ))}
+                      {selected.slug && (
+                        <Link to={`/case/${selected.slug}`}
+                          style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+                          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(124,58,237,0.45)'; }}
+                          onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}>
+                          Case study <ArrowRight size={11}/>
+                        </Link>
+                      )}
+                      {selected.url && (
+                        <a href={selected.url} target="_blank" rel="noopener noreferrer"
+                          style={{ marginLeft: selected.slug ? '0' : 'auto', display: 'inline-flex', alignItems: 'center', gap: '5px', background: GRAD, color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 14px', borderRadius: '980px', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+                          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(124,58,237,0.5)'; }}
+                          onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}>
+                          Live site <ArrowRight size={11}/>
+                        </a>
+                      )}
+                    </div>
+                  </motion.article>
+                </AnimatePresence>
+              </>
             );
-          })}
+          })()}
         </div>
       </section>
 
@@ -925,51 +923,82 @@ export default function App() {
             <SH eyebrow="Experience & Education" title="Career timeline"/>
           </motion.div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            {timeline.map((item, i) => {
-              const isWork = item.type === 'work';
-              const accent = isWork ? (item.accent || C.blue) : C.gold;
-              return (
-                <motion.div key={i} {...up(i * 0.04)}
-                  style={{ background: C.surface, border: `1px solid ${C.border}`, borderLeft: `2px solid ${accent}`, borderRadius: '14px', padding: '18px 22px', transition: 'border-color 0.2s, box-shadow 0.2s' }}
-                  whileHover={{ borderColor: C.bHover, boxShadow: '0 8px 28px rgba(20,18,38,0.12)' }}>
-
-                  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
-                    <span style={{ fontSize: '0.625rem', fontWeight: 600, color: accent, textTransform: 'uppercase', letterSpacing: '0.08em', background: `${accent}14`, padding: '2px 8px', borderRadius: '980px', display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
-                      {isWork ? <Briefcase size={8}/> : <GraduationCap size={8}/>} {isWork ? 'Work' : 'Education'}
-                    </span>
-                    <span style={{ fontSize: '0.6875rem', color: C.subtle }}>{item.period}</span>
-                    <span style={{ fontSize: '0.6875rem', color: C.subtle }}>· {item.domain}</span>
-                  </div>
-
-                  <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, color: C.text, letterSpacing: '-0.01em', marginBottom: '2px' }}>{item.role}</h3>
-                  <p style={{ display: 'flex', alignItems: 'center', gap: '7px', fontSize: '0.8125rem', color: accent, fontWeight: 500, marginBottom: item.bullets.length > 0 ? '12px' : 0 }}>
-                    {item.brand && <Brand id={item.brand} size={16} radius={5}/>}
-                    {item.org} · {item.location}
-                  </p>
-
-                  {item.bullets.length > 0 && (
-                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '6px', paddingTop: '12px', borderTop: `1px solid ${C.border}`, marginBottom: item.keyResult ? '12px' : 0 }}>
-                      {item.bullets.map((b, j) => (
-                        <li key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.8125rem', color: C.muted, lineHeight: 1.6 }}>
-                          <span style={{ color: accent, fontWeight: 700, flexShrink: 0, marginTop: '1px' }}>→</span>
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  {item.keyResult && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingTop: '10px', borderTop: `1px dashed ${C.border}` }}>
-                      <span style={{ fontSize: '0.625rem', color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 500 }}>Key Result</span>
-                      <span style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.022em', lineHeight: 1, ...GE }}>{item.keyResult.value}</span>
-                      <span style={{ fontSize: '0.8125rem', color: C.muted }}>{item.keyResult.label}</span>
-                    </div>
-                  )}
+          {(() => {
+            const item = timeline[selectedRole];
+            const isWork = item.type === 'work';
+            const accent = isWork ? (item.accent || C.blue) : C.gold;
+            return (
+              <>
+                {/* Horizontal scrollable deck */}
+                <motion.div {...up(0.06)} className="hscroll" style={{ display: 'flex', gap: '10px', overflowX: 'auto', scrollSnapType: 'x mandatory', paddingBottom: '14px', marginBottom: '20px' }}>
+                  {timeline.map((t, i) => {
+                    const tIsWork = t.type === 'work';
+                    const tAccent = tIsWork ? (t.accent || C.blue) : C.gold;
+                    const isSelected = i === selectedRole;
+                    return (
+                      <button key={i} onClick={() => setSelectedRole(i)}
+                        style={{
+                          flexShrink: 0, width: '168px', textAlign: 'left', cursor: 'pointer', scrollSnapAlign: 'start',
+                          padding: '14px 16px', borderRadius: '14px',
+                          background: isSelected ? C.surfaceAlt : C.surface,
+                          border: `1.5px solid ${isSelected ? tAccent : C.border}`,
+                          boxShadow: isSelected ? `0 6px 18px ${tAccent}22` : 'none',
+                          transition: 'border-color 0.15s, box-shadow 0.15s, background 0.15s',
+                        }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '10px' }}>
+                          {t.brand ? <Brand id={t.brand} size={18} radius={5}/> : (tIsWork ? <Briefcase size={13} style={{ color: tAccent }}/> : <GraduationCap size={13} style={{ color: tAccent }}/>)}
+                          <span style={{ fontSize: '0.5625rem', color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t.period}</span>
+                        </div>
+                        <p style={{ fontSize: '0.8125rem', fontWeight: 700, color: C.text, letterSpacing: '-0.01em', lineHeight: 1.25, marginBottom: '3px' }}>{t.org}</p>
+                        <p style={{ fontSize: '0.6875rem', color: C.subtle, lineHeight: 1.3 }}>{t.role}</p>
+                      </button>
+                    );
+                  })}
                 </motion.div>
-              );
-            })}
-          </div>
+
+                {/* Detail panel */}
+                <AnimatePresence mode="wait">
+                  <motion.div key={selectedRole}
+                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}
+                    style={{ background: C.surface, border: `1px solid ${C.border}`, borderLeft: `2px solid ${accent}`, borderRadius: '14px', padding: '20px 24px' }}>
+
+                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '0.625rem', fontWeight: 600, color: accent, textTransform: 'uppercase', letterSpacing: '0.08em', background: `${accent}14`, padding: '2px 8px', borderRadius: '980px', display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+                        {isWork ? <Briefcase size={8}/> : <GraduationCap size={8}/>} {isWork ? 'Work' : 'Education'}
+                      </span>
+                      <span style={{ fontSize: '0.6875rem', color: C.subtle }}>{item.period}</span>
+                      <span style={{ fontSize: '0.6875rem', color: C.subtle }}>· {item.domain}</span>
+                    </div>
+
+                    <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, color: C.text, letterSpacing: '-0.01em', marginBottom: '2px' }}>{item.role}</h3>
+                    <p style={{ display: 'flex', alignItems: 'center', gap: '7px', fontSize: '0.8125rem', color: accent, fontWeight: 500, marginBottom: item.bullets.length > 0 ? '12px' : 0 }}>
+                      {item.brand && <Brand id={item.brand} size={16} radius={5}/>}
+                      {item.org} · {item.location}
+                    </p>
+
+                    {item.bullets.length > 0 && (
+                      <ul style={{ display: 'flex', flexDirection: 'column', gap: '6px', paddingTop: '12px', borderTop: `1px solid ${C.border}`, marginBottom: item.keyResult ? '12px' : 0 }}>
+                        {item.bullets.map((b, j) => (
+                          <li key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.8125rem', color: C.muted, lineHeight: 1.6 }}>
+                            <span style={{ color: accent, fontWeight: 700, flexShrink: 0, marginTop: '1px' }}>→</span>
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {item.keyResult && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingTop: '10px', borderTop: `1px dashed ${C.border}` }}>
+                        <span style={{ fontSize: '0.625rem', color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 500 }}>Key Result</span>
+                        <span style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.022em', lineHeight: 1, ...GE }}>{item.keyResult.value}</span>
+                        <span style={{ fontSize: '0.8125rem', color: C.muted }}>{item.keyResult.label}</span>
+                      </div>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              </>
+            );
+          })()}
         </div>
       </section>
 

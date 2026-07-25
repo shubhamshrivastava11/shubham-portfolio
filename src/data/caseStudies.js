@@ -293,7 +293,7 @@ export const caseStudies = [
     accentColor: '#4F46E5',
     metrics: [
       { value: '40+', label: 'Screens designed' },
-      { value: '10+', label: 'VoC interviews' },
+      { value: '25', label: 'VoC interviews' },
       { value: '87%', label: 'Gross margin target' },
       { value: '$12–15', label: 'Price per user / mo' },
     ],
@@ -305,12 +305,38 @@ export const caseStudies = [
       ],
       callout: 'In VoC interviews, every PM, consultant, and eng lead I talked to described re-explaining the same decision more than once in a single quarter — with no source of truth to point to.',
     },
+    voc: {
+      heading: '25 structured interviews, 5 hypotheses scored',
+      intro: "Before designing a single screen, I ran structured VoC interviews — 25 completed against a target of 22 — with PMs, engineers, and designers across enterprise, startup, and consultancy teams. Every conversation was scored on pain intensity, workaround quality, and willingness to pay, and mapped against five specific hypotheses rather than general impressions. Two of those hypotheses came back mixed, not confirmed — which shaped scope as much as the ones that landed clean.",
+      image: '/locus/locus-voc-dashboard.png',
+      imageAlt: 'Locus AI VoC research dashboard — 25 interviews, hypothesis validation, and signal score distribution',
+      stats: [
+        { value: '25', label: 'Interviews completed' },
+        { value: '12', label: 'ICP: PM / Designer' },
+        { value: '3.0', label: 'Avg signal score (1–5)' },
+        { value: '68%', label: 'Want early access' },
+      ],
+      hypotheses: [
+        { id: 'H1', label: 'Pain is real and frequent', result: 'confirmed', detail: '13 confirmed · 8 challenged · 4 open — strongest signal of the five' },
+        { id: 'H2', label: 'Existing workarounds are inadequate', result: 'confirmed', detail: '9 confirmed · 3 challenged · 13 open — pinned messages and Notion docs don\'t hold up without constant upkeep' },
+        { id: 'H3', label: 'Onboarding is a shared pain', result: 'mixed', detail: '4 confirmed · 10 challenged · 11 open — weakest signal of the five; descoped from MVP rather than forced in' },
+        { id: 'H4', label: 'Zero manual entry is non-negotiable', result: 'confirmed', detail: '10 confirmed · 0 challenged · 15 open — nobody pushed back on this one' },
+        { id: 'H5', label: 'Self-serve at $12/month is the right entry point', result: 'mixed', detail: '8 confirmed · 11 challenged · 6 open — pricing needs more testing before I\'d commit to it' },
+      ],
+      quotes: [
+        { quote: "By the time I find the Slack thread where we decided, the decision's already been re-litigated twice.", role: 'Senior PM, developer-tools company' },
+        { quote: "Six months later nobody remembers why we killed that pattern, so we rebuild it and kill it again.", role: 'Product Designer, fintech' },
+        { quote: "Every new engineer asks the same five questions, and every time it's a senior dev who stops to answer.", role: 'Engineer, AI SaaS startup' },
+        { quote: "Honestly, between Confluence and our program managers, we've mostly got this covered.", role: 'PM, enterprise networking company' },
+      ],
+      companies: ['Snowflake', 'Figma', 'Plaid', 'Cisco', 'Ford', 'TIAA Cref', 'eBay', 'Mistplay', 'ZS Associates'],
+    },
     approach: {
       heading: 'Designing the product before writing a line of backend code',
       steps: [
         {
           num: '01',
-          title: 'Validated the pain with 10+ VoC interviews',
+          title: 'Validated the pain with 25 structured VoC interviews',
           body: "Talked to PMs, consultants, and engineering leads about how they currently track decisions. The consistent finding: everyone already has the data, in Slack, Notion, and Gmail — what's missing is a layer that reads it passively and resurfaces it on demand, not another tool people have to remember to update.",
         },
         {
@@ -353,7 +379,7 @@ export const caseStudies = [
     results: {
       heading: 'Where the product stands',
       items: [
-        { before: 'Hypothesis only', after: '10+ VoC interviews validated', label: 'Problem validation' },
+        { before: 'Hypothesis only', after: '25 VoC interviews, 5 hypotheses scored', label: 'Problem validation' },
         { before: 'Concept sketch', after: '40+ hi-fi screens shipped', label: 'Product design' },
         { before: 'No pricing model', after: '87% margin target · break-even at 27–35 users', label: 'Business model' },
         { before: 'Design phase', after: 'Backend + MVP in active development', label: 'Current status' },

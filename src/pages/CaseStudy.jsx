@@ -38,8 +38,10 @@ export default function CaseStudy() {
   }
 
   const accent = cs.accentColor;
+  const hasVoc = Boolean(cs.voc);
   const hasGallery = Boolean(cs.gallery && cs.gallery.length);
-  const num = { problem: '01', approach: '02', built: '03', gallery: '04', results: hasGallery ? '05' : '04', learnings: hasGallery ? '06' : '05' };
+  const order = ['problem', hasVoc && 'voc', 'approach', 'built', hasGallery && 'gallery', 'results', 'learnings'].filter(Boolean);
+  const num = Object.fromEntries(order.map((key, i) => [key, String(i + 1).padStart(2, '0')]));
 
   return (
     <div style={{ background: C.bg, color: C.text, minHeight: '100vh' }}>
@@ -86,6 +88,65 @@ export default function CaseStudy() {
             <p style={{ fontSize: '0.9375rem', color: C.muted, lineHeight: 1.72, fontStyle: 'italic' }}>{cs.problem.callout}</p>
           </div>
         </motion.section>
+
+        {/* Voice of Customer */}
+        {hasVoc && (
+          <motion.section {...up(0.06)} style={{ marginBottom: '48px' }}>
+            <SLabel accent={accent} num={num.voc} label="Voice of Customer"/>
+            <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: C.text, letterSpacing: '-0.015em', marginBottom: '12px' }}>{cs.voc.heading}</h2>
+            <p style={{ fontSize: '0.9375rem', color: C.muted, lineHeight: 1.78, marginBottom: '20px' }}>{cs.voc.intro}</p>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3" style={{ marginBottom: '20px' }}>
+              {cs.voc.stats.map((s, i) => (
+                <div key={i} style={{ padding: '16px', borderRadius: '14px', textAlign: 'center', background: C.surface, border: `1px solid ${C.border}` }}>
+                  <p style={{ fontSize: '1.375rem', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1, marginBottom: '4px', ...G }}>{s.value}</p>
+                  <p style={{ fontSize: '0.625rem', color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{s.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ borderRadius: '14px', overflow: 'hidden', border: `1px solid ${C.border}`, marginBottom: '20px' }}>
+              <img src={cs.voc.image} alt={cs.voc.imageAlt} loading="lazy" style={{ width: '100%', display: 'block' }}/>
+            </div>
+
+            <div style={{ marginBottom: '20px' }}>
+              <p style={{ fontSize: '0.6875rem', fontWeight: 700, color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>Hypothesis validation</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {cs.voc.hypotheses.map((h, i) => {
+                  const resultColor = h.result === 'confirmed' ? '#047857' : h.result === 'mixed' ? '#B45309' : C.subtle;
+                  const resultLabel = h.result === 'confirmed' ? 'Confirmed' : h.result === 'mixed' ? 'Mixed signal' : 'Open';
+                  return (
+                    <div key={i} style={{ padding: '12px 16px', borderRadius: '12px', background: C.surface, border: `1px solid ${C.border}`, borderLeft: `3px solid ${resultColor}` }}>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '10px', marginBottom: '4px' }}>
+                        <p style={{ fontSize: '0.8125rem', fontWeight: 600, color: C.text }}>{h.id} · {h.label}</p>
+                        <span style={{ fontSize: '0.625rem', fontWeight: 700, color: resultColor, textTransform: 'uppercase', letterSpacing: '0.05em', flexShrink: 0 }}>{resultLabel}</span>
+                      </div>
+                      <p style={{ fontSize: '0.75rem', color: C.subtle }}>{h.detail}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-3" style={{ marginBottom: cs.voc.companies ? '20px' : 0 }}>
+              {cs.voc.quotes.map((q, i) => (
+                <div key={i} style={{ padding: '16px 18px', borderRadius: '12px', background: C.surface, border: `1px solid ${C.border}` }}>
+                  <p style={{ fontSize: '0.875rem', color: C.text, fontStyle: 'italic', lineHeight: 1.6, marginBottom: '8px' }}>"{q.quote}"</p>
+                  <p style={{ fontSize: '0.75rem', color: C.subtle }}>— {q.role}</p>
+                </div>
+              ))}
+            </div>
+
+            {cs.voc.companies && (
+              <div>
+                <p style={{ fontSize: '0.6875rem', color: C.subtle, marginBottom: '8px' }}>Practitioners interviewed from:</p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  {cs.voc.companies.map(co => <span key={co} className="pill-tag" style={{ fontSize: '0.75rem' }}>{co}</span>)}
+                </div>
+              </div>
+            )}
+          </motion.section>
+        )}
 
         {/* Approach */}
         <motion.section {...up(0.08)} style={{ marginBottom: '48px' }}>

@@ -284,8 +284,8 @@ const projects = [
     title: 'Locus AI',
     company: 'Founder · AI PM Bootcamp', period: '2026',
     heroValue: '3', heroLabel: 'tools unified — Slack, Notion, Gmail',
-    hook: "Teams make dozens of decisions a week scattered across Slack threads and Notion docs — then lose track of why a call was made or who owns the follow-up. Locus AI auto-captures decisions, action items, and blockers as your team communicates, and resurfaces them through a searchable Decision Log and a synthesized weekly Pulse digest every Monday. Core insight validated through 10+ VoC interviews; full product designed end-to-end in Figma, building toward MVP.",
-    scope: 'Solo founder · AI PM Bootcamp Cohort 9 · VoC interviews complete · 40+ screens designed in Figma · MVP in active development.',
+    hook: "Teams make dozens of decisions a week scattered across Slack threads and Notion docs — then lose track of why a call was made or who owns the follow-up. Locus AI auto-captures decisions, action items, and blockers as your team communicates, and resurfaces them through a searchable Decision Log and a synthesized weekly Pulse digest every Monday. Core insight validated through 25 VoC interviews scored against 5 hypotheses; full product designed end-to-end in Figma, building toward MVP.",
+    scope: 'Solo founder · AI PM Bootcamp Cohort 9 · 25 VoC interviews complete · 40+ screens designed in Figma · MVP in active development.',
     aiNote: 'Context-aware NLP classifier tags every Slack/Notion/Gmail message as a Decision, Action Item, or Blocker — each one cited back to its source thread.',
     metrics: [
       { value: '$12–15', label: 'Per user / month' },
@@ -336,7 +336,7 @@ const FILTER_TABS = ['All', 'Enterprise AI', '0→1', 'Consumer', 'AI-heavy'];
 
 const LOCUS_SPOTLIGHT_STATS = [
   { value: '40+',    label: 'Screens designed' },
-  { value: '10+',    label: 'VoC interviews' },
+  { value: '25',     label: 'VoC interviews' },
   { value: '87%',    label: 'Margin target' },
   { value: '$12–15', label: 'Per user / mo' },
 ];

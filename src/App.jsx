@@ -285,8 +285,8 @@ const projects = [
     title: 'Locus AI',
     company: 'Founder & Head of Product · AI PM Bootcamp', period: '2026',
     heroValue: '3', heroLabel: 'tools unified: Slack, Notion, Gmail',
-    hook: "Teams make dozens of decisions a week scattered across Slack threads and Notion docs, then lose track of why a call was made or who owns the follow-up. Locus AI auto-captures decisions, action items, and blockers as your team communicates, and resurfaces them through a searchable Decision Log and a synthesized weekly Pulse digest every Monday. Core insight validated through a 25-interview structured VoC study scored against 5 hypotheses (30+ customer interviews to date); full product designed end-to-end in Figma while leading a 15+ person team, building toward MVP.",
-    scope: 'Founder & Head of Product · leading a distributed team of 15+ · 25-interview VoC study scored (30+ customer interviews to date) · 40+ screens designed in Figma · MVP in active development.',
+    hook: "Teams make dozens of decisions a week scattered across Slack threads and Notion docs, then lose track of why a call was made or who owns the follow-up. Locus AI auto-captures decisions, action items, and blockers as your team communicates, and resurfaces them through a searchable Decision Log and a synthesized weekly Pulse digest every Monday. Core insight validated through a 25-interview structured VoC study scored against 5 hypotheses (30+ customer interviews to date); full product designed end-to-end in Figma while leading a 15+ person team, now live at locusaiapp.com.",
+    scope: 'Founder & Head of Product · leading a distributed team of 15+ · 25-interview VoC study scored (30+ customer interviews to date) · 40+ screens designed in Figma · live at locusaiapp.com.',
     aiNote: 'Context-aware NLP classifier tags every Slack/Notion/Gmail message as a Decision, Action Item, or Blocker, each one cited back to its source thread.',
     metrics: [
       { value: '$12–15', label: 'Per user / month' },
@@ -294,8 +294,9 @@ const projects = [
       { value: '87%',    label: 'Gross margin target' },
     ],
     tags: ['Claude API', 'FastAPI', 'Slack API', 'Notion API', 'RAG'],
+    url: 'https://locusaiapp.com',
     filters: ['0→1', 'AI-heavy', 'Consumer'],
-    badges: [{ label: '◇ 40+ Screens in Figma', color: '#7C3AED' }],
+    badges: [{ label: '● Website Live', color: '#047857' }, { label: '◇ 40+ Screens in Figma', color: '#7C3AED' }],
     designPreview: {
       hero: '/locus/locus-landing-hero.png',
       heroAlt: 'Locus AI landing page: hero and product dashboard',

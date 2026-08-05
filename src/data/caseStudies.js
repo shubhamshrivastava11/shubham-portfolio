@@ -382,7 +382,7 @@ export const caseStudies = [
         { before: 'Hypothesis only', after: '25 VoC interviews, 5 hypotheses scored', label: 'Problem validation' },
         { before: 'Concept sketch', after: '40+ hi-fi screens shipped', label: 'Product design' },
         { before: 'No pricing model', after: '87% margin target · break-even at 27–35 users', label: 'Business model' },
-        { before: 'Design phase', after: 'Backend + MVP in active development', label: 'Current status' },
+        { before: 'Design phase', after: 'Live at locusaiapp.com', label: 'Current status' },
       ],
     },
     learnings: [

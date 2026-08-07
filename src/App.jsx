@@ -612,7 +612,7 @@ export default function App() {
 
               {/* Bio */}
               <motion.p {...up(0.1)} style={{ fontSize: '0.9375rem', color: C.muted, maxWidth: '480px', marginBottom: '18px', lineHeight: 1.75 }}>
-                I ship AI-native products in regulated domains and build 0→1 bets that find product-market fit. From leading a $75M+ AI portfolio at J&J to founding HeyFurnish from scratch, I lead with discovery, move fast with data, and own outcomes end-to-end.
+                I ship AI-native products in regulated domains and build 0→1 bets that find product-market fit. From founding Locus AI and HeyFurnish from scratch to leading a $75M+ AI portfolio at J&J, I lead with discovery, move fast with data, and own outcomes end-to-end.
               </motion.p>
 
               {/* Where I'm best leveraged */}
@@ -676,7 +676,7 @@ export default function App() {
           {/* Stats strip — full width below both columns */}
           <motion.div {...up(0.2)} style={{ margin: '52px 0 0', padding: '28px 0 52px', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px', borderTop: `1px solid ${C.border}` }}>
             {[
-              { value: '$2.4M', label: 'Annual savings', sub: 'JAIDA · J&J' },
+              { value: '$75M+', label: 'AI portfolio led', sub: 'GTS & GFS, J&J' },
               { value: '75K',   label: 'App installs',   sub: 'from zero in 9 mo' },
               { value: '97%',   label: 'Accuracy',       sub: 'AML compliance' },
               { value: '7+',    label: 'Years',          sub: 'PM experience' },

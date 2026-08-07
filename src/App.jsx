@@ -679,7 +679,7 @@ export default function App() {
               { value: '$2.4M', label: 'Annual savings', sub: 'J&J AI pipeline' },
               { value: '75K',   label: 'App installs',   sub: 'from zero in 9 mo' },
               { value: '97%',   label: 'Accuracy',       sub: 'AML compliance' },
-              { value: '6+',    label: 'Years',          sub: 'PM experience' },
+              { value: '7+',    label: 'Years',          sub: 'PM experience' },
             ].map((s, i) => (
               <div key={i}>
                 <p style={{ fontSize: 'clamp(1.75rem,3.5vw,2.5rem)', fontWeight: 800, letterSpacing: '-0.035em', lineHeight: 1, ...GE }}>{s.value}</p>

@@ -16,6 +16,7 @@ export const caseStudies = [
     problem: {
       heading: 'A legacy SAP system holding 5 global finance teams hostage',
       body: [
+        'This pipeline is one of 6 enterprise AI and digital transformation initiatives I lead as part of a $75M+ product portfolio spanning Global Technology Solutions (GTS) and Global Financial Services (GFS) across North America, LATAM, EMEA, and APAC.',
         'J&J\'s Accounts Payable team was running invoice processing on a monolithic SAP system that hadn\'t been modernised in over a decade. Across 5 global regions, analysts were manually keying in invoice data, cross-checking PDFs, and chasing approvals over email, a process so fragile that a single point of failure could halt payment runs for an entire region.',
         'The cost wasn\'t just the $2.4M in wasted analyst time. It was the downstream compliance risk: wrong invoice data meant wrong GL entries, which meant audit findings. Finance leadership had flagged it as a top-3 operational risk two years running, but prior attempts to fix it had died in architecture debates.',
       ],
@@ -49,9 +50,9 @@ export const caseStudies = [
     built: {
       heading: 'What shipped',
       items: [
-        { label: 'NLP/RAG Invoice Extraction', desc: 'End-to-end pipeline extracting structured data from PDFs, emails, and EDI files. PII redaction baked into the pipeline before any data hits storage.' },
+        { label: 'JAIDA: NLP/RAG Invoice Extraction', desc: 'End-to-end pipeline extracting structured data from PDFs, emails, and EDI files. PII redaction baked into the pipeline before any data hits storage.' },
         { label: 'LLM Hallucination Guardrails', desc: 'Confidence scoring on every extracted field. Low-confidence fields flagged for human review rather than auto-populated, critical for a finance context where errors have real dollar consequences.' },
-        { label: 'AWS Cloud-Native Migration', desc: 'Full migration from SAP monolith to microservices on AWS. Event-driven architecture with SQS queues between extraction, validation, and approval stages.' },
+        { label: 'SAP S/4HANA → AWS Migration', desc: 'Full migration from SAP monolith to microservices on AWS, modernizing enterprise payment platforms across five regions. Event-driven architecture with SQS queues between extraction, validation, and approval stages.' },
         { label: 'AI Anomaly Detection in ERP', desc: 'ML model running on ERP transaction data to flag invoice patterns that historically preceded compliance findings. Cut downstream errors by 40%.' },
       ],
     },
@@ -62,6 +63,7 @@ export const caseStudies = [
         { before: '~6 days', after: '3.7 days', label: 'AP cycle time' },
         { before: '400+ hrs/mo manual', after: '~60 hrs/mo manual', label: 'Analyst time on data entry' },
         { before: 'Regional silos', after: 'Single unified platform', label: 'System architecture' },
+        { before: 'Manual, ad hoc', after: '+25% via IRIS', label: 'Supplier onboarding (parallel initiative, same portfolio)' },
       ],
     },
     learnings: [

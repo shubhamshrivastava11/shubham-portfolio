@@ -5,7 +5,7 @@ export const caseStudies = [
     company: 'Johnson & Johnson',
     period: 'Oct 2025 – Present',
     title: 'AI Invoice Pipeline & Cloud Migration',
-    hook: 'Turned a fragile SAP legacy system into a $2.4M-saving AI platform in under a year.',
+    hook: 'Turned a fragile SAP legacy system into JAIDA, a $2.4M-saving AI platform, in under a year.',
     accentColor: '#7C3AED',
     metrics: [
       { value: '$2.4M', label: 'Annual savings' },

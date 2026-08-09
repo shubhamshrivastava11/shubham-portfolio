@@ -483,6 +483,14 @@ const CERTIFICATIONS = [
 
 const TESTIMONIALS = [
   {
+    quote: "Shubham has a real command of the details that go into building a product like Locus AI. His technical depth is strong, but what stands out is that he never loses sight of the functional side too, he can look at the same problem as both an engineer and a product thinker. Beyond the build, Shubham consistently went above and beyond on go-to-market strategy and marketing the product, which isn't always where technical folks choose to spend their energy. He brings strong work ethic to everything he does, and he's genuinely a pleasure to work with.",
+    name: 'Geethanjali Muthu',
+    title: 'VP, Principal AI Product Manager · Payments, Money Movement & Fraud',
+    relationship: 'Worked together on the same team',
+    date: 'August 2026',
+    accent: '#047857',
+  },
+  {
     quote: "After collaborating closely with Shubham on a project, I must say, his exceptional skills and dedication truly stood out. Shubham consistently showed strong leadership qualities, skillfully coordinating tasks and ensuring we met our project milestones. His strategic approach and keen attention to detail were incredibly valuable to our team's success. Wishing him all the best in his future endeavors.",
     name: 'Deepa Palariya',
     title: 'Data Analyst, Magna International',

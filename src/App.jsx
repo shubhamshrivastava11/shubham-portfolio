@@ -753,6 +753,13 @@ export default function App() {
                     onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(124,58,237,0.3)'; }}>
                     View full case study <ArrowRight size={15}/>
                   </Link>
+                  <a href="https://locusaiapp.com" target="_blank" rel="noopener noreferrer"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(4,120,87,0.08)', color: C.emerald, border: '1px solid rgba(4,120,87,0.28)', padding: '11px 22px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 600, textDecoration: 'none', transition: 'transform 0.15s, border-color 0.15s' }}
+                    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = 'rgba(4,120,87,0.5)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.borderColor = 'rgba(4,120,87,0.28)'; }}>
+                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: C.emerald, flexShrink: 0 }}/>
+                    locusaiapp.com <ArrowRight size={15}/>
+                  </a>
                   <a href="#work"
                     style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: GHOST_BG, color: C.muted, border: `1px solid ${C.border}`, padding: '11px 22px', borderRadius: '980px', fontSize: '0.9375rem', fontWeight: 500, textDecoration: 'none', transition: 'color 0.15s, border-color 0.15s' }}
                     {...hoverGhost}>

@@ -281,22 +281,22 @@ const projects = [
   },
   {
     id: 'locus',
-    slug: 'locus', index: '06', tag: 'AI · Team Productivity',
+    slug: 'locus', index: '06', tag: 'AI · Organizational Memory',
     title: 'Locus AI',
-    company: 'Founder & Head of Product · AI PM Bootcamp', period: '2026',
-    heroValue: '3', heroLabel: 'tools unified: Slack, Notion, Gmail',
-    hook: "Teams make dozens of decisions a week scattered across Slack threads and Notion docs, then lose track of why a call was made or who owns the follow-up. Locus AI auto-captures decisions, action items, and blockers as your team communicates, and resurfaces them through a searchable Decision Log and a synthesized weekly Pulse digest every Monday. Core insight validated through a 25-interview structured VoC study scored against 5 hypotheses (30+ customer interviews to date); full product designed end-to-end in Figma while leading a 15+ person team, now live at locusaiapp.com.",
-    scope: 'Founder & Head of Product · leading a distributed team of 15+ · 25-interview VoC study scored (30+ customer interviews to date) · 40+ screens designed in Figma · live at locusaiapp.com.',
-    aiNote: 'Context-aware NLP classifier tags every Slack/Notion/Gmail message as a Decision, Action Item, or Blocker, each one cited back to its source thread.',
+    company: 'Founder & CEO · AI PM Bootcamp', period: '2026',
+    heroValue: '25', heroLabel: 'pilot users, MVP 01 live',
+    hook: "Enterprise AI doesn't just have a retrieval problem, it has a memory and context-continuity problem. Critical workplace context is fragmented across conversations, emails, documents, teams, tools, and time. Locus AI is a persistent, permission-aware organizational memory layer for both people and AI agents. MVP 01 is live across Slack, Gmail, and Notion, with grounded retrieval, source citations, and a Memory Explorer, now running in controlled early-access pilots with 25 users. MVP 02, Memory Intelligence, is in development to track how organizational context evolves: freshness, supersession, conflict detection, and provenance. Validated through 30+ customer conversations, a 40+ sign-up waitlist, and full product designed end-to-end in Figma while leading a 15+ person team.",
+    scope: 'Founder & CEO · leading a distributed team of 15+ · 30+ customer conversations · 25 pilot users onboarded · 40+ waitlist sign-ups · 40+ screens designed in Figma · live at locusaiapp.com.',
+    aiNote: 'Grounded retrieval over Canonical Memory Objects, every answer traced through a Memory → Citation → View Original trust flow back to its source in Slack, Gmail, or Notion.',
     metrics: [
-      { value: '$12–15', label: 'Per user / month' },
-      { value: '4M+',    label: 'Addressable professionals' },
-      { value: '87%',    label: 'Gross margin target' },
+      { value: '30+', label: 'Customer conversations' },
+      { value: '25',  label: 'Pilot users onboarded' },
+      { value: '40+', label: 'Waitlist sign-ups' },
     ],
-    tags: ['Claude API', 'FastAPI', 'Slack API', 'Notion API', 'RAG'],
+    tags: ['Claude API', 'MCP', 'FastAPI', 'Slack API', 'Notion API', 'RAG'],
     url: 'https://locusaiapp.com',
     filters: ['0→1', 'AI-heavy', 'Consumer'],
-    badges: [{ label: '● Website Live', color: '#047857' }, { label: '◇ 40+ Screens in Figma', color: '#7C3AED' }],
+    badges: [{ label: '● MVP 01 Live · Early-Access Pilots', color: '#047857' }, { label: '◇ 40+ Screens in Figma', color: '#7C3AED' }],
     designPreview: {
       hero: '/locus/locus-landing-hero.png',
       heroAlt: 'Locus AI landing page: hero and product dashboard',
@@ -337,21 +337,21 @@ const HIGHLIGHTS = [
 const FILTER_TABS = ['All', 'Enterprise AI', '0→1', 'Consumer', 'AI-heavy'];
 
 const LOCUS_SPOTLIGHT_STATS = [
-  { value: '40+',    label: 'Screens designed' },
-  { value: '25',     label: 'VoC interviews' },
-  { value: '87%',    label: 'Margin target' },
-  { value: '$12–15', label: 'Per user / mo' },
+  { value: '25',  label: 'Pilot users onboarded' },
+  { value: '30+', label: 'Customer conversations' },
+  { value: '40+', label: 'Waitlist sign-ups' },
+  { value: '40+', label: 'Screens designed' },
 ];
 
 /* ── Experience & education ── */
 const timeline = [
-  { type: 'work', period: '2026 – Present', role: 'Founder & Head of Product',
-    org: 'Locus AI', location: 'Remote', domain: 'AI · Team Productivity', accent: '#84CC16', brand: 'locus',
+  { type: 'work', period: '2026 – Present', role: 'Founder & CEO',
+    org: 'Locus AI', location: 'Remote', domain: 'AI · Organizational Memory', accent: '#84CC16', brand: 'locus',
     keyResult: { value: '15+', label: 'Team members led across 5 disciplines' },
     bullets: [
-      'Lead a globally distributed team of 15+ across backend engineering, frontend engineering, data science, UI/UX, and product, building Locus AI to automate repetitive coordination work across tools and time zones',
-      'Own product strategy, roadmap execution, and GTM experimentation; personally designed 40+ high-fidelity screens end-to-end in Figma before scoping engineering',
-      'Conducted 30+ customer interviews to date, including a structured 25-interview study scored against 5 hypotheses, to validate pain points, refine product direction, and shape the MVP',
+      'Lead a globally distributed team of 15+ across backend engineering, frontend engineering, data science, UI/UX, and product, building a persistent, permission-aware organizational memory layer for people and AI agents',
+      'Shipped MVP 01 live across Slack, Gmail, and Notion with grounded retrieval and source citations, now running in controlled early-access pilots with 25 users; MVP 02 (Memory Intelligence) in development',
+      'Conducted 30+ customer conversations, grew a 40+ sign-up early-access waitlist, and personally designed 40+ high-fidelity screens end-to-end in Figma before scoping engineering',
     ]},
   { type: 'work', period: '2025 – Present', role: 'Founder & Product Lead',
     org: 'HeyFurnish', location: 'Remote', domain: 'AI · Home & Lifestyle', accent: '#0F766E', brand: 'heyfurnish',
@@ -738,10 +738,10 @@ export default function App() {
               {/* ── LEFT: story ── */}
               <div style={{ flex: '1 1 380px' }}>
                 <h2 style={{ fontSize: 'clamp(1.75rem,3.4vw,2.75rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, color: C.text, marginBottom: '16px' }}>
-                  Never lose a <span style={G}>team decision</span> again.
+                  The <span style={G}>memory layer</span> for intelligent work.
                 </h2>
                 <p style={{ fontSize: '0.9375rem', color: C.muted, lineHeight: 1.75, marginBottom: '22px', maxWidth: '480px' }}>
-                  Locus AI auto-captures decisions, action items, and blockers from Slack, Notion, and Gmail, resurfacing them through a searchable Decision Log and a weekly Pulse digest. I lead a distributed team of 15+ across engineering, data science, and design, own product strategy and GTM, and personally designed 40+ screens end-to-end in Figma before scoping engineering.
+                  Locus AI is a persistent, permission-aware organizational memory layer, live across Slack, Gmail, and Notion, that grounds every answer in a source citation, running in controlled early-access pilots with 25 users. As founder & CEO, I lead a distributed team of 15+ across engineering, data science, and design, own product strategy and GTM, and personally designed 40+ screens end-to-end in Figma before scoping engineering.
                 </p>
 
                 {/* Stat row */}

@@ -483,6 +483,15 @@ const CERTIFICATIONS = [
 
 const TESTIMONIALS = [
   {
+    quote: "I watched Shubham build Locus AI, an MCP-native platform that turns scattered workplace context into organizational memory, from an early idea into a fully working AI product, with real founder-level ownership throughout. He led a cross-functional team of 15+ across product, design, and engineering, placed 2nd in Cohort 9 of the AI PM Accelerator, and is now in early conversations with investors. He has a genuine entrepreneurial mindset and the ability to execute. Any team would be fortunate to have him.",
+    name: 'Dr. Nancy Li',
+    title: 'AI Product Manager Coach · Forbes · Award-winning Director of Product · 100,000+ YouTube subscribers',
+    relationship: "Was Shubham's mentor",
+    date: 'August 2026',
+    accent: C.gold,
+    featured: true,
+  },
+  {
     quote: "Shubham has a real command of the details that go into building a product like Locus AI. His technical depth is strong, but what stands out is that he never loses sight of the functional side too, he can look at the same problem as both an engineer and a product thinker. Beyond the build, Shubham consistently went above and beyond on go-to-market strategy and marketing the product, which isn't always where technical folks choose to spend their energy. He brings strong work ethic to everything he does, and he's genuinely a pleasure to work with.",
     name: 'Geethanjali Muthu',
     title: 'VP, Principal AI Product Manager · Payments, Money Movement & Fraud',
@@ -1187,9 +1196,33 @@ export default function App() {
 
           <div className="grid md:grid-cols-2 gap-3">
             {TESTIMONIALS.map((t, i) => (
-              <motion.div key={i} {...up(i * 0.08)} className="glass-card" style={{ padding: '24px 26px', display: 'flex', flexDirection: 'column' }}>
-                <Quote size={20} style={{ color: t.accent, opacity: 0.5, marginBottom: '10px', flexShrink: 0 }} fill={t.accent} strokeWidth={0}/>
-                <p style={{ fontSize: '0.9375rem', color: C.text, lineHeight: 1.7, fontStyle: 'italic', marginBottom: '20px', flex: 1 }}>
+              <motion.div
+                key={i}
+                {...up(i * 0.08)}
+                className={`glass-card ${t.featured ? 'md:col-span-2' : ''}`}
+                style={{
+                  padding: '24px 26px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  ...(t.featured && {
+                    background: `linear-gradient(135deg, ${t.accent}14 0%, ${C.surface} 60%)`,
+                    border: `1px solid ${t.accent}55`,
+                    boxShadow: `0 0 0 1px ${t.accent}22, 0 12px 32px ${t.accent}1F`,
+                  }),
+                }}
+              >
+                {t.featured && (
+                  <span style={{
+                    alignSelf: 'flex-start',
+                    fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+                    color: t.accent, background: `${t.accent}1A`, border: `1px solid ${t.accent}40`,
+                    borderRadius: '999px', padding: '4px 10px', marginBottom: '14px',
+                  }}>
+                    ★ Featured · Locus AI Mentor
+                  </span>
+                )}
+                <Quote size={t.featured ? 24 : 20} style={{ color: t.accent, opacity: 0.5, marginBottom: '10px', flexShrink: 0 }} fill={t.accent} strokeWidth={0}/>
+                <p style={{ fontSize: t.featured ? '1.0625rem' : '0.9375rem', color: C.text, lineHeight: 1.7, fontStyle: 'italic', marginBottom: '20px', flex: 1 }}>
                   "{t.quote}"
                 </p>
                 <div className="divider" style={{ marginBottom: '16px' }}/>

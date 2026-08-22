@@ -308,8 +308,8 @@ export const caseStudies = [
       callout: 'Across 30+ customer conversations and a structured 25-interview VoC study, the pattern held everywhere: people don’t lack information, they lack a persistent, trustworthy record of how that information evolved.',
     },
     voc: {
-      heading: '25 structured interviews, 5 hypotheses scored',
-      intro: "Before designing a single screen, I ran structured VoC interviews (25 completed against a target of 22) with PMs, engineers, and designers across enterprise, startup, and consultancy teams, scored on pain intensity, workaround quality, and willingness to pay against five specific hypotheses. This early research, focused on how teams lose track of decisions, was the seed that grew into Locus AI’s broader organizational-memory thesis: 30+ follow-on customer conversations confirmed the same root cause shows up well beyond decisions alone.",
+      heading: '25 structured interviews, 4 hypotheses scored',
+      intro: "Before designing a single screen, I ran structured VoC interviews (25 completed against a target of 22) with PMs, engineers, and designers across enterprise, startup, and consultancy teams, scored on pain intensity, workaround quality, and willingness to pay against four specific hypotheses. This early research, focused on how teams lose track of decisions, was the seed that grew into Locus AI’s broader organizational-memory thesis: 30+ follow-on customer conversations confirmed the same root cause shows up well beyond decisions alone.",
       image: '/locus/locus-voc-dashboard.png',
       imageAlt: 'Locus AI VoC research dashboard: 25 interviews, hypothesis validation, and signal score distribution',
       stats: [
@@ -338,7 +338,7 @@ export const caseStudies = [
         {
           num: '01',
           title: 'Validated the pain with 25 structured VoC interviews',
-          body: "Talked to PMs, consultants, and engineering leads about how they currently track decisions. The consistent finding: everyone already has the data, in Slack, Notion, and Gmail. What's missing is a layer that reads it passively and resurfaces it on demand, not another tool people have to remember to update.",
+          body: "Talked to PMs, consultants, and engineering leads about how they currently track decisions. The consistent finding: everyone already has the data, in Slack, Gmail, and Notion. What's missing is a layer that reads it passively and resurfaces it on demand, not another tool people have to remember to update.",
         },
         {
           num: '02',
@@ -369,7 +369,7 @@ export const caseStudies = [
     },
     galleryIntro: 'A sample of the 40+ screens I designed end-to-end in Figma during the MVP 01 design phase, from first-touch marketing to the core product surface.',
     gallery: [
-      { src: '/locus/locus-landing-hero.png', alt: 'Locus AI landing page', title: 'Landing page', caption: 'The early hero design: value prop paired with a live dashboard preview, ahead of the current memory-layer positioning.' },
+      { src: '/locus/locus-landing-hero.png', alt: 'Locus AI landing page', title: 'Landing page', caption: 'An earlier hero design, from before the product repositioned around the memory-layer thesis: value prop paired with a live dashboard preview.' },
       { src: '/locus/locus-welcome.png', alt: 'Locus AI welcome and sign-in screen', title: 'Welcome / sign-in', caption: 'Google OAuth sign-in, the lowest-friction entry point for a tool that needs to feel trustworthy on day one.' },
       { src: '/locus/locus-onboarding.png', alt: 'Locus AI onboarding flow', title: 'Guided onboarding', caption: 'Step 1 of 3: connect Slack, Gmail, and Notion as read-only sources. No exports, no copy-paste, no new workflows.' },
       { src: '/locus/locus-dashboard.png', alt: 'Locus AI dashboard', title: 'Dashboard', caption: 'The daily home screen: organizational context at a glance, plus natural-language search across everything captured.' },
@@ -383,7 +383,7 @@ export const caseStudies = [
         { before: 'Hypothesis only', after: '30+ customer conversations · 25-interview VoC study scored', label: 'Problem validation' },
         { before: 'Concept sketch', after: '40+ hi-fi screens shipped', label: 'Product design' },
         { before: 'Design phase', after: 'MVP 01 live · 25 pilot users onboarded · 40+ waitlist', label: 'Current status' },
-        { before: 'Retrieval only', after: 'MVP 02, Memory Intelligence, in development', label: 'What’s next' },
+        { before: 'MVP 01 shipped', after: 'MVP 02 (Memory Intelligence) scoped from pilot data', label: 'Roadmap' },
       ],
     },
     learnings: [

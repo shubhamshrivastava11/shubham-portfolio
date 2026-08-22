@@ -56,6 +56,7 @@ const BRANDS = {
   tableau:        { mono: 'TB',  color: '#E97627', name: 'Tableau' },
   powerbi:        { mono: 'PBI', color: '#F2C811', name: 'Power BI' },
   slack:          { mono: 'SL',  color: '#4A154B', name: 'Slack' },
+  gmail:          { mono: 'GM',  color: '#EA4335', name: 'Gmail' },
   jnj:            { logo: '/logos/jnj.svg', wordmark: true, name: 'Johnson & Johnson' },
   deloitte:       { logo: '/logos/deloitte.svg', wordmark: true, name: 'Deloitte' },
   pmi:            { mono: 'PMI', color: '#6E217A', name: 'Project Management Institute' },
@@ -287,13 +288,13 @@ const projects = [
     heroValue: '25', heroLabel: 'pilot users, MVP 01 live',
     hook: "Enterprise AI doesn't just have a retrieval problem, it has a memory and context-continuity problem. Critical workplace context is fragmented across conversations, emails, documents, teams, tools, and time. Locus AI is a persistent, permission-aware organizational memory layer for both people and AI agents. MVP 01 is live across Slack, Gmail, and Notion, with grounded retrieval, source citations, and a Memory Explorer, now running in controlled early-access pilots with 25 users. MVP 02, Memory Intelligence, is in development to track how organizational context evolves: freshness, supersession, conflict detection, and provenance. Validated through 30+ customer conversations, a 40+ sign-up waitlist, and full product designed end-to-end in Figma while leading a 15+ person team.",
     scope: 'Founder & CEO · leading a distributed team of 15+ · 30+ customer conversations · 25 pilot users onboarded · 40+ waitlist sign-ups · 40+ screens designed in Figma · live at locusaiapp.com.',
-    aiNote: 'Grounded retrieval over Canonical Memory Objects, every answer traced through a Memory → Citation → View Original trust flow back to its source in Slack, Gmail, or Notion.',
+    aiNote: 'Grounded retrieval with source citations, every answer traced through a Memory → Citation → View Original trust flow back to its source in Slack, Gmail, or Notion. MVP 02 adds Canonical Memory Objects to track how that memory changes over time.',
     metrics: [
       { value: '30+', label: 'Customer conversations' },
       { value: '25',  label: 'Pilot users onboarded' },
       { value: '40+', label: 'Waitlist sign-ups' },
     ],
-    tags: ['Claude API', 'MCP', 'FastAPI', 'Slack API', 'Notion API', 'RAG'],
+    tags: ['Claude API', 'MCP', 'FastAPI', 'Slack API', 'Gmail API', 'Notion API', 'RAG'],
     url: 'https://locusaiapp.com',
     filters: ['0→1', 'AI-heavy', 'Consumer'],
     badges: [{ label: '● MVP 01 Live · Early-Access Pilots', color: '#047857' }, { label: '◇ 40+ Screens in Figma', color: '#7C3AED' }],
@@ -444,7 +445,7 @@ const SKILL_BRAND = {
 /* Same idea for project tech tags */
 const TAG_BRAND = {
   AWS: 'aws', 'React Native': 'react', 'Python ML': 'python', Python: 'python',
-  'Claude API': 'claude', FastAPI: 'fastapi', 'Slack API': 'slack', 'Notion API': 'notion',
+  'Claude API': 'claude', FastAPI: 'fastapi', 'Slack API': 'slack', 'Notion API': 'notion', 'Gmail API': 'gmail',
 };
 
 const skills = [
@@ -793,7 +794,7 @@ export default function App() {
                     {LOCUS_MVPS.map((mvp, i) => {
                       const activeTab = locusTab === i;
                       return (
-                        <button key={mvp.key} onClick={() => setLocusTab(i)}
+                        <button key={mvp.key} onClick={() => setLocusTab(i)} aria-pressed={activeTab} type="button"
                           style={{
                             display: 'inline-flex', alignItems: 'center', gap: '7px',
                             fontSize: '0.6875rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em',

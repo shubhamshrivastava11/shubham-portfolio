@@ -302,8 +302,8 @@ const projects = [
       heroAlt: 'Locus AI landing page: hero and product dashboard',
       thumbs: [
         { src: '/locus/locus-dashboard.png', alt: 'Dashboard screen' },
-        { src: '/locus/locus-decision-log.png', alt: 'Decision Log screen' },
-        { src: '/locus/locus-pulse.png', alt: 'Weekly Pulse digest screen' },
+        { src: '/locus/locus-decision-log.png', alt: 'Memory Explorer screen' },
+        { src: '/locus/locus-pulse.png', alt: 'Team Pulse screen' },
         { src: '/locus/locus-search-results.png', alt: 'Search results screen' },
       ],
     },
@@ -740,9 +740,25 @@ export default function App() {
                 <h2 style={{ fontSize: 'clamp(1.75rem,3.4vw,2.75rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, color: C.text, marginBottom: '16px' }}>
                   The <span style={G}>memory layer</span> for intelligent work.
                 </h2>
-                <p style={{ fontSize: '0.9375rem', color: C.muted, lineHeight: 1.75, marginBottom: '22px', maxWidth: '480px' }}>
-                  Locus AI is a persistent, permission-aware organizational memory layer, live across Slack, Gmail, and Notion, that grounds every answer in a source citation, running in controlled early-access pilots with 25 users. As founder & CEO, I lead a distributed team of 15+ across engineering, data science, and design, own product strategy and GTM, and personally designed 40+ screens end-to-end in Figma before scoping engineering.
+                <p style={{ fontSize: '0.9375rem', color: C.muted, lineHeight: 1.75, marginBottom: '20px', maxWidth: '480px' }}>
+                  Locus AI is a persistent, permission-aware organizational memory layer for both people and AI agents. As founder & CEO, I lead a distributed team of 15+ across engineering, data science, and design, own product strategy and GTM, and personally designed 40+ screens end-to-end in Figma before scoping engineering.
                 </p>
+
+                {/* MVP 01 / MVP 02 breakdown */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '22px' }}>
+                  <div style={{ flex: '1 1 220px', padding: '14px 16px', borderRadius: '12px', background: 'rgba(4,120,87,0.06)', border: '1px solid rgba(4,120,87,0.2)' }}>
+                    <p style={{ fontSize: '0.6875rem', fontWeight: 700, color: C.emerald, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>● MVP 01 · Live</p>
+                    <p style={{ fontSize: '0.8125rem', color: C.muted, lineHeight: 1.6 }}>
+                      Slack, Gmail &amp; Notion memory · Memory Explorer · Team Pulse · <strong style={{ color: C.text, fontWeight: 600 }}>Loci</strong> (product-facing assistant) · grounded citations back to source
+                    </p>
+                  </div>
+                  <div style={{ flex: '1 1 220px', padding: '14px 16px', borderRadius: '12px', background: 'rgba(124,58,237,0.06)', border: '1px solid rgba(124,58,237,0.2)' }}>
+                    <p style={{ fontSize: '0.6875rem', fontWeight: 700, color: C.purple, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>◐ MVP 02 · In development</p>
+                    <p style={{ fontSize: '0.8125rem', color: C.muted, lineHeight: 1.6 }}>
+                      Memory Intelligence: freshness, supersession, conflict detection &amp; provenance across Canonical Memory Objects
+                    </p>
+                  </div>
+                </div>
 
                 {/* Stat row */}
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '26px', marginBottom: '26px' }}>
@@ -785,12 +801,12 @@ export default function App() {
                     <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#FBBF24' }}/>
                     <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#34D399' }}/>
                   </div>
-                  <img src="/locus/locus-dashboard.png" alt="Locus dashboard: decisions, action items, and blockers at a glance" style={{ width: '100%', display: 'block' }}/>
+                  <img src="/locus/locus-dashboard.png" alt="Locus AI dashboard: organizational memory at a glance" style={{ width: '100%', display: 'block' }}/>
                 </div>
                 <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
                   {[
-                    { src: '/locus/locus-decision-log.png', alt: 'Decision Log screen' },
-                    { src: '/locus/locus-pulse.png', alt: 'Weekly Pulse digest screen' },
+                    { src: '/locus/locus-decision-log.png', alt: 'Memory Explorer screen' },
+                    { src: '/locus/locus-pulse.png', alt: 'Team Pulse screen' },
                     { src: '/locus/locus-search-results.png', alt: 'Search results screen' },
                   ].map((t, ti) => (
                     <Link key={ti} to="/case/locus" style={{ flex: 1, display: 'block' }}>

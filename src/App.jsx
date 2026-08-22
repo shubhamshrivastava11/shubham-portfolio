@@ -608,16 +608,13 @@ export default function App() {
       {/* ── NAV ── */}
       <header className="nav-blur" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50 }}>
         <div style={{ maxWidth: '1040px', margin: '0 auto', padding: '0 28px', height: '52px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ fontSize: '1.0625rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
-            Shubham<span style={{ ...G, fontWeight: 800 }}>.</span>
-          </span>
           <nav className="hidden md:flex items-center gap-8">
             {[['Locus AI', '#locus'], ['Work', '#work'], ['Experience', '#experience'], ['Skills', '#skills'], ['Testimonials', '#testimonials']].map(([l, h]) => (
               <a key={l} href={h} className="nav-link" style={{ fontSize: '0.875rem', fontWeight: 500 }}>{l}</a>
             ))}
           </nav>
           <a href="mailto:shrivastavashubham213@gmail.com"
-            style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff', background: GRAD, padding: '8px 20px', borderRadius: '980px', boxShadow: '0 4px 20px rgba(124,58,237,0.35)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
+            style={{ marginLeft: 'auto', fontSize: '0.875rem', fontWeight: 600, color: '#fff', background: GRAD, padding: '8px 20px', borderRadius: '980px', boxShadow: '0 4px 20px rgba(124,58,237,0.35)', textDecoration: 'none', transition: 'transform 0.15s, box-shadow 0.15s' }}
             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 24px rgba(124,58,237,0.55)'; }}
             onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(124,58,237,0.35)'; }}>
             Hire Me

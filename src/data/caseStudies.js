@@ -367,6 +367,24 @@ export const caseStudies = [
         { label: 'Grounded retrieval & trust flow', desc: 'Every answer is supported by source evidence: Memory → Citation → View Original carries a user from a retrieved answer straight back to the original Slack, Gmail, or Notion source for verification.' },
       ],
     },
+    roadmap: [
+      {
+        stage: 'Foundation', title: 'Problem validated, product designed', period: '2026 H1', status: 'done',
+        desc: '25 structured VoC interviews scored against 4 hypotheses; read-only, zero-workflow-change integration model chosen; 40+ screens designed end-to-end in Figma before scoping engineering.',
+      },
+      {
+        stage: 'MVP 01', title: 'Organizational memory — live', period: '2026', status: 'live',
+        desc: 'Live across Slack, Gmail & Notion. Memory Explorer, Team Pulse, and Loci shipped to 25 pilot users in controlled early-access pilots, with grounded retrieval and source citations. Core question: what is relevant, and where did it come from?',
+      },
+      {
+        stage: 'MVP 02', title: 'Memory Intelligence — in development', period: '2026 – 2027', status: 'active',
+        desc: 'Canonical Memory Objects, freshness, supersession, conflict detection, and provenance, scoped directly from MVP 01 pilot usage and 30+ post-launch customer conversations. Core question: what changed, what is current, why, and what evidence supports it?',
+      },
+      {
+        stage: 'Vision', title: 'Enterprise memory infrastructure', period: 'Beyond', status: 'planned',
+        desc: 'Expand from high-context Product, Engineering, and Ops teams to an organization-wide memory layer, distributed through product interfaces, APIs, and agent-access patterns like MCP, serving both people and AI agents.',
+      },
+    ],
     galleryIntro: 'A sample of the 40+ screens I designed end-to-end in Figma during the MVP 01 design phase, from first-touch marketing to the core product surface.',
     gallery: [
       { src: '/locus/locus-landing-hero.png', alt: 'Locus AI landing page', title: 'Landing page', caption: 'An earlier hero design, from before the product repositioned around the memory-layer thesis: value prop paired with a live dashboard preview.' },

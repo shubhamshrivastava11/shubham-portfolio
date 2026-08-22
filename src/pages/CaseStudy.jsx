@@ -22,6 +22,13 @@ const up = (delay = 0) => ({
   transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] },
 });
 
+const ROADMAP_STATUS = {
+  done:    { label: 'Shipped',         color: '#0F766E' },
+  live:    { label: 'Live',            color: '#047857' },
+  active:  { label: 'In Development',  color: '#7C3AED' },
+  planned: { label: 'Planned',         color: '#6B6775' },
+};
+
 export default function CaseStudy() {
   const { slug } = useParams();
   const cs = caseStudies.find(c => c.slug === slug);
@@ -39,8 +46,9 @@ export default function CaseStudy() {
 
   const accent = cs.accentColor;
   const hasVoc = Boolean(cs.voc);
+  const hasRoadmap = Boolean(cs.roadmap && cs.roadmap.length);
   const hasGallery = Boolean(cs.gallery && cs.gallery.length);
-  const order = ['problem', hasVoc && 'voc', 'approach', 'built', hasGallery && 'gallery', 'results', 'learnings'].filter(Boolean);
+  const order = ['problem', hasVoc && 'voc', 'approach', 'built', hasRoadmap && 'roadmap', hasGallery && 'gallery', 'results', 'learnings'].filter(Boolean);
   const num = Object.fromEntries(order.map((key, i) => [key, String(i + 1).padStart(2, '0')]));
 
   return (
@@ -183,6 +191,48 @@ export default function CaseStudy() {
             ))}
           </div>
         </motion.section>
+
+        {/* Roadmap — scroll-triggered, staggered timeline */}
+        {hasRoadmap && (
+          <motion.section {...up(0.105)} style={{ marginBottom: '48px' }}>
+            <SLabel accent={accent} num={num.roadmap} label="Roadmap"/>
+            <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: C.text, letterSpacing: '-0.015em', marginBottom: '24px' }}>Where it's headed</h2>
+            <div style={{ position: 'relative', paddingLeft: '28px' }}>
+              <div style={{ position: 'absolute', left: '7px', top: '6px', bottom: '6px', width: '2px', background: 'rgba(20,18,38,0.10)' }}/>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+                {cs.roadmap.map((r, i) => {
+                  const meta = ROADMAP_STATUS[r.status];
+                  return (
+                    <motion.div key={i}
+                      initial={{ opacity: 0, x: -12 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: '-60px' }}
+                      transition={{ duration: 0.45, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                      style={{ position: 'relative' }}>
+                      <div style={{ position: 'absolute', left: '-28px', top: '2px', width: '16px', height: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        {r.status === 'live' ? (
+                          <span className="relative flex h-2.5 w-2.5">
+                            <span className="absolute inline-flex h-full w-full rounded-full ping-slow" style={{ background: meta.color, opacity: 0.6 }}/>
+                            <span className="relative inline-flex h-2.5 w-2.5 rounded-full" style={{ background: meta.color }}/>
+                          </span>
+                        ) : (
+                          <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: r.status === 'planned' ? C.bg : meta.color, border: `2px solid ${meta.color}` }}/>
+                        )}
+                      </div>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+                        <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: meta.color, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{r.stage}</span>
+                        <span style={{ fontSize: '0.625rem', fontWeight: 700, color: meta.color, background: `${meta.color}14`, border: `1px solid ${meta.color}30`, borderRadius: '980px', padding: '2px 9px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{meta.label}</span>
+                        <span style={{ fontSize: '0.75rem', color: C.subtle }}>{r.period}</span>
+                      </div>
+                      <p style={{ fontSize: '0.9375rem', fontWeight: 600, color: C.text, marginBottom: '4px' }}>{r.title}</p>
+                      <p style={{ fontSize: '0.875rem', color: C.muted, lineHeight: 1.65 }}>{r.desc}</p>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.section>
+        )}
 
         {/* Product Design Gallery */}
         {hasGallery && (

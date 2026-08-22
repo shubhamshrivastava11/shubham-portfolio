@@ -330,6 +330,7 @@ const projects = [
 /* ── Work section structure ── */
 const HIGHLIGHTS = [
   { label: '40+ screens designed end-to-end in Figma for Locus AI, the flagship product I lead a 15+ person team to build', anchor: '#locus' },
+  { label: '$75M+ AI & digital transformation portfolio managed across 6 enterprise initiatives spanning GTS & GFS (J&J)', projectId: 'jj-ai-invoice' },
   { label: '$2.4M annual savings: JAIDA AI Invoice Pipeline & Cloud Migration (J&J)', projectId: 'jj-ai-invoice' },
   { label: '$50M+ transaction volume on day one: AML Compliance Engine (Bank of China)', projectId: 'cygnus-aml' },
   { label: '0 → 75K installs in 9 months: Consumer Mobile App (Digital iTechnology)', projectId: 'digital-i-mobile' },

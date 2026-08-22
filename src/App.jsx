@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Mail, Briefcase, GraduationCap, Award, ArrowRight, Download, MapPin, Star, Pin, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -343,6 +343,20 @@ const LOCUS_SPOTLIGHT_STATS = [
   { value: '40+', label: 'Screens designed' },
 ];
 
+/* MVP 01 / MVP 02 — interactive breakdown, driven by the spotlight tab toggle */
+const LOCUS_MVPS = [
+  {
+    key: 'mvp01', label: 'MVP 01 · Live', color: '#047857', live: true,
+    body: (
+      <>Slack, Gmail &amp; Notion memory · Memory Explorer · Team Pulse · <strong style={{ color: '#14121F', fontWeight: 600 }}>Loci</strong> (product-facing assistant) · grounded citations back to source</>
+    ),
+  },
+  {
+    key: 'mvp02', label: 'MVP 02 · In development', color: '#7C3AED', live: false,
+    body: 'Memory Intelligence: freshness, supersession, conflict detection & provenance across Canonical Memory Objects',
+  },
+];
+
 /* ── Experience & education ── */
 const timeline = [
   { type: 'work', period: '2026 – Present', role: 'Founder & CEO',
@@ -531,6 +545,32 @@ const hoverGhost = {
   onMouseLeave: e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; e.currentTarget.style.background = GHOST_BG; e.currentTarget.style.transform = ''; },
 };
 
+/* ── Count-up number: animates 0 → target once its parent scrolls into view ── */
+function CountUp({ value, duration = 1.1 }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-40px' });
+  const match = /^([\d.]+)(.*)$/.exec(value);
+  const [display, setDisplay] = useState(match ? '0' : value);
+
+  useEffect(() => {
+    if (!inView || !match) return;
+    const target = parseFloat(match[1]);
+    const decimals = match[1].includes('.') ? 1 : 0;
+    let raf, start;
+    const step = ts => {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / (duration * 1000), 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplay((target * eased).toFixed(decimals));
+      if (progress < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [inView]);
+
+  return <span ref={ref}>{display}{match ? match[2] : ''}</span>;
+}
+
 /* ── Section header ── */
 const SH = ({ eyebrow, title }) => (
   <div style={{ marginBottom: '36px' }}>
@@ -548,9 +588,15 @@ export default function App() {
   const workDeckRef = useRef(null);
   const expDeckRef = useRef(null);
   const [achIdx, setAchIdx] = useState(0);
+  const [locusTab, setLocusTab] = useState(0);
 
   useEffect(() => {
     const t = setInterval(() => setAchIdx(i => (i + 1) % ACHIEVEMENTS.length), 3000);
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
+    const t = setInterval(() => setLocusTab(i => (i + 1) % LOCUS_MVPS.length), 5000);
     return () => clearInterval(t);
   }, []);
 
@@ -744,29 +790,52 @@ export default function App() {
                   Locus AI is a persistent, permission-aware organizational memory layer for both people and AI agents. As founder & CEO, I lead a distributed team of 15+ across engineering, data science, and design, own product strategy and GTM, and personally designed 40+ screens end-to-end in Figma before scoping engineering.
                 </p>
 
-                {/* MVP 01 / MVP 02 breakdown */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '22px' }}>
-                  <div style={{ flex: '1 1 220px', padding: '14px 16px', borderRadius: '12px', background: 'rgba(4,120,87,0.06)', border: '1px solid rgba(4,120,87,0.2)' }}>
-                    <p style={{ fontSize: '0.6875rem', fontWeight: 700, color: C.emerald, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>● MVP 01 · Live</p>
-                    <p style={{ fontSize: '0.8125rem', color: C.muted, lineHeight: 1.6 }}>
-                      Slack, Gmail &amp; Notion memory · Memory Explorer · Team Pulse · <strong style={{ color: C.text, fontWeight: 600 }}>Loci</strong> (product-facing assistant) · grounded citations back to source
-                    </p>
+                {/* MVP 01 / MVP 02 — interactive toggle, auto-rotates every 5s */}
+                <div style={{ marginBottom: '24px' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '10px' }}>
+                    {LOCUS_MVPS.map((mvp, i) => {
+                      const activeTab = locusTab === i;
+                      return (
+                        <button key={mvp.key} onClick={() => setLocusTab(i)}
+                          style={{
+                            display: 'inline-flex', alignItems: 'center', gap: '7px',
+                            fontSize: '0.6875rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em',
+                            padding: '7px 14px', borderRadius: '980px', cursor: 'pointer', border: `1px solid ${activeTab ? mvp.color : `${mvp.color}35`}`,
+                            color: activeTab ? '#fff' : mvp.color,
+                            background: activeTab ? mvp.color : `${mvp.color}0D`,
+                            boxShadow: activeTab ? `0 4px 14px ${mvp.color}40` : 'none',
+                            transition: 'background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease',
+                          }}>
+                          {mvp.live && (
+                            <span className="relative flex h-1.5 w-1.5">
+                              <span className="absolute inline-flex h-full w-full rounded-full ping-slow" style={{ background: activeTab ? '#fff' : mvp.color, opacity: 0.6 }}/>
+                              <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ background: activeTab ? '#fff' : mvp.color }}/>
+                            </span>
+                          )}
+                          {mvp.label}
+                        </button>
+                      );
+                    })}
                   </div>
-                  <div style={{ flex: '1 1 220px', padding: '14px 16px', borderRadius: '12px', background: 'rgba(124,58,237,0.06)', border: '1px solid rgba(124,58,237,0.2)' }}>
-                    <p style={{ fontSize: '0.6875rem', fontWeight: 700, color: C.purple, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>◐ MVP 02 · In development</p>
-                    <p style={{ fontSize: '0.8125rem', color: C.muted, lineHeight: 1.6 }}>
-                      Memory Intelligence: freshness, supersession, conflict detection &amp; provenance across Canonical Memory Objects
-                    </p>
+                  <div style={{ position: 'relative', minHeight: '58px' }}>
+                    <AnimatePresence mode="wait">
+                      <motion.div key={locusTab}
+                        initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                        style={{ padding: '14px 16px', borderRadius: '12px', background: `${LOCUS_MVPS[locusTab].color}0D`, border: `1px solid ${LOCUS_MVPS[locusTab].color}30` }}>
+                        <p style={{ fontSize: '0.8125rem', color: C.muted, lineHeight: 1.6 }}>{LOCUS_MVPS[locusTab].body}</p>
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
                 </div>
 
-                {/* Stat row */}
+                {/* Stat row — hover-lift + count-up on scroll into view */}
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '26px', marginBottom: '26px' }}>
                   {LOCUS_SPOTLIGHT_STATS.map((m, i) => (
-                    <div key={i}>
-                      <p style={{ fontSize: '1.3125rem', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1, ...GE }}>{m.value}</p>
+                    <motion.div key={i} whileHover={{ y: -3 }} transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }} style={{ cursor: 'default' }}>
+                      <p style={{ fontSize: '1.3125rem', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1, ...GE }}><CountUp value={m.value}/></p>
                       <p style={{ fontSize: '0.625rem', color: C.subtle, textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '4px' }}>{m.label}</p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 

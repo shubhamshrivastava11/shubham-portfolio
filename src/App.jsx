@@ -358,6 +358,15 @@ const LOCUS_MVPS = [
   },
 ];
 
+/* Condensed roadmap stepper — mirrors the full timeline on /case/locus#roadmap,
+   same status colors (done/live/active/planned) for visual continuity */
+const LOCUS_ROADMAP = [
+  { key: 'foundation', label: 'Foundation', status: 'done',    color: '#0F766E' },
+  { key: 'mvp01',       label: 'MVP 01',     status: 'live',    color: '#047857' },
+  { key: 'mvp02',       label: 'MVP 02',     status: 'active',  color: '#7C3AED' },
+  { key: 'vision',      label: 'Vision',     status: 'planned', color: '#6B6775' },
+];
+
 /* ── Experience & education ── */
 const timeline = [
   { type: 'work', period: '2026 – Present', role: 'Founder & CEO',
@@ -825,6 +834,35 @@ export default function App() {
                       </motion.div>
                     </AnimatePresence>
                   </div>
+                </div>
+
+                {/* Condensed roadmap stepper — full detail lives on the case study */}
+                <div style={{ marginBottom: '24px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+                    {LOCUS_ROADMAP.map((r, i) => (
+                      <div key={r.key} style={{ display: 'flex', alignItems: 'center', flex: i < LOCUS_ROADMAP.length - 1 ? 1 : '0 0 auto' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+                          {r.status === 'live' ? (
+                            <span className="relative flex h-2.5 w-2.5">
+                              <span className="absolute inline-flex h-full w-full rounded-full ping-slow" style={{ background: r.color, opacity: 0.6 }}/>
+                              <span className="relative inline-flex h-2.5 w-2.5 rounded-full" style={{ background: r.color }}/>
+                            </span>
+                          ) : (
+                            <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: r.status === 'planned' ? '#fff' : r.color, border: `2px solid ${r.color}` }}/>
+                          )}
+                          <span style={{ fontSize: '0.5625rem', fontWeight: 700, color: r.color, textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>{r.label}</span>
+                        </div>
+                        {i < LOCUS_ROADMAP.length - 1 && (
+                          <div style={{ flex: 1, height: '2px', minWidth: '16px', marginBottom: '17px', background: r.status === 'planned' ? C.border : `${r.color}45` }}/>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  <Link to="/case/locus#roadmap" style={{ fontSize: '0.75rem', color: C.subtle, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                    onMouseEnter={e => e.currentTarget.style.color = C.text}
+                    onMouseLeave={e => e.currentTarget.style.color = C.subtle}>
+                    Full roadmap <ArrowRight size={11}/>
+                  </Link>
                 </div>
 
                 {/* Stat row — hover-lift + count-up on scroll into view */}

@@ -1,4 +1,5 @@
-import { useParams, Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ChevronRight } from 'lucide-react';
 import { caseStudies } from '../data/caseStudies';
@@ -31,7 +32,17 @@ const ROADMAP_STATUS = {
 
 export default function CaseStudy() {
   const { slug } = useParams();
+  const { hash } = useLocation();
   const cs = caseStudies.find(c => c.slug === slug);
+
+  // React Router doesn't auto-scroll to a #hash on client-side route changes
+  // (only the browser's native full-page-load behavior does that), so links
+  // like "/case/locus#roadmap" need this to actually land on the section.
+  useEffect(() => {
+    if (!hash) return;
+    const el = document.querySelector(hash);
+    if (el) requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  }, [hash, slug]);
 
   if (!cs) {
     return (
@@ -194,7 +205,7 @@ export default function CaseStudy() {
 
         {/* Roadmap — scroll-triggered, staggered timeline */}
         {hasRoadmap && (
-          <motion.section {...up(0.105)} style={{ marginBottom: '48px' }}>
+          <motion.section id="roadmap" {...up(0.105)} style={{ marginBottom: '48px', scrollMarginTop: '76px' }}>
             <SLabel accent={accent} num={num.roadmap} label="Roadmap"/>
             <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: C.text, letterSpacing: '-0.015em', marginBottom: '24px' }}>Where it's headed</h2>
             <div style={{ position: 'relative', paddingLeft: '28px' }}>

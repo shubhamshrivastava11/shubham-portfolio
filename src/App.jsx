@@ -190,6 +190,8 @@ const ACHIEVEMENTS = [
   { value: '$2.4M',  label: 'annual savings',        context: 'JAIDA · J&J invoice pipeline' },
   { value: '97%',   label: 'submission accuracy',    context: 'Bank of China AML engine' },
   { value: '75K',   label: 'installs from zero',     context: '9-month consumer mobile GTM' },
+  { value: '25',    label: 'pilot users onboarded',  context: 'Locus AI · MVP 01 live' },
+  { value: '30+',   label: 'customer conversations', context: 'Locus AI · memory layer thesis' },
 ];
 
 /* ── Project data ── */

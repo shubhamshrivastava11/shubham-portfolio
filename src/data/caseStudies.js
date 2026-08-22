@@ -296,8 +296,6 @@ export const caseStudies = [
     metrics: [
       { value: '40+', label: 'Screens designed' },
       { value: '25', label: 'VoC interviews' },
-      { value: '87%', label: 'Gross margin target' },
-      { value: '$12–15', label: 'Price per user / mo' },
     ],
     problem: {
       heading: 'Decisions get made in Slack threads and forgotten by Friday',
@@ -323,7 +321,6 @@ export const caseStudies = [
         { id: 'H2', label: 'Existing workarounds are inadequate', result: 'confirmed', detail: '9 confirmed · 3 challenged · 13 open; pinned messages and Notion docs don\'t hold up without constant upkeep' },
         { id: 'H3', label: 'Onboarding is a shared pain', result: 'mixed', detail: '4 confirmed · 10 challenged · 11 open, the weakest signal of the five; descoped from MVP rather than forced in' },
         { id: 'H4', label: 'Zero manual entry is non-negotiable', result: 'confirmed', detail: '10 confirmed · 0 challenged · 15 open; nobody pushed back on this one' },
-        { id: 'H5', label: 'Self-serve at $12/month is the right entry point', result: 'mixed', detail: '8 confirmed · 11 challenged · 6 open; pricing needs more testing before I\'d commit to it' },
       ],
       quotes: [
         { quote: "By the time I find the Slack thread where we decided, the decision's already been re-litigated twice.", role: 'Senior PM, developer-tools company' },
@@ -349,12 +346,7 @@ export const caseStudies = [
         {
           num: '03',
           title: 'Designed the full product in Figma before scoping engineering',
-          body: 'Rather than wireframe-then-build, I designed 40+ high-fidelity screens across the entire product surface (marketing site, onboarding, dashboard, Decision Log, Team Pulse, Search, and Settings) to pressure-test the information architecture and pricing model before committing engineering time.',
-        },
-        {
-          num: '04',
-          title: 'Modeled the business against a break-even target',
-          body: 'Priced at $12/month individual and $15/user/month team tier, targeting 87% gross margin and break-even at 27–35 users. Kept CAC near-zero by designing for community-led growth (Reddit and Product Hunt) rather than paid acquisition.',
+          body: 'Rather than wireframe-then-build, I designed 40+ high-fidelity screens across the entire product surface (marketing site, onboarding, dashboard, Decision Log, Team Pulse, Search, and Settings) to pressure-test the information architecture before committing engineering time.',
         },
       ],
     },
@@ -376,14 +368,12 @@ export const caseStudies = [
       { src: '/locus/locus-search-results.png', alt: 'Locus AI search results', title: 'Search results', caption: 'Every answer links back to its original Slack thread or Notion doc, no context lost in translation.' },
       { src: '/locus/locus-decision-log.png', alt: 'Locus AI decision log table', title: 'Decision Log', caption: 'The full, filterable record of every decision, action item, and blocker, searchable by type, source, and status.' },
       { src: '/locus/locus-pulse.png', alt: 'Locus AI weekly Pulse digest', title: 'Team Pulse', caption: 'A synthesized weekly digest, delivered every Monday, so catching up never means scrolling back through a week of Slack.' },
-      { src: '/locus/locus-pricing.png', alt: 'Locus AI pricing plans', title: 'Pricing', caption: 'Individual ($12/mo) and Team ($15/user/mo) tiers, modeled against an 87% gross-margin target and break-even at 27–35 users.' },
     ],
     results: {
       heading: 'Where the product stands',
       items: [
         { before: 'Hypothesis only', after: '25 VoC interviews, 5 hypotheses scored', label: 'Problem validation' },
         { before: 'Concept sketch', after: '40+ hi-fi screens shipped', label: 'Product design' },
-        { before: 'No pricing model', after: '87% margin target · break-even at 27–35 users', label: 'Business model' },
         { before: 'Design phase', after: 'Live at locusaiapp.com', label: 'Current status' },
       ],
     },

@@ -478,7 +478,6 @@ const CERTIFICATIONS = [
       { name: 'AI For Everyone', issuer: 'DeepLearning.AI', brand: 'deeplearningai', date: 'May 2026' },
       { name: 'Artificial Intelligence Micro-Certification (AIC)™', issuer: 'Product School', brand: 'productschool', date: 'Sep 2024' },
       { name: 'Responsible AI: Applying AI Principles with Google Cloud', issuer: 'Google', brand: 'google', date: 'Apr 2024' },
-      { name: 'Gen AI & Business Operations', issuer: 'Workato', brand: 'workato', date: 'May 2024', expires: 'May 2026' },
     ],
   },
   {

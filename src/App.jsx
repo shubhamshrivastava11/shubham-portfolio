@@ -541,6 +541,14 @@ const TESTIMONIALS = [
     date: 'April 2024',
     accent: '#0369A1',
   },
+  {
+    quote: "I watched Shubham take Locus AI from an ambitious idea to a working product with real users. He conducted dozens of customer interviews to validate the need, then stepped into founder-level ownership, leading a cross-functional team of 15+ across product, design, engineering, and AI. What stood out most was his leadership: when delivery challenges arose, he met people one-on-one to understand what was blocking them rather than just pushing the schedule — pairing urgency with real empathy. His engineering background let him go deep on APIs, embeddings, vector search, and privacy, while never losing sight of the customer. I recommend him for product leadership roles where someone needs to turn an uncertain idea into a real product.",
+    name: 'Mark Walker',
+    title: 'Software Engineering Manager at O.C. Tanner',
+    relationship: "Was Shubham's mentor",
+    date: 'September 2026',
+    accent: C.indigo,
+  },
 ];
 
 /* ── Animation helper ── */

@@ -211,7 +211,7 @@ const projects = [
       { value: 'AR/VR', label: 'Mobile pre-launch beta' },
     ],
     tags: ['AI Design', 'React Native', 'AR/VR', 'Affiliate Commerce', '0-to-1'],
-    url: 'https://www.heyfurnish.com',
+    url: 'https://heyfurnish.com',
     featured: true,
     badges: [{ label: '● Website Live', color: '#047857' }, { label: '◉ Mobile Beta · AR/VR', color: '#7C3AED' }],
     filters: ['0→1', 'AI-heavy', 'Consumer'],

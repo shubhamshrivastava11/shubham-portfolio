@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { motion, AnimatePresence, useInView, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Mail, Briefcase, GraduationCap, Award, ArrowRight, Download, MapPin, Star, Pin, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -369,6 +369,88 @@ const LOCUS_ROADMAP = [
   { key: 'mvp02',       label: 'MVP 02',     status: 'active',  color: '#7C3AED' },
   { key: 'vision',      label: 'Vision',     status: 'planned', color: '#6B6775' },
 ];
+
+/* Agent-flow diagram for the Locus spotlight's "How it works" tab — animates
+   the real MVP 01 trust flow already described in copy: sources feed the
+   memory layer, which answers with a citation back to the original source. */
+const FLOW_STEPS = [
+  { key: 'slack',    label: 'Slack',    brand: 'slack',  color: '#4A154B', caption: 'Reading Slack — read-only, no exports' },
+  { key: 'gmail',    label: 'Gmail',    brand: 'gmail',  color: '#EA4335', caption: 'Reading Gmail — read-only, no exports' },
+  { key: 'notion',   label: 'Notion',   brand: 'notion', color: '#7C3AED', caption: 'Reading Notion — read-only, no exports' },
+  { key: 'memory',   label: 'Memory',   brand: null,     color: '#4F46E5', caption: "Routed into Locus AI's organizational memory layer" },
+  { key: 'citation', label: 'Citation', brand: null,     color: '#047857', caption: 'Grounded answer, cited back to its original source' },
+];
+
+function LocusFlowDiagram() {
+  const [step, setStep] = useState(0);
+  const pausedRef = useRef(false);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      if (!pausedRef.current) setStep(i => (i + 1) % FLOW_STEPS.length);
+    }, 2500);
+    return () => clearInterval(t);
+  }, []);
+
+  const handlePick = i => {
+    setStep(i);
+    pausedRef.current = true;
+  };
+
+  return (
+    <div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '4px' }}>
+        {FLOW_STEPS.map((s, i) => {
+          const active = i === step;
+          const done = i < step;
+          return (
+            <div key={s.key} style={{ display: 'flex', alignItems: 'center', flex: i < FLOW_STEPS.length - 1 ? 1 : '0 0 auto' }}>
+              <button type="button" onClick={() => handlePick(i)} aria-label={`Show step: ${s.label}`} aria-pressed={active}
+                style={{
+                  flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px',
+                  background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+                }}>
+                <span style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  width: active ? '34px' : '26px', height: active ? '34px' : '26px', borderRadius: '50%',
+                  background: active || done ? s.color : '#FFFFFF',
+                  border: `2px solid ${s.color}`,
+                  transition: 'width 0.25s, height 0.25s, background 0.25s',
+                  boxShadow: active ? `0 0 0 4px ${s.color}22` : 'none',
+                }}>
+                  {s.brand ? <Brand id={s.brand} size={active ? 16 : 13}/> : <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: active || done ? '#fff' : s.color }}/>}
+                </span>
+                <span style={{ fontSize: '0.5625rem', fontWeight: 700, color: active ? s.color : C.subtle, textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>{s.label}</span>
+              </button>
+              {i < FLOW_STEPS.length - 1 && (
+                <div style={{ position: 'relative', flex: 1, height: '2px', minWidth: '12px', marginBottom: '16px', background: C.border, overflow: 'hidden', borderRadius: '2px' }}>
+                  {!reduceMotion && i === step && (
+                    <motion.span
+                      initial={{ left: '-20%' }} animate={{ left: '100%' }}
+                      transition={{ duration: 0.9, ease: [0.4, 0, 0.6, 1] }}
+                      style={{ position: 'absolute', top: '-2px', width: '10px', height: '6px', borderRadius: '3px', background: s.color }}
+                    />
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      <div style={{ minHeight: '34px', marginTop: '14px' }}>
+        <AnimatePresence mode="wait">
+          <motion.p key={step}
+            initial={{ opacity: 0, y: reduceMotion ? 0 : 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduceMotion ? 0 : -6 }}
+            transition={{ duration: 0.25 }}
+            style={{ fontSize: '0.8125rem', color: C.muted, lineHeight: 1.6, textAlign: 'center' }}>
+            {FLOW_STEPS[step].caption}
+          </motion.p>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
 
 /* ── Experience & education ── */
 const timeline = [

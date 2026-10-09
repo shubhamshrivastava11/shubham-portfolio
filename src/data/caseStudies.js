@@ -294,22 +294,22 @@ export const caseStudies = [
     hook: "Enterprise AI doesn't just have a retrieval problem, it has a memory and context-continuity problem. I lead a distributed team of 15+ building Locus AI, a persistent, permission-aware organizational memory layer for people and AI agents, personally designing 40+ screens end-to-end in Figma before scoping engineering.",
     accentColor: '#4F46E5',
     metrics: [
-      { value: '25', label: 'Pilot users onboarded' },
+      { value: '40+', label: 'Users in controlled adoption' },
       { value: '30+', label: 'Customer conversations' },
-      { value: '40+', label: 'Waitlist sign-ups' },
+      { value: '20+', label: 'Workplace connectors' },
       { value: '40+', label: 'Screens designed' },
     ],
     problem: {
-      heading: 'Workplace context doesn’t disappear, it just becomes unreachable',
+      heading: 'Workplace context doesn\'t disappear, it just becomes unreachable',
       body: [
-        'Critical context, decisions, rationale, who owns what and why it changed, is fragmented across Slack threads, Notion docs, email, and every tool a team touches, then it decays with time. Retrieval tools can fetch a fact if you already know where to look; they can’t tell you whether that fact is still current, what replaced it, or why it changed. That’s a different, harder problem than search.',
-        'The evolution of the question tells the story: Enterprise Search asks "Where is the information?" Traditional RAG asks "What information is relevant?" Locus AI’s MVP 01 asks "What is relevant, and where did it come from?" MVP 02 goes further: "What changed, what is current, why, and what evidence supports it?"',
+        'Critical context, decisions, rationale, who owns what and why it changed, is fragmented across Slack threads, Notion docs, email, and every tool a team touches, then it decays with time. Retrieval tools can fetch a fact if you already know where to look; they can\'t tell you whether that fact is still current, what replaced it, or why it changed. That\'s a different, harder problem than search.',
+        'The evolution of the question tells the story: Enterprise Search asks "Where is the information?" Traditional RAG asks "What information is relevant?" Locus AI\'s MVP 01 asks "What is relevant, and where did it come from?" MVP 02 goes further: "What changed, what is current, why, and what evidence supports it?"',
       ],
-      callout: 'Across 30+ customer conversations and a structured 25-interview VoC study, the pattern held everywhere: people don’t lack information, they lack a persistent, trustworthy record of how that information evolved.',
+      callout: 'Across 30+ customer conversations and a structured 25-interview VoC study, the pattern held everywhere: people don\'t lack information, they lack a persistent, trustworthy record of how that information evolved.',
     },
     voc: {
       heading: '25 structured interviews, 4 hypotheses scored',
-      intro: "Before designing a single screen, I ran structured VoC interviews (25 completed against a target of 22) with PMs, engineers, and designers across enterprise, startup, and consultancy teams, scored on pain intensity, workaround quality, and willingness to pay against four specific hypotheses. This early research, focused on how teams lose track of decisions, was the seed that grew into Locus AI’s broader organizational-memory thesis: 30+ follow-on customer conversations confirmed the same root cause shows up well beyond decisions alone.",
+      intro: "Before designing a single screen, I ran structured VoC interviews (25 completed against a target of 22) with PMs, engineers, and designers across enterprise, startup, and consultancy teams, scored on pain intensity, workaround quality, and willingness to pay against four specific hypotheses. This early research, focused on how teams lose track of decisions, was the seed that grew into Locus AI's broader organizational-memory thesis: 30+ follow-on customer conversations confirmed the same root cause shows up well beyond decisions alone.",
       image: '/locus/locus-voc-dashboard.png',
       imageAlt: 'Locus AI VoC research dashboard: 25 interviews, hypothesis validation, and signal score distribution',
       stats: [
@@ -353,15 +353,15 @@ export const caseStudies = [
         {
           num: '04',
           title: 'Scoped MVP 02, Memory Intelligence, from pilot usage',
-          body: '30+ post-launch customer conversations and pilot feedback surfaced a deeper need than retrieval: understanding how context changes over time. MVP 02 is in development around Canonical Memory Objects, freshness, supersession, conflict detection, and provenance, moving the product from "what’s relevant" to "what’s current, and why."',
+          body: '30+ post-launch customer conversations and pilot feedback surfaced a deeper need than retrieval: understanding how context changes over time. MVP 02 is in development around Canonical Memory Objects, freshness, supersession, conflict detection, and provenance, moving the product from "what\'s relevant" to "what\'s current, and why."',
         },
       ],
     },
     built: {
-      heading: 'What’s live in MVP 01',
+      heading: 'What\'s live in MVP 01',
       items: [
         { label: 'Live memory sources: Slack, Gmail & Notion', desc: 'Read-only, permission-aware ingestion of workplace context as it happens, no exports, no manual logging, no new workflow for the team to adopt.' },
-        { label: 'Memory Explorer', desc: 'Lets users explore Locus AI’s structured organizational memories directly, rather than firing off a search and hoping the right chunk comes back.' },
+        { label: 'Memory Explorer', desc: 'Lets users explore Locus AI\'s structured organizational memories directly, rather than firing off a search and hoping the right chunk comes back.' },
         { label: 'Team Pulse', desc: 'A synthesized digest that surfaces higher-level organizational context and activity, so catching up never means scrolling back through a week of Slack.' },
         { label: 'Loci, the product-facing assistant', desc: 'The conversational layer users actually talk to, kept deliberately separate from the core organizational-memory engine underneath that does the real work of capturing, grounding, and citing context.' },
         { label: 'Grounded retrieval & trust flow', desc: 'Every answer is supported by source evidence: Memory → Citation → View Original carries a user from a retrieved answer straight back to the original Slack, Gmail, or Notion source for verification.' },
@@ -374,7 +374,7 @@ export const caseStudies = [
       },
       {
         stage: 'MVP 01', title: 'Organizational memory — live', period: '2026', status: 'live',
-        desc: 'Live across Slack, Gmail & Notion. Memory Explorer, Team Pulse, and Loci shipped to 25 pilot users in controlled early-access pilots, with grounded retrieval and source citations. Core question: what is relevant, and where did it come from?',
+        desc: 'Live across Slack, Gmail & Notion. Memory Explorer, Team Pulse, and Loci shipped to 40+ users in controlled adoption, with grounded retrieval and source citations. Core question: what is relevant, and where did it come from?',
       },
       {
         stage: 'MVP 02', title: 'Memory Intelligence — in development', period: '2026 – 2027', status: 'active',
@@ -400,12 +400,12 @@ export const caseStudies = [
       items: [
         { before: 'Hypothesis only', after: '30+ customer conversations · 25-interview VoC study scored', label: 'Problem validation' },
         { before: 'Concept sketch', after: '40+ hi-fi screens shipped', label: 'Product design' },
-        { before: 'Design phase', after: 'MVP 01 live · 25 pilot users onboarded · 40+ waitlist', label: 'Current status' },
+        { before: 'Design phase', after: 'MVP 01 live · 40+ users · B2B pilots in progress', label: 'Current status' },
         { before: 'MVP 01 shipped', after: 'MVP 02 (Memory Intelligence) scoped from pilot data', label: 'Roadmap' },
       ],
     },
     learnings: [
-      { title: 'Real usage reframed the problem', body: 'MVP 01 pilots and 30+ post-launch conversations showed the deeper need wasn’t capturing decisions, it was preserving organizational memory as it changes over time. That insight, not a roadmap guess, is what shaped MVP 02.' },
+      { title: 'Real usage reframed the problem', body: 'MVP 01 pilots and 30+ post-launch conversations showed the deeper need wasn\'t capturing decisions, it was preserving organizational memory as it changes over time. That insight, not a roadmap guess, is what shaped MVP 02.' },
       { title: 'Designing the full surface first exposes gaps early', body: 'Laying out every settings screen (Capture Controls, Privacy, Connected Sources) before writing a spec forced me to answer permissioning and data-retention questions months before an engineer would have hit them.' },
       { title: 'Read-only, zero-workflow-change integrations lower the adoption bar the most', body: 'Every VoC interview confirmed the same thing: teams will not adopt a tool that asks them to manually log anything. Designing Locus as a passive listener rather than a new inbox to check was the single highest-leverage product decision.' },
       { title: 'A digest beats a dashboard nobody opens', body: 'Early concepts leaned entirely on a pull-based dashboard. Adding Team Pulse, a push-based digest, came directly from VoC feedback that people forget to check dashboards but do read a well-timed summary.' },

@@ -190,7 +190,7 @@ const ACHIEVEMENTS = [
   { value: '$2.4M',  label: 'annual savings',        context: 'JAIDA · J&J invoice pipeline' },
   { value: '97%',   label: 'submission accuracy',    context: 'Bank of China AML engine' },
   { value: '75K',   label: 'installs from zero',     context: '9-month consumer mobile GTM' },
-  { value: '25',    label: 'pilot users onboarded',  context: 'Locus AI · MVP 01 live' },
+  { value: '40+',   label: 'users in controlled adoption', context: 'Locus AI · MVP 01 live' },
   { value: '30+',   label: 'customer conversations', context: 'Locus AI · memory layer thesis' },
 ];
 
@@ -203,11 +203,11 @@ const projects = [
     company: 'Founder & Product Lead', period: '2025 – Present',
     heroValue: '90s', heroLabel: 'to full design package',
     hook: 'Most furniture-buying happens room-by-room, leaving homes visually unbalanced and budgets misallocated. I designed and shipped HeyFurnish to fix this: an AI platform that simultaneously optimizes budget across furniture, lighting, décor, and storage, generating three tiered design packages in 90 seconds. Web is live; mobile app is in AR/VR beta for real-scale room visualization before final launch.',
-    scope: 'Sole founder · Full-stack product ownership from zero: strategy, AI architecture, affiliate monetization, and mobile roadmap · Patent-pending budget allocation engine · 35+ vendor integrations.',
+    scope: 'Co-founder · Product ownership from zero: strategy, AI architecture, affiliate monetization, and mobile roadmap · Cross-room budget allocation engine.',
     aiNote: 'Cross-room constraint-satisfaction engine that simultaneously allocates budget across all room elements rather than styling pieces in isolation.',
     metrics: [
       { value: '90s',   label: 'To first design package' },
-      { value: '$1.2K', label: 'Avg savings vs. designer' },
+      { value: '3',     label: 'Tiered design packages' },
       { value: 'AR/VR', label: 'Mobile pre-launch beta' },
     ],
     tags: ['AI Design', 'React Native', 'AR/VR', 'Affiliate Commerce', '0-to-1'],
@@ -287,14 +287,14 @@ const projects = [
     slug: 'locus', index: '06', tag: 'AI · Organizational Memory',
     title: 'Locus AI',
     company: 'Founder & CEO · AI PM Bootcamp', period: '2026',
-    heroValue: '25', heroLabel: 'pilot users, MVP 01 live',
-    hook: "Enterprise AI doesn't just have a retrieval problem, it has a memory and context-continuity problem. Critical workplace context is fragmented across conversations, emails, documents, teams, tools, and time. Locus AI is a persistent, permission-aware organizational memory layer for both people and AI agents. MVP 01 is live across Slack, Gmail, and Notion, with grounded retrieval, source citations, and a Memory Explorer, now running in controlled early-access pilots with 25 users. MVP 02, Memory Intelligence, is in development to track how organizational context evolves: freshness, supersession, conflict detection, and provenance. Validated through 30+ customer conversations, a 40+ sign-up waitlist, and full product designed end-to-end in Figma while leading a 15+ person team.",
-    scope: 'Founder & CEO · leading a distributed team of 15+ · 30+ customer conversations · 25 pilot users onboarded · 40+ waitlist sign-ups · 40+ screens designed in Figma · live at locusaiapp.com.',
+    heroValue: '40+', heroLabel: 'users, MVP 01 live',
+    hook: "Enterprise AI doesn't just have a retrieval problem, it has a memory and context-continuity problem. Critical workplace context is fragmented across conversations, emails, documents, teams, tools, and time. Locus AI is a persistent, permission-aware organizational memory layer for both people and AI agents. MVP 01 is live across Slack, Gmail, and Notion, with grounded retrieval, source citations, and a Memory Explorer, now in controlled adoption with 40+ users across 20+ workplace connectors. MVP 02, Memory Intelligence, is in development to track how organizational context evolves: freshness, supersession, conflict detection, and provenance. Validated through 30+ customer conversations and a full product designed end-to-end in Figma while leading a 15+ person team.",
+    scope: 'Founder & CEO · leading a distributed team of 15+ · 30+ customer conversations · 40+ users in controlled adoption · 20+ connectors · 40+ screens designed in Figma · live at locusaiapp.com.',
     aiNote: 'Grounded retrieval with source citations, every answer traced through a Memory → Citation → View Original trust flow back to its source in Slack, Gmail, or Notion. MVP 02 adds Canonical Memory Objects to track how that memory changes over time.',
     metrics: [
       { value: '30+', label: 'Customer conversations' },
-      { value: '25',  label: 'Pilot users onboarded' },
-      { value: '40+', label: 'Waitlist sign-ups' },
+      { value: '40+', label: 'Users in controlled adoption' },
+      { value: '20+', label: 'Workplace connectors' },
     ],
     tags: ['Claude API', 'MCP', 'FastAPI', 'Slack API', 'Gmail API', 'Notion API', 'RAG'],
     url: 'https://locusaiapp.com',
@@ -341,9 +341,9 @@ const HIGHLIGHTS = [
 const FILTER_TABS = ['All', 'Enterprise AI', '0→1', 'Consumer', 'AI-heavy'];
 
 const LOCUS_SPOTLIGHT_STATS = [
-  { value: '25',  label: 'Pilot users onboarded' },
+  { value: '40+', label: 'Users in controlled adoption' },
   { value: '30+', label: 'Customer conversations' },
-  { value: '40+', label: 'Waitlist sign-ups' },
+  { value: '20+', label: 'Workplace connectors' },
   { value: '40+', label: 'Screens designed' },
 ];
 
@@ -377,15 +377,15 @@ const timeline = [
     keyResult: { value: '15+', label: 'Team members led across 5 disciplines' },
     bullets: [
       'Lead a globally distributed team of 15+ across backend engineering, frontend engineering, data science, UI/UX, and product, building a persistent, permission-aware organizational memory layer for people and AI agents',
-      'Shipped MVP 01 live across Slack, Gmail, and Notion with grounded retrieval and source citations, now running in controlled early-access pilots with 25 users; MVP 02 (Memory Intelligence) in development',
-      'Conducted 30+ customer conversations, grew a 40+ sign-up early-access waitlist, and personally designed 40+ high-fidelity screens end-to-end in Figma before scoping engineering',
+      'Shipped MVP 01 live across Slack, Gmail, and Notion with grounded retrieval and source citations, now in controlled adoption with 40+ users and B2B pilots in progress; MVP 02 (Memory Intelligence) in development',
+      'Conducted 30+ customer conversations and personally designed 40+ high-fidelity screens end-to-end in Figma before scoping engineering',
     ]},
   { type: 'work', period: '2025 – Present', role: 'Founder & Product Lead',
     org: 'HeyFurnish', location: 'Remote', domain: 'AI · Home & Lifestyle', accent: '#0F766E', brand: 'heyfurnish',
     keyResult: { value: 'Live + Beta', label: 'Web launched · Mobile in AR/VR beta' },
     bullets: [
       'Defined ICP (homeowners undertaking full-room renovations, $800–$2K budgets) through 15+ discovery interviews before writing a line of code',
-      'Architected patent-pending cross-room budget allocation engine; chose affiliate-first monetization (free → $19/mo Pro → $49/mo Studio) targeting sub-30-day payback',
+      'Architected the cross-room budget allocation engine; chose affiliate-first monetization (free → $19/mo Pro → $49/mo Studio) targeting sub-30-day payback',
       'Running iterative AR/VR feedback loops with mobile beta users ahead of final release, with real-scale room visualization as the core differentiator vs. web-only competitors',
     ]},
   { type: 'work', period: 'Oct 2025 – Present', role: 'Product Manager II',
@@ -759,7 +759,7 @@ export default function App() {
               { value: '$75M+', label: 'AI portfolio led', sub: 'GTS & GFS, J&J' },
               { value: '75K',   label: 'App installs',   sub: 'from zero in 9 mo' },
               { value: '97%',   label: 'Accuracy',       sub: 'AML compliance' },
-              { value: '7+',    label: 'Years',          sub: 'PM experience' },
+              { value: '8+',    label: 'Years',          sub: 'PM experience' },
             ].map((s, i) => (
               <div key={i}>
                 <p style={{ fontSize: 'clamp(1.75rem,3.5vw,2.5rem)', fontWeight: 800, letterSpacing: '-0.035em', lineHeight: 1, ...GE }}>{s.value}</p>
@@ -1289,7 +1289,7 @@ export default function App() {
               <Award size={10}/> Licenses & Certifications
             </p>
             <p style={{ fontSize: '0.8125rem', color: C.subtle, marginBottom: '20px' }}>
-              {CERTIFICATIONS.reduce((n, g) => n + g.items.length, 0)} credentials across product, AI, agile, and automation.
+              {CERTIFICATIONS.reduce((n, g) => n + g.items.length, 0)} credentials across AI, product, agile, and cloud.
             </p>
 
             {CERTIFICATIONS.map((group, gi) => (

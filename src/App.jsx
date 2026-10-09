@@ -691,6 +691,7 @@ export default function App() {
   const expDeckRef = useRef(null);
   const [achIdx, setAchIdx] = useState(0);
   const [locusTab, setLocusTab] = useState(0);
+  const [locusView, setLocusView] = useState('product');
 
   useEffect(() => {
     const t = setInterval(() => setAchIdx(i => (i + 1) % ACHIEVEMENTS.length), 3000);
@@ -990,34 +991,64 @@ export default function App() {
                 </div>
               </div>
 
-              {/* ── RIGHT: framed screenshot ── */}
+              {/* ── RIGHT: framed screenshot / flow diagram toggle ── */}
               <div style={{ flex: '1 1 420px' }}>
-                <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid ${C.border}`, boxShadow: '0 20px 48px rgba(20,18,38,0.14)', background: '#FFFFFF' }}>
-                  <div style={{ display: 'flex', gap: '6px', padding: '10px 14px', borderBottom: `1px solid ${C.border}`, background: '#FAFAFC' }}>
-                    <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#F87171' }}/>
-                    <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#FBBF24' }}/>
-                    <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#34D399' }}/>
-                  </div>
-                  <img src="/locus/locus-dashboard.png" alt="Locus AI dashboard: organizational memory at a glance" style={{ width: '100%', display: 'block' }}/>
+                <div style={{ display: 'flex', gap: '8px', marginBottom: '10px' }}>
+                  {[['product', 'Product'], ['flow', 'How it works']].map(([key, label]) => {
+                    const active = locusView === key;
+                    return (
+                      <button key={key} type="button" onClick={() => setLocusView(key)} aria-pressed={active}
+                        style={{
+                          fontSize: '0.6875rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em',
+                          padding: '7px 14px', borderRadius: '980px', cursor: 'pointer',
+                          border: `1px solid ${active ? C.purple : C.border}`,
+                          color: active ? '#fff' : C.muted,
+                          background: active ? GRAD : 'transparent',
+                          transition: 'background 0.25s ease, color 0.25s ease, border-color 0.25s ease',
+                        }}>
+                        {label}
+                      </button>
+                    );
+                  })}
                 </div>
-                <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
-                  {[
-                    { src: '/locus/locus-decision-log.png', alt: 'Memory Explorer screen' },
-                    { src: '/locus/locus-pulse.png', alt: 'Team Pulse screen' },
-                    { src: '/locus/locus-search-results.png', alt: 'Search results screen' },
-                  ].map((t, ti) => (
-                    <Link key={ti} to="/case/locus" style={{ flex: 1, display: 'block' }}>
-                      <img
-                        src={t.src}
-                        alt={t.alt}
-                        loading="lazy"
-                        style={{ width: '100%', height: '56px', objectFit: 'cover', objectPosition: 'top', borderRadius: '8px', border: `1px solid ${C.border}`, transition: 'border-color 0.15s, opacity 0.15s' }}
-                        onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(124,58,237,0.5)'; e.currentTarget.style.opacity = '0.85'; }}
-                        onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.opacity = '1'; }}
-                      />
-                    </Link>
-                  ))}
-                </div>
+
+                <AnimatePresence mode="wait">
+                  {locusView === 'product' ? (
+                    <motion.div key="product" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+                      <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid ${C.border}`, boxShadow: '0 20px 48px rgba(20,18,38,0.14)', background: '#FFFFFF' }}>
+                        <div style={{ display: 'flex', gap: '6px', padding: '10px 14px', borderBottom: `1px solid ${C.border}`, background: '#FAFAFC' }}>
+                          <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#F87171' }}/>
+                          <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#FBBF24' }}/>
+                          <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#34D399' }}/>
+                        </div>
+                        <img src="/locus/locus-dashboard.png" alt="Locus AI dashboard: organizational memory at a glance" style={{ width: '100%', display: 'block' }}/>
+                      </div>
+                      <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
+                        {[
+                          { src: '/locus/locus-decision-log.png', alt: 'Memory Explorer screen' },
+                          { src: '/locus/locus-pulse.png', alt: 'Team Pulse screen' },
+                          { src: '/locus/locus-search-results.png', alt: 'Search results screen' },
+                        ].map((t, ti) => (
+                          <Link key={ti} to="/case/locus" style={{ flex: 1, display: 'block' }}>
+                            <img
+                              src={t.src}
+                              alt={t.alt}
+                              loading="lazy"
+                              style={{ width: '100%', height: '56px', objectFit: 'cover', objectPosition: 'top', borderRadius: '8px', border: `1px solid ${C.border}`, transition: 'border-color 0.15s, opacity 0.15s' }}
+                              onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(124,58,237,0.5)'; e.currentTarget.style.opacity = '0.85'; }}
+                              onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.opacity = '1'; }}
+                            />
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div key="flow" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}
+                      style={{ borderRadius: '16px', border: `1px solid ${C.border}`, boxShadow: '0 20px 48px rgba(20,18,38,0.14)', background: '#FFFFFF', padding: '28px 20px' }}>
+                      <LocusFlowDiagram/>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
             </div>
